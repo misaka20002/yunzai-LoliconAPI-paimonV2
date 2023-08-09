@@ -1,5 +1,5 @@
 # yunzai-LoliconAPI-paimonV2
-基于云崽qq机器人的随机返回蛇图
+基于云崽V3qq机器人的随机返回蛇图
 
 命令：
 涩图,来份涩图
