@@ -22,7 +22,7 @@ import fs from 'fs'
 
 // 正则匹配数字和汉字数字
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
-let Lolicon_KEY = new RegExp(`^来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
+let Lolicon_KEY = new RegExp(`^派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
 
 export class LoliconAPI extends plugin {
     constructor() {
@@ -46,7 +46,7 @@ export class LoliconAPI extends plugin {
                 },
                 {
                     /** 命令正则匹配 */
-                    reg: '^(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$',
+// 取消zgh                    reg: '^(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$',
                     /** 执行方法 */
                     fnc: 'set_cd',
                     /** 权限控制 */
@@ -56,7 +56,7 @@ export class LoliconAPI extends plugin {
                 },
                 {
                     /** 命令正则匹配 */
-                    reg: '^(涩|色|瑟)(图|圖)(份|张|点)数(.*)$',
+// 取消zgh                    reg: '^(涩|色|瑟)(图|圖)(份|张|点)数(.*)$',
                     /** 执行方法 */
                     fnc: 'set_num',
                     /** 权限控制 */
@@ -66,7 +66,7 @@ export class LoliconAPI extends plugin {
                 },
                 {
                     /** 命令正则匹配 */
-                    reg: '^(开启|关闭)(r|R)18$',
+// 取消zgh                    reg: '^(开启|关闭)(r|R)18$',
                     /** 执行方法 */
                     fnc: 'set_r18',
                     /** 权限控制 */
