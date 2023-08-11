@@ -28,17 +28,17 @@ export class LoliconAPI extends plugin {
     constructor() {
         super({
             /** 功能名称 */
-            name: '派蒙找到啦~',
+            name: 'LoliconAPI-paimonV3',
             /** 功能描述 */
             dsc: 'https://api.lolicon.app',
             /** https://oicqjs.github.io/oicq/#events */
             event: 'message',
             /** 优先级，数字越小等级越高 */
-            priority: -1314520,
+            priority: 500,
             rule: [
                 {
                     /** 命令正则匹配 */
-                    reg: '^派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)$',
+                    reg: '^(派蒙来|派蒙找)\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)$',
                     /** 执行方法 */
                     fnc: 'key_setu',
                     /** 禁用日志 */
@@ -46,7 +46,7 @@ export class LoliconAPI extends plugin {
                 },
                 {
                     /** 命令正则匹配 */
-// 取消zgh                    reg: '^(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$',
+                    reg: '^派蒙(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$',
                     /** 执行方法 */
                     fnc: 'set_cd',
                     /** 权限控制 */
@@ -56,7 +56,7 @@ export class LoliconAPI extends plugin {
                 },
                 {
                     /** 命令正则匹配 */
-// 取消zgh                    reg: '^(涩|色|瑟)(图|圖)(份|张|点)数(.*)$',
+                    reg: '^派蒙(涩|色|瑟)(图|圖)(份|张|点)数(.*)$',
                     /** 执行方法 */
                     fnc: 'set_num',
                     /** 权限控制 */
@@ -66,7 +66,7 @@ export class LoliconAPI extends plugin {
                 },
                 {
                     /** 命令正则匹配 */
-// 取消zgh                    reg: '^(开启|关闭)(r|R)18$',
+                    reg: '^派蒙(涩|色|瑟)(图|圖)(开启|关闭)(r|R)18$',
                     /** 执行方法 */
                     fnc: 'set_r18',
                     /** 权限控制 */
@@ -95,7 +95,7 @@ export class LoliconAPI extends plugin {
         await redis.set(`LoliconAPI_${e.group_id}_${e.user_id}_CD`, GetTime, { EX: config.CD })
 
         // 使用正则提取tag
-        let tag = e.msg.replace(new RegExp(`^派蒙来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
+        let tag = e.msg.replace(new RegExp(`^(派蒙来|派蒙找)\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
 
         // 分隔tag（以空格为标准，如果想修改成其他标准如“|”修改单引号内容即可
         let tags = tag.split(' ')
@@ -183,7 +183,7 @@ export class LoliconAPI extends plugin {
 
     /** 设置涩图CD */
     async set_cd(e) {
-        const match = e.msg.match(/^(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$/)
+        const match = e.msg.match(/^派蒙(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$/)
         if (match) {
             const input = match[5].trim()
             if (/^\d+$/.test(input)) {
@@ -198,7 +198,7 @@ export class LoliconAPI extends plugin {
 
     /** 设置单次获取图片数量限制 */
     async set_num(e) {
-        const match = e.msg.match(/^(涩|色|瑟)(图|圖)(张|份|点)数(.*)$/)
+        const match = e.msg.match(/^派蒙(涩|色|瑟)(图|圖)(张|份|点)数(.*)$/)
         if (match) {
             const input = match[4].trim()
             if (/^\d+$/.test(input)) {
@@ -213,7 +213,7 @@ export class LoliconAPI extends plugin {
 
     /** 是否开启R18（但是全局 */
     async set_r18(e) {
-        const type = e.msg.replace(/^(开启|关闭)(r|R)18$/g, '$1')
+        const type = e.msg.replace(/^派蒙(涩|色|瑟)(图|圖)(开启|关闭)(r|R)18$/g, '$1')
         if (type === '开启' || type === '关闭') {
             await updateConfig('r18', type === '开启' ? 1 : 0)
             return e.reply(`派蒙，已${type}涩涩啦！`)
