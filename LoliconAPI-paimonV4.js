@@ -29,7 +29,7 @@ const random_pic = [
 ]
 
 const NumReg = "[零一壹二两三四五六七八九十百千万亿\\d]+"
-let Lolicon_KEY = new RegExp(`^来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
+let Lolicon_KEY = new RegExp(`^派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
 
 export class LoliconAPI extends plugin {
     constructor() {
@@ -60,7 +60,7 @@ export class LoliconAPI extends plugin {
         let GetTime = moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
         await redis.set(`LoliconAPI_${e.group_id}_CD`, GetTime, { EX: config.CD })
 
-        let tag = e.msg.replace(new RegExp(`^来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, "g"), "")
+        let tag = e.msg.replace(new RegExp(`^派蒙来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, "g"), "")
         let num = e.msg.match(new RegExp(NumReg))
 
         if (num) num = this.translateChinaNum(num[0])
