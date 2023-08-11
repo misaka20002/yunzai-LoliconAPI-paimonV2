@@ -23,7 +23,7 @@ import fs from 'fs'
 // 正则匹配数字和汉字数字
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
 //let Lolicon_KEY = new RegExp(`^派蒙，(来|找|搜)\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
-let Lolicon_KEY = new RegExp(`^找\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
+let Lolicon_KEY = new RegExp(`^找找\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
 
 export class LoliconAPI extends plugin {
     constructor() {
