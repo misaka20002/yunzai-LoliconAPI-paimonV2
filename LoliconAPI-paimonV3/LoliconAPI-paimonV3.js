@@ -96,7 +96,8 @@ export class LoliconAPI extends plugin {
         await redis.set(`LoliconAPI_${e.group_id}_${e.user_id}_CD`, GetTime, { EX: config.CD })
 
         // 使用正则提取tag
-        let tag = e.msg.replace(new RegExp(`^派蒙，(?:来|找|搜)\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
+        //let tag = e.msg.replace(new RegExp(`^派蒙，(?:来|找|搜)\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
+        let tag = e.msg.replace(new RegExp(`^来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
 
         // 分隔tag（以空格为标准，如果想修改成其他标准如“|”修改单引号内容即可
         let tags = tag.split(' ')
