@@ -17,7 +17,7 @@ const config = {
     excludeAI: false,
 
     // 0为非 R18，1为 R18，2为混合
-    r18_Master: 1, // 主人特供
+    r18_Master: 2, // 主人特供
     r18: 0 // 群员？爬！
 }
 
