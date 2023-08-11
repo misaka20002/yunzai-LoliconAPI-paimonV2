@@ -6,13 +6,13 @@ import fs from 'fs'
 
 // 正则匹配数字和汉字数字
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
-let Lolicon_KEY = new RegExp(`^来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
+let Lolicon_KEY = new RegExp(`^派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
 
 export class LoliconAPI extends plugin {
     constructor() {
         super({
             /** 功能名称 */
-            name: 'LoliconAPI',
+            name: '派蒙找到啦~',
             /** 功能描述 */
             dsc: 'https://api.lolicon.app',
             /** https://oicqjs.github.io/oicq/#events */
@@ -65,13 +65,13 @@ export class LoliconAPI extends plugin {
     async key_setu(e) {
         const { config } = yaml.parse(fs.readFileSync(`${process.cwd()}/plugins/example/LoliconAPI.yaml`, 'utf8'))
         // 检查配置参数
-        if (config.num_Max > 20) return e.reply('[WARN] 请求数量不可超过20张，请检查参数配置！')
+        if (config.num_Max > 20) return e.reply('[WARN] 呜QAQ，数量不可超过20张哦')
 
         // 检测是否处于CD中
         let CDTIME = await redis.get(`LoliconAPI_${e.group_id}_${e.user_id}_CD`)
         if (CDTIME && !e.isMaster) {
             let remainingTime = config.CD - (moment().unix() - moment(CDTIME, 'YYYY-MM-DD HH:mm:ss').unix())
-            return e.reply(`「冷却中」先生，冲太快会炸膛！请等待 ${remainingTime} 秒！`)
+            return e.reply(`「冷却中」太，，，太快啦>////<！请等待 ${remainingTime} 秒哦`)
         }
 
         // 计入CD存入Redis
@@ -79,14 +79,14 @@ export class LoliconAPI extends plugin {
         await redis.set(`LoliconAPI_${e.group_id}_${e.user_id}_CD`, GetTime, { EX: config.CD })
 
         // 使用正则提取tag
-        let tag = e.msg.replace(new RegExp(`^来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
+        let tag = e.msg.replace(new RegExp(`^派蒙来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
 
         // 分隔tag（以空格为标准，如果想修改成其他标准如“|”修改单引号内容即可
         let tags = tag.split(' ')
 
         // 判断tag数量
         if (tags.length > 3) {
-            return e.reply('🙏标签数量过多', true)
+            return e.reply('标签数量不可以超过3个哦QAQ', true)
         }
 
         // tag合并赋值
@@ -100,15 +100,15 @@ export class LoliconAPI extends plugin {
 
         // 限制请求图片数量最大值
         if (num > config.num_Max) {
-            return e.reply(`[WARN] 先生，冲太多会炸膛！最多只能获取 ${config.num_Max} 张图片哦~`)
+            return e.reply(`不，，，不可以一次要这么多啦QAQ！最多只能获取 ${config.num_Max} 张图片哦~`)
         } else if (num === 0) {
-            return e.reply('你TM故意找茬是不是？')
+            return e.reply('0张，可以哦，喵>_< ')
         } else if (num === '' || num === null) {
             num = 1
         }
 
         // 执行指令时的回复，使用await关键字同步执行
-        await e.reply('涩图?启动!')
+        await e.reply('派蒙正在为你寻找中ing~')
 
         // 三元表达式
         let r18Value = e.isGroup ? (e.isMaster ? config.r18_Master : config.r18) : (e.isMaster ? config.r18_Master : 2)
@@ -120,7 +120,7 @@ export class LoliconAPI extends plugin {
 
             // 检测响应是否返回空数据
             let result = await response.json()
-            if (Array.isArray(result.data) && result.data.length === 0) return e.reply('Σσ(・Д・；)未获取到相关数据', true)
+            if (Array.isArray(result.data) && result.data.length === 0) return e.reply('Σσ(・Д・；)派蒙未找到到相关数据哦QAQ', true)
 
             // 封装同作品各个元素为一个数组下标
             let msgs = []
@@ -151,17 +151,17 @@ export class LoliconAPI extends plugin {
             }
 
             // 当返回图片仅有一张还他妈失败的返回消息
-            if (successCount === 0 && failureCount === 1) return e.reply('Σσ(・Д・；)获取图片失败')
+            if (successCount === 0 && failureCount === 1) return e.reply('Σσ(・Д・；)怎么回事QAQ，派蒙获取图片失败惹')
 
             // 为获取图片不全的数组添加提示信息，但所有图片都获取成功时，不显示成功和失败数量（不想尾部添加提示信息注释掉本行代码即可
-            if (failureCount > 0) msgs.push(`[LoliconAPI] 获取图片成功 ${successCount} 张，失败 ${failureCount} 张~`)
+            if (failureCount > 0) msgs.push(`派蒙找到啦>_<，成功 ${successCount} 张，失败 ${failureCount} 张~`)
 
             // 制作并发送转发消息
             return e.reply(await this.makeForwardMsg(e, msgs))
         } catch (error) {
             // 输出错误信息
             console.error(error)
-            return e.reply('Σσ(・Д・；)请检查网络环境')
+            return e.reply('Σσ(・Д・；)请检查网络环境哦，派蒙搜图失败')
         }
     }
 
@@ -172,9 +172,9 @@ export class LoliconAPI extends plugin {
             const input = match[5].trim()
             if (/^\d+$/.test(input)) {
                 await updateConfig('CD', parseInt(input))
-                return e.reply(`已修改CD为${parseInt(input)}秒！`)
+                return e.reply(`派蒙搜图已修改CD为${parseInt(input)}秒~`)
             } else {
-                return e.reply('[WARN] 请输入正确的数字！', true)
+                return e.reply('[喵？] 请输入正确的数字哦！', true)
             }
         }
         return false
@@ -187,9 +187,9 @@ export class LoliconAPI extends plugin {
             const input = match[4].trim()
             if (/^\d+$/.test(input)) {
                 await updateConfig('num_Max', parseInt(input))
-                return e.reply(`已修改限制为${parseInt(input)}张！`)
+                return e.reply(`已修改限制为${parseInt(input)}张哩！`)
             } else {
-                return e.reply('[WARN] 请输入正确的数字！', true)
+                return e.reply('[喵！] 请输入正确的数字哦！', true)
             }
         }
         return false
@@ -200,7 +200,7 @@ export class LoliconAPI extends plugin {
         const type = e.msg.replace(/^(开启|关闭)(r|R)18$/g, '$1')
         if (type === '开启' || type === '关闭') {
             await updateConfig('r18', type === '开启' ? 1 : 0)
-            return e.reply(`[LoliconAPI] 已${type}涩涩！`)
+            return e.reply(`派蒙，已${type}涩涩啦！`)
         } else {
             return false
         }
@@ -238,7 +238,7 @@ export class LoliconAPI extends plugin {
             .replace('<?xml version="1.0" encoding="utf-8"?>', '<?xml version="1.0" encoding="utf-8" ?>')
             .replace(/\n/g, '')
             .replace(/<title color="#777777" size="26">(.+?)<\/title>/g, '___')
-            .replace(/___+/, `<title color="#777777" size="26">看什么看,,Ծ‸Ծ,,</title>`)
+            .replace(/___+/, `<title color="#777777" size="26">派蒙找到啦，快点进来看看吧~</title>`)
             
         return forwardMsg
     }
