@@ -23,7 +23,7 @@ import fs from 'fs'
 // 正则匹配数字和汉字数字
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
 //let Lolicon_KEY = new RegExp(`^派蒙，(来|找|搜)\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
-let Lolicon_KEY = new RegExp(`^派蒙，找\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
+let Lolicon_KEY = new RegExp(`^找\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
 
 export class LoliconAPI extends plugin {
     constructor() {
@@ -41,7 +41,7 @@ export class LoliconAPI extends plugin {
                     /** 命令正则匹配 */
                     reg: Lolicon_KEY,
                     /** 执行方法 */
-                    fnc: 'key_setu',
+                    fnc: 'paimon_setu',
                     /** 禁用日志 */
                     log: false
                 },
@@ -79,7 +79,7 @@ export class LoliconAPI extends plugin {
         })
     }
 
-    async key_setu(e) {
+    async paimon_setu(e) {
         const { config } = yaml.parse(fs.readFileSync(`${process.cwd()}/plugins/example/LoliconAPI-paimonV3.yaml`, 'utf8'))
         // 检查配置参数
         if (config.num_Max > 20) return e.reply('[喵！] 呜QAQ，数量不可超过20张哦')
@@ -97,7 +97,7 @@ export class LoliconAPI extends plugin {
 
         // 使用正则提取tag
         //let tag = e.msg.replace(new RegExp(`^派蒙，(?:来|找|搜)\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
-        let tag = e.msg.replace(new RegExp(`^派蒙，找\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
+        let tag = e.msg.replace(new RegExp(`^找\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, "g"), "")
 
         // 分隔tag（以空格为标准，如果想修改成其他标准如“|”修改单引号内容即可
         let tags = tag.split(' ')
