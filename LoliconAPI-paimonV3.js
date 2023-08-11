@@ -65,13 +65,13 @@ export class LoliconAPI extends plugin {
     async key_setu(e) {
         const { config } = yaml.parse(fs.readFileSync(`${process.cwd()}/plugins/example/LoliconAPI.yaml`, 'utf8'))
         // 检查配置参数
-        if (config.num_Max > 20) return e.reply('[WARN] 呜QAQ，数量不可超过20张哦')
+        if (config.num_Max > 20) return e.reply('[喵！] 呜QAQ，数量不可超过20张哦')
 
         // 检测是否处于CD中
         let CDTIME = await redis.get(`LoliconAPI_${e.group_id}_${e.user_id}_CD`)
         if (CDTIME && !e.isMaster) {
             let remainingTime = config.CD - (moment().unix() - moment(CDTIME, 'YYYY-MM-DD HH:mm:ss').unix())
-            return e.reply(`「冷却中」太，，，太快啦>////<！请等待 ${remainingTime} 秒哦`)
+            return e.reply(`「冷却喵」太，，，太快啦>////<！请等待 ${remainingTime} 秒哦`)
         }
 
         // 计入CD存入Redis
