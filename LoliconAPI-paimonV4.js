@@ -204,42 +204,6 @@ export class LoliconAPI extends plugin {
         let s_3 = s_2_3[1]
         let arr = [s_1, s_2, s_3]
 
-    // ------------------------------------------------- 以下代码copy自椰羊，仅做略微修改 -------------------------------------------------
-
-    /**
-     * @description: 使用JS将数字从汉字形式转化为阿拉伯形式
-     * @param {string} convert
-     * @return {number}
-     */
-    translateChinaNum(convert) {
-        if (!convert && convert != 0) return convert
-        // 如果是纯数字直接返回
-        if (/^\d+$/.test(convert)) return Number(convert)
-        // 字典
-        let map = new Map()
-        map.set("一", 1)
-        map.set("壹", 1) // 特殊
-        map.set("二", 2)
-        map.set("两", 2) // 特殊
-        map.set("三", 3)
-        map.set("四", 4)
-        map.set("五", 5)
-        map.set("六", 6)
-        map.set("七", 7)
-        map.set("八", 8)
-        map.set("九", 9)
-        // 按照亿、万为分割将字符串划分为三部分
-        let split = ""
-        split = convert.split("亿")
-        let s_1_23 = split.length > 1 ? split : ["", convert]
-        let s_23 = s_1_23[1]
-        let s_1 = s_1_23[0]
-        split = s_23.split("万")
-        let s_2_3 = split.length > 1 ? split : ["", s_23]
-        let s_2 = s_2_3[0]
-        let s_3 = s_2_3[1]
-        let arr = [s_1, s_2, s_3]
-
         // -------------------------------------------------- 对各个部分处理 --------------------------------------------------
         arr = arr.map(item => {
             let result = ""
