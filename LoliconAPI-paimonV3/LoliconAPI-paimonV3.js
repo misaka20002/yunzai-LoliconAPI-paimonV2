@@ -38,7 +38,7 @@ export class LoliconAPI extends plugin {
             rule: [
                 {
                     /** 命令正则匹配 */
-                    reg: '^(派蒙来|派蒙找)\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)$',
+                    reg: `^(派蒙来|派蒙找)\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)$`,
                     /** 执行方法 */
                     fnc: 'key_setu',
                     /** 禁用日志 */
