@@ -17,7 +17,7 @@ export class SeSe extends plugin {
           fnc: 'setuTag'
         },
         {
-          reg: `^(setu|色图|涩图)\\s?((${NumReg})张)?$`, // 无内鬼
+          reg: `^(setu|色图|涩图)\\s?((${NumReg})(张|份))?$`, // 无内鬼
           fnc: 'setuRandom'
         },
         {
@@ -71,7 +71,7 @@ export class SeSe extends plugin {
     if (cdTime) return e.reply(` ${setu.CDMsg}，你的CD还有${cdTime}`, false, { at: true })
 
     let tag = e.msg.replace("派蒙搜图", '').trim()
-    let num = e.msg.match(new RegExp(`(${NumReg})张`))
+    let num = e.msg.match(new RegExp(`(${NumReg})(张|份)`))
     if (!num) {
       num = 1
     } else {
