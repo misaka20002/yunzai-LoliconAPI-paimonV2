@@ -1,0 +1,8 @@
+config:
+  CD: 60
+  proxy: i.pixiv.re
+  size: original
+  excludeAI: true
+  r18_Master: 2
+  r18: 1
+  num_Max: 20
