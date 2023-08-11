@@ -5,7 +5,7 @@ import lodash from "lodash"
 
 const config = {
     /** 设置CD，主人不受限制，单位为秒 */
-    CD: 60,
+    CD: 600,
 
     /** 设置图片地址所使用的在线反代服务 */
     proxy: "i.pixiv.re",
@@ -56,7 +56,7 @@ export class LoliconAPI extends plugin {
     async setu(e) {
         // 检测是否处于CD中
         let CDTIME = await redis.get(`LoliconAPI_${e.group_id}_CD`)
-        if (CDTIME && !e.isMaster) return e.reply("太，，太快啦>///<")
+        if (CDTIME && !e.isMaster) return e.reply("太，，太快啦>///<，请更换CD更短的指令“派蒙搜图可莉5张”哦")
         let GetTime = moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
         await redis.set(`LoliconAPI_${e.group_id}_CD`, GetTime, { EX: config.CD })
 
