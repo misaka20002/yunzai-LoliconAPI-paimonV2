@@ -22,7 +22,7 @@ import fs from 'fs'
 
 // 正则匹配数字和汉字数字
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
-let Lolicon_KEY = new RegExp(`^派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
+let Lolicon_KEY = new RegExp(`^派蒙(来|找|搜)\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
 
 export class LoliconAPI extends plugin {
     constructor() {
@@ -95,7 +95,7 @@ export class LoliconAPI extends plugin {
         await redis.set(`LoliconAPI_${e.group_id}_${e.user_id}_CD`, GetTime, { EX: config.CD })
 
         // 使用正则提取tag
-        let tag = e.msg.replace(new RegExp(`^派蒙来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
+        let tag = e.msg.replace(new RegExp(`^派蒙(来|找|搜)\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
 
         // 分隔tag（以空格为标准，如果想修改成其他标准如“|”修改单引号内容即可
         let tags = tag.split(' ')
