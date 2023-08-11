@@ -1,5 +1,5 @@
 config:
-  CD: 29
+  CD: 60
   proxy: i.pixiv.re
   size: original
   excludeAI: true
