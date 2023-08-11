@@ -1,3 +1,19 @@
+/** 
+配置文件放在：
+/plugins/example/LoliconAPI-paimonV3.yaml
+配置文件内容：
+config:
+  CD: 60
+  proxy: i.pixiv.re
+  size: original
+  excludeAI: true
+  r18_Master: 2
+  r18: 1
+  num_Max: 20
+
+*/
+
+
 import plugin from '../../lib/plugins/plugin.js'
 import fetch from 'node-fetch'
 import moment from 'moment'
@@ -63,7 +79,7 @@ export class LoliconAPI extends plugin {
     }
 
     async key_setu(e) {
-        const { config } = yaml.parse(fs.readFileSync(`${process.cwd()}/plugins/example/LoliconAPI.yaml`, 'utf8'))
+        const { config } = yaml.parse(fs.readFileSync(`${process.cwd()}/plugins/example/LoliconAPI-paimonV3.yaml`, 'utf8'))
         // 检查配置参数
         if (config.num_Max > 20) return e.reply('[喵！] 呜QAQ，数量不可超过20张哦')
 
@@ -336,11 +352,11 @@ function writeYaml(filePath, data) {
 async function updateConfig(key, value) {
     try {
         // 读取 YAML 文件
-        const data = readYaml(`${process.cwd()}/plugins/example/LoliconAPI.yaml`)
+        const data = readYaml(`${process.cwd()}/plugins/example/LoliconAPI-paimonV3.yaml`)
         // 更新配置值
         data.config[key] = value
         // 将更新后的数据写回 YAML 文件
-        writeYaml(`${process.cwd()}/plugins/example/LoliconAPI.yaml`, data)
+        writeYaml(`${process.cwd()}/plugins/example/LoliconAPI-paimonV3.yaml`, data)
         // 返回更新后的配置数据
         return data.config
     } catch (error) {
