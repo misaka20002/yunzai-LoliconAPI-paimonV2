@@ -5,7 +5,7 @@ import lodash from "lodash"
 
 const config = {
     /** 设置CD，主人不受限制，单位为秒 */
-    CD: 600,
+    CD: 300,
 
     /** 设置图片地址所使用的在线反代服务 */
     proxy: "i.pixiv.re",
@@ -18,9 +18,8 @@ const config = {
 
     // 0为非 R18，1为 R18，2为混合
     r18_Master: 2, // 主人特供
-    r18: 0 // 群员？爬！
+    r18: 2 // 群员？爬！
 }
-
 
 /** 当tag为空时使用预设，在下面添加即可 */
 const random_pic = [
@@ -29,7 +28,7 @@ const random_pic = [
 ]
 
 const NumReg = "[零一壹二两三四五六七八九十百千万亿\\d]+"
-let Lolicon_KEY = new RegExp(`^派蒙(来|找|搜)\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
+let Lolicon_KEY = new RegExp(`^派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
 
 export class LoliconAPI extends plugin {
     constructor() {
@@ -56,11 +55,11 @@ export class LoliconAPI extends plugin {
     async setu(e) {
         // 检测是否处于CD中
         let CDTIME = await redis.get(`LoliconAPI_${e.group_id}_CD`)
-        if (CDTIME && !e.isMaster) return e.reply("太，，太快啦>///<，请更换CD更短的指令“派蒙搜图可莉5张”哦")
+        if (CDTIME && !e.isMaster) return e.reply("「冷却中」太，，太快啦！")
         let GetTime = moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
         await redis.set(`LoliconAPI_${e.group_id}_CD`, GetTime, { EX: config.CD })
 
-        let tag = e.msg.replace(new RegExp(`^派蒙(?:来|找|搜)\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, "g"), "")
+        let tag = e.msg.replace(new RegExp(`^派蒙来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, "g"), "")
         let num = e.msg.match(new RegExp(NumReg))
 
         if (num) num = this.translateChinaNum(num[0])
@@ -68,14 +67,14 @@ export class LoliconAPI extends plugin {
 
         // 限制num最大值为20
         if (num > 20) {
-            return e.reply("太，，，太多啦>///<")
+            return e.reply("[WARN] 太，，，太多啦！")
         } else if (num === 0) {
-            return e.reply("0张？那派蒙算是完成任务了哦>_<")
+            return e.reply("呜呜，那样不行啦")
         } else if (num === "" || num === null) {
             num = 1
         }
 
-        await e.reply("派蒙在努力寻找中ing~")
+        await e.reply("派蒙在努力寻找中ing")
 
         // 三元表达式
         let r18Value = e.isGroup ? (e.isMaster ? config.r18_Master : config.r18) : (e.isMaster ? config.r18_Master : 2)
@@ -87,7 +86,7 @@ export class LoliconAPI extends plugin {
 
             let result = await response.json()
             if (Array.isArray(result.data) && result.data.length === 0) {
-                return e.reply("派蒙，，，派蒙未获取到相关数据QAQ")
+                return e.reply("派蒙在努力寻找，派蒙未获取到相关数据QAQ")
             }
 
             let msgs = []
@@ -120,14 +119,14 @@ export class LoliconAPI extends plugin {
             if (successCount === 0 && failureCount === 1) return e.reply("呜呜，派蒙获取图片失败！")
 
             // 图片仅有一张就不输出这条了，碍眼
-            if (!(successCount === 1 && failureCount === 0)) msgs.push(`派蒙找到啦（LoliconAPI），共 ${successCount} 张，失败 ${failureCount} 张~`)
+            if (!(successCount === 1 && failureCount === 0)) msgs.push(`派蒙找到啦，共 ${successCount} 张，失败 ${failureCount} 张~`)
 
             // 制作并发送转发消息
             await e.reply(await this.makeForwardMsg(e, msgs))
         } catch (error) {
             // 错误信息
             console.error(error)
-            await e.reply("[派蒙se图] 请检查网络环境！")
+            await e.reply("[涩图] 请检查网络环境！")
         }
     }
 
@@ -135,12 +134,15 @@ export class LoliconAPI extends plugin {
      * 制作转发消息
      * @param {Array} msgs 转发内容
      */
-   async makeForwardMsg(e , msgs) {
+    async makeForwardMsg(e, msgs) {
+        /** 转发人昵称 */
+        let nickname = e.nickname
+        /** 转发人QQ */
+        let user_id = e.user_id
+
         let userInfo = {
-            /** 转发人昵称 */
-            nickname: e.nickname,
-            /** 转发人QQ */
-            user_id: e.user_id
+            user_id,
+            nickname
         }
 
         let forwardMsg = []
@@ -160,11 +162,9 @@ export class LoliconAPI extends plugin {
 
         /** 处理描述 */
         forwardMsg.data = forwardMsg.data
-            .replace('<?xml version="1.0" encoding="utf-8"?>', '<?xml version="1.0" encoding="utf-8" ?>')
-            .replace(/\n/g, '')
-            .replace(/<title color="#777777" size="26">(.+?)<\/title>/g, '___')
+            .replace(/\n/g, "")
+            .replace(/<title color="#777777" size="26">(.+?)<\/title>/g, "___")
             .replace(/___+/, `<title color="#777777" size="26">[-----派蒙找到啦-----]</title>`)
-            
         return forwardMsg
     }
 
