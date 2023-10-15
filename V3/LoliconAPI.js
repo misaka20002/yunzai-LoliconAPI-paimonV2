@@ -10,7 +10,7 @@ import yaml from 'yaml'
 import fs from 'fs'
 
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
-const Lolicon_KEY = new RegExp(`^来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
+const Lolicon_KEY = new RegExp(`^派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
 const proxyAgent = new HttpsProxyAgent('http://127.0.0.1:9081')
 const Config_PATH = `${process.cwd()}/config/config/LoliconAPI.yaml`
 const Directory = `${process.cwd()}/LoliconAPI`
@@ -21,7 +21,7 @@ export class LoliconAPI extends plugin {
             name: 'LoliconAPI',
             dsc: 'https://api.lolicon.app',
             event: 'message',
-            priority: -1314520,
+            priority: -1011,
             rule: [
                 {
                     reg: Lolicon_KEY,
@@ -69,7 +69,7 @@ export class LoliconAPI extends plugin {
 
         if (!e.isMaster && await checkCooldown(e, 'LoliconAPI', config.CD)) return false
 
-        const tag = e.msg.replace(new RegExp(`^来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
+        const tag = e.msg.replace(new RegExp(`^派蒙来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
         const tags = tag.split(/[\s|,.\u3002\uff0c、]+/)
         if (tags.length > 3) return e.reply('[LoliconAPI] 标签数量过多！', true, { recallMsg: 60 })
         let tagValue = tags.map(t => `&tag=${t}`).join('')
@@ -78,16 +78,16 @@ export class LoliconAPI extends plugin {
         let num = e.msg.match(new RegExp(NumReg))
         if (num) { num = convertChineseNumberToArabic(num[0]) } else num = 1
         if (num > config.num_Max && !e.isMaster) {
-            return e.reply(`[WARN] 先生，冲太多会炸膛！最多只能获取 ${config.num_Max} 张图片哦~`)
+            return e.reply(`[WARN] 最多只能获取 ${config.num_Max} 张图片哦~`)
         } else if (num === 0) {
-            return e.reply('你TM故意找茬是不是？')
+            return e.reply('？')
         } else if (num === '' || num === null) {
             num = 1
         }
         if (num > 5) {
-            await e.reply('你先别急,急了也没用', true, { recallMsg: 60 })
+            await e.reply('嘎嘎~机械~嘎嘎', true, { recallMsg: 60 })
         } else {
-            await e.reply('涩图?启动!', false, { recallMsg: 60 })
+            await e.reply('派蒙这就去帮你找哦~', false, { recallMsg: 60 })
         }
 
         const r18Value = e.isGroup ? (e.isMaster ? config.r18_Master : config.r18) : (e.isMaster ? config.r18_Master : 2)
@@ -205,7 +205,7 @@ async function checkCooldown(e, command, cooldownTime) {
     const CDTIME = await redis.get(`${command}_${e.group_id}_${e.user_id}_CD`)
     if (CDTIME) {
         const remainingTime = cooldownTime - (moment().unix() - moment(CDTIME, 'YYYY-MM-DD HH:mm:ss').unix())
-        return e.reply(`「冷却中」先生，冲太快会炸膛！请等待 ${remainingTime} 秒~`)
+        return e.reply(`派蒙累了喵，请等待 ${remainingTime} 秒~`)
     }
     const GetTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
     await redis.set(`${command}_${e.group_id}_${e.user_id}_CD`, GetTime, { EX: cooldownTime })
@@ -329,7 +329,7 @@ async function makeForwardMsg(e, msg = [], dec = '') {
             const detail = forwardMsg.data?.meta?.detail
             if (detail) {
                 detail.news = [{ text: dec }]
-                forwardMsg.data.prompt = '她一说你就听,比圣旨还快.我也是白费心,自有别人给你做好.'
+                forwardMsg.data.prompt = '派蒙，最好用的伙伴！'
             }
         } else {
             forwardMsg.data = forwardMsg.data
