@@ -7,8 +7,9 @@ const config = {
     /** 设置CD，主人不受限制，单位为秒 */
     CD: 300,
 
-    /** 设置图片地址所使用的在线反代服务 */
-    proxy: "i.pixiv.re",
+    /** 设置图片地址所使用的在线反代服务
+    proxy: "i.pixiv.re", */
+    proxy: "127.0.0.1:12811",
 
     /** 返回图片的规格 */
     size: "original", // 可写值：原图[original] 缩略图[regular] ；还有三个我想没人用：[small | thumb | mini]（自己试
