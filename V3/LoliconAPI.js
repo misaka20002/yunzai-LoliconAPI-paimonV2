@@ -11,7 +11,7 @@ import fs from 'fs'
 
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
 const Lolicon_KEY = new RegExp(`^派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
-const proxyAgent = new HttpsProxyAgent('http://127.0.0.1:9081')
+const proxyAgent = new HttpsProxyAgent('http://127.0.0.1:12811')
 const Config_PATH = `${process.cwd()}/config/config/LoliconAPI.yaml`
 const Directory = `${process.cwd()}/LoliconAPI`
 
@@ -91,7 +91,7 @@ export class LoliconAPI extends plugin {
         }
 
         const r18Value = e.isGroup ? (e.isMaster ? config.r18_Master : config.r18) : (e.isMaster ? config.r18_Master : 2)
-        const url = `https://api.lolicon.app/setu/v2?proxy=${config.proxy}&size=${config.size}&r18=${r18Value}${tagValue}&excludeAI=${config.excludeAI}&num=${num}`
+        const url = `https://api.lolicon.app/setu/v2?=${config.proxy}&size=${config.size}&r18=${r18Value}${tagValue}&excludeAI=${config.excludeAI}&num=${num}`
 
         try {
             const response = await fetch(url)
