@@ -5,7 +5,7 @@ import lodash from "lodash"
 
 const config = {
     /** 设置CD，主人不受限制，单位为秒 */
-    CD: 300,
+    CD: 120,
 
     /** 设置图片地址所使用的在线反代服务
     proxy: "i.pixiv.re", */
@@ -18,7 +18,7 @@ const config = {
     excludeAI: false,
 
     // 0为非 R18，1为 R18，2为混合
-    r18_Master: 2, // 主人特供
+    r18_Master: 0, // 主人特供
     r18: 0 // 群员？爬！
 }
 
