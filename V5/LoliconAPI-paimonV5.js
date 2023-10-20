@@ -24,11 +24,6 @@ export class LoliconAPI extends plugin {
             priority: -1011,
             rule: [
                 {
-                    reg: Lolicon_KEY,
-                    fnc: 'key_setu',
-                    log: false
-                },
-                {
                     reg: '^#派蒙来份设置(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$',
                     fnc: 'set_cd',
                     permission: 'master',
@@ -61,6 +56,11 @@ export class LoliconAPI extends plugin {
                     reg: '^#派蒙来份(清理|(清|删)除)?缓存图片$',
                     fnc: 'delete_img',
                     permission: 'master',
+                    log: false
+                },
+                {
+                    reg: Lolicon_KEY,
+                    fnc: 'key_setu',
                     log: false
                 }
             ]
