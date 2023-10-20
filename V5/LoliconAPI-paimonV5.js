@@ -143,7 +143,7 @@ export class LoliconAPI extends plugin {
     async set_cd(e) {
         const match = e.msg.match(/^#派蒙来份设置(c|C)(d|D)(.*)$/)
         if (match) {
-            const input = match[10].trim()
+            const input = match[3].trim()
             if (/^\d+$/.test(input)) {
                 await updateConfig('CD', parseInt(input))
                 return e.reply(`[派蒙来份] 已修改CD为${parseInt(input)}秒！`)
@@ -158,7 +158,7 @@ export class LoliconAPI extends plugin {
     async set_num(e) {
         const match = e.msg.match(/^#派蒙来份设置(张|份|点)数(.*)$/)
         if (match) {
-            const input = match[10].trim()
+            const input = match[2].trim()
             if (/^\d+$/.test(input)) {
                 await updateConfig('num_Max', parseInt(input))
                 return e.reply(`[派蒙来份] 已修改限制为${parseInt(input)}张！`)
