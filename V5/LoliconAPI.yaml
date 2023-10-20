@@ -1,0 +1,31 @@
+config:
+  CD: 30
+  proxy: maple.yuechuyc.workers.dev
+  size: original
+  excludeAI: true
+  r18_Master: 1
+  r18: 0
+  num_Max: 10
+random_pic:
+  - - - 萝莉
+    - - 原神
+      - 香風智乃
+      - 碧蓝档案
+      - 铃兰
+      - 点兔
+      - 白色过漆袜
+      - 猫咪内衣
+      - 白裤袜
+      - 女仆
+      - 兽耳
+      - 猫耳
+      - 白丝
+      - 胖次
+      - 裸足
+      - 足底
+      - 脚底
+      - 赤脚
+      - 白发
+      - 尾巴
+      - 百合
+      - 泳装
