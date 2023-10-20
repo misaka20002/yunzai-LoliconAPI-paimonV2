@@ -24,25 +24,30 @@ export class LoliconAPI extends plugin {
             priority: -1011,
             rule: [
                 {
-                    reg: '^#派蒙来份设置(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$',
+                    reg: Lolicon_KEY,
+                    fnc: 'key_setu',
+                    log: false
+                }，
+                {
+                    reg: '^#派蒙改份设置(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$',
                     fnc: 'set_cd',
                     permission: 'master',
                     log: false
                 },
                 {
-                    reg: '^#派蒙来份设置(涩|色|瑟)(图|圖)(份|张|点)数(.*)$',
+                    reg: '^#派蒙改份设置(涩|色|瑟)(图|圖)(份|张|点)数(.*)$',
                     fnc: 'set_num',
                     permission: 'master',
                     log: false
                 },
                 {
-                    reg: '^#派蒙来份设置(开启|关闭)(r|R)18$',
+                    reg: '^#派蒙改份设置(开启|关闭)(r|R)18$',
                     fnc: 'set_r18',
                     permission: 'master',
                     log: false
                 },
                 {
-                    reg: '^#派蒙来份设置我(不)?要涩涩$',
+                    reg: '^#派蒙改份设置我(不)?要涩涩$',
                     fnc: 'setMaster_r18',
                     permission: 'master',
                     log: false
@@ -53,14 +58,9 @@ export class LoliconAPI extends plugin {
                     log: false
                 },
                 {
-                    reg: '^#派蒙来份(清理|(清|删)除)?缓存图片$',
+                    reg: '^#派蒙改份(清理|(清|删)除)?缓存图片$',
                     fnc: 'delete_img',
                     permission: 'master',
-                    log: false
-                },
-                {
-                    reg: Lolicon_KEY,
-                    fnc: 'key_setu',
                     log: false
                 }
             ]
@@ -141,7 +141,7 @@ export class LoliconAPI extends plugin {
 
     /** 设置涩图CD */
     async set_cd(e) {
-        const match = e.msg.match(/^#派蒙来份设置(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$/)
+        const match = e.msg.match(/^#派蒙改份设置(涩|色|瑟)(图|圖)(c|C)(d|D)(.*)$/)
         if (match) {
             const input = match[12].trim()
             if (/^\d+$/.test(input)) {
@@ -156,7 +156,7 @@ export class LoliconAPI extends plugin {
 
     /** 设置单次获取图片数量限制 */
     async set_num(e) {
-        const match = e.msg.match(/^#派蒙来份设置(涩|色|瑟)(图|圖)(张|份|点)数(.*)$/)
+        const match = e.msg.match(/^#派蒙改份设置(涩|色|瑟)(图|圖)(张|份|点)数(.*)$/)
         if (match) {
             const input = match[11].trim()
             if (/^\d+$/.test(input)) {
@@ -171,7 +171,7 @@ export class LoliconAPI extends plugin {
 
     /** 开启R18 */
     async set_r18(e) {
-        const type = e.msg.replace(/^#派蒙来份设置(开启|关闭)(r|R)18$/g, '$1')
+        const type = e.msg.replace(/^#派蒙改份设置(开启|关闭)(r|R)18$/g, '$1')
         if (type === '开启' || type === '关闭') {
             await updateConfig('r18', type === '开启' ? 1 : 0)
             return e.reply(`[派蒙来份] 已${type}涩涩！`)
@@ -182,7 +182,7 @@ export class LoliconAPI extends plugin {
 
     /** 开启主人R18 */
     async setMaster_r18(e) {
-        const type = e.msg.replace(/^#派蒙来份设置我(不)?要涩涩$/g, '$1')
+        const type = e.msg.replace(/^#派蒙改份设置我(不)?要涩涩$/g, '$1')
         if (type === '不' || type === '') {
             await updateConfig('r18_Master', type === '' ? 1 : 0)
             return e.reply(`[派蒙来份] 已设置成功！`)
@@ -193,7 +193,7 @@ export class LoliconAPI extends plugin {
 
     /** 发送帮助 */
     async paimonlaifenhelp (e) {
-        e.reply('派蒙涩图帮助：\n  #派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)\n  例如：#派蒙来15份可莉 白丝涩图\n  #派蒙来份设置涩图cd[num]\n  #派蒙来份设置涩图张数[num]\n  #派蒙来份设置(开启|关闭)(r|R)18 ：设置群友\n  #派蒙来份设置我(不)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)?缓存图片')
+        e.reply('派蒙涩图帮助：\n  #派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)\n  例如：#派蒙来15份可莉 白丝涩图\n  #派蒙改份设置涩图cd[num]\n  #派蒙改份设置涩图张数[num]\n  #派蒙改份设置(开启|关闭)(r|R)18 ：设置群友\n  #派蒙改份设置我(不)要涩涩 ：设置主人\n  #派蒙改份(清理|(清|删)除)?缓存图片')
     }
 
     /** 清理缓存图片 */
