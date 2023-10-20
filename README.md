@@ -25,7 +25,8 @@ v5：目前可用
 自行改代理为本地http代理：
 (先在你的代理如Clash Meta里面-设置-覆写-http端口和socks端口改为12811)
 
-安装方法:
+# 安装方法:
+
 LoliconAPI-paimonV5.js放到plugins/example/，或直接在云/喵崽根目录执行：
 ```
 curl -# -L -o "./plugins/example/派蒙来份涩图.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI-paimonV5.js"
