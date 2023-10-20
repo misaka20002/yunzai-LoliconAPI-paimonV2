@@ -53,6 +53,11 @@ export class LoliconAPI extends plugin {
                     log: false
                 },
                 {
+                    reg: '^#派蒙来份帮助$',
+                    fnc: 'paimonlaifenhelp',
+                    log: false
+                },
+                {
                     reg: '^#派蒙来份(清理|(清|删)除)?缓存图片$',
                     fnc: 'delete_img',
                     permission: 'master',
@@ -184,6 +189,11 @@ export class LoliconAPI extends plugin {
         } else {
             return false
         }
+    }
+
+    /** 发送帮助 */
+    async paimonlaifenhelp (e) {
+        e.reply('派蒙涩图帮助：\n#派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)\n#派蒙来份设置涩图cd[num]\n#派蒙来份设置涩图张数[num]\n#派蒙来份设置(开启|关闭)(r|R)18\n#派蒙来份设置我(不)要涩涩\n#派蒙来份(清理|(清|删)除)?缓存图片\n喵>_<')
     }
 
     /** 清理缓存图片 */
