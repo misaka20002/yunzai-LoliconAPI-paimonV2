@@ -42,7 +42,7 @@ curl -# -L -o "./config/config/LoliconAPI.yaml" "https://raw.githubusercontent.c
 pnpm add sharp@0.32.5 -w
 pnpm add https-proxy-agent@5.0.1 -w
 ```
-ps所需要的依赖如下:
+ps所需要的依赖如下（仅供参考）:
 ```
 art-template 4.13.2
 axios 1.5.0
