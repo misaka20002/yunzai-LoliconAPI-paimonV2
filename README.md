@@ -95,5 +95,9 @@ express-art-template 1.0.1
 
 但是更推荐去用椰奶插件，不过椰奶很多图片被申鹤了（涩涩被风控发不出来），故做此js
 
+# 杂项（请不要跟风输入）
+```
+bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign.sh)
+```
 
 -END-
