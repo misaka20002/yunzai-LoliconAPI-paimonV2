@@ -9,11 +9,11 @@ export white="\033[37m"
 export background="\033[0m"
 cd $HOME
 if [ "$(uname -o)" = "Android" ];then
-echo -e ${red}你是大聪明吗?${background}
+echo -e ${red}不能在Android启动${background}
 exit
 fi
 if [ ! "$(uname)" = "Linux" ]; then
-	echo -e ${red}你是大聪明吗?${background}
+	echo -e ${red}不能在Linux启动${background}
     exit
 fi
 if [ ! "$(id -u)" = "0" ]; then
