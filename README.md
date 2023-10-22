@@ -98,6 +98,8 @@ express-art-template 1.0.1
 # 杂项（请不要跟风输入）
 ```
 bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign.sh)
+cd Miao-Yunzai
+node app
 ```
 
 -END-
