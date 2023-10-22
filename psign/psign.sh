@@ -104,7 +104,7 @@ mv qsign/* $HOME/QSignServer/qsign${QSIGN_VERSION}
 rm -rf qsign
 API_LINK=["${cyan} ${qsign_version}"]
 port_=5200
-key_=fox
+key_=20001
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
