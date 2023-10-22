@@ -9,11 +9,11 @@ export white="\033[37m"
 export background="\033[0m"
 cd $HOME
 if [ "$(uname -o)" = "Android" ];then
-echo -e ${red}不能在Android启动${background}
+echo -e ${red}不能在Android启动，请运行在Ubuntu${background}
 exit
 fi
 if [ ! "$(uname)" = "Linux" ]; then
-	echo -e ${red}不能在Linux启动${background}
+	echo -e ${red}不能在Linux启动，请运行在Ubuntu${background}
     exit
 fi
 if [ ! "$(id -u)" = "0" ]; then
@@ -24,11 +24,11 @@ if [ -d $HOME/QSignServer/jdk ];then
 export PATH=$PATH:$HOME/QSignServer/jdk/bin
 export JAVA_HOME=$HOME/QSignServer/jdk
 fi
-QSIGN_URL="https://gitee.com/baihu433/Yunzai-Bot-Shell/releases/download/1.2.1/unidbg-fetch-qsign-1.1.9.zip"
+QSIGN_URL="https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/releases/download/psign119/unidbg-fetch-qsign-1.1.9.zip"
 QSIGN_VERSION="119"
 qsign_version="1.1.9"
-txlib="https://gitee.com/baihu433/txlib"
-Txlib_Version_New="8.9.83"
+txlib="https://gitee.com/Misaka21011/Yunzai-Bot-Shell/tree/master/txlib"
+Txlib_Version_New="8.9.85"
 case $(uname -m) in
 amd64|x86_64)
 JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u382b05.tar.gz"
@@ -199,9 +199,9 @@ if ! tmux attach -t ${Tmux_Name} > /dev/null 2>&1;then
 fi
 }
 function start_QSignServer(){
-echo -e ${white}"====="${green}白狐-QSignServer${white}"====="${background}
+echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
 echo -e ${cyan}请选择您想让您签名服务器适配的QQ版本${background}
-echo -e  ${green}1.  ${cyan}HD: 8.9.58${background}
+echo -e  ${green}1.  ${cyan}HD: 8.9.85${background}
 echo -e  ${green}2.  ${cyan}HD: 8.9.63${background}
 echo -e  ${green}3.  ${cyan}HD: 8.9.68${background}
 echo -e  ${green}4.  ${cyan}HD: 8.9.70${background}
@@ -213,8 +213,8 @@ echo -e  ${green}9.  ${cyan}HD: 8.9.83${background}
 echo "========================="
 echo -en ${green}请输入您的选项: ${background};read num
 case ${num} in
-1|8.9.58)
-export version=8.9.58
+1|8.9.85)
+export version=8.9.85
 ;;
 2|8.9.63)
 export version=8.9.63
@@ -458,7 +458,7 @@ else
     condition="${red}[未部署]"
 fi
 
-echo -e ${white}"====="${green}白狐-QSignServer${white}"====="${background}
+echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
 echo -e  ${green}1.  ${cyan}安装签名服务器${background}
 echo -e  ${green}2.  ${cyan}启动签名服务器${background}
 echo -e  ${green}3.  ${cyan}关闭签名服务器${background}
@@ -474,7 +474,7 @@ echo "========================="
 echo -e ${green}您的签名服务器状态: ${condition}${background}
 echo -e ${green}当前签名服务器版本: ${Version}${background}
 echo -e ${green}共享库最高支持版本: ${Txlib_Version}${background}
-echo -e ${green}QQ群:${cyan}狐狸窝:705226976${background}
+echo -e ${green}QQ群:${cyan}工业群:883776847${background}
 echo "========================="
 echo
 echo -en ${green}请输入您的选项: ${background};read number
