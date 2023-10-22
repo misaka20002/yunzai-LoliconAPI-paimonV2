@@ -27,7 +27,7 @@ fi
 QSIGN_URL="https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/releases/download/psign119/unidbg-fetch-qsign-1.1.9.zip"
 QSIGN_VERSION="119"
 qsign_version="1.1.9"
-txlib="https://gitee.com/Misaka21011/Yunzai-Bot-Shell/tree/master/txlib"
+txlib="https://github.com/misaka20002/txlib"
 Txlib_Version_New="8.9.85"
 case $(uname -m) in
 amd64|x86_64)
