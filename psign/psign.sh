@@ -478,7 +478,7 @@ echo -e  ${green}7.  ${cyan}打开签名服务器窗口${background}
 echo -e  ${green}8.  ${cyan}修改签名服务器key值${background}
 echo -e  ${green}9.  ${cyan}修改签名服务器端口${background}
 echo -e  ${green}10.  ${cyan}查看签名服务器链接${background}
-echo -e  ${green}11.  ${cyan}查看启动云崽教程${background}
+echo -e  ${green}11.  ${cyan}帮助教程${background}
 echo -e  ${green}0.  ${cyan}退出${background}
 echo "========================="
 echo -e ${green}您的签名服务器状态: ${condition}${background}
