@@ -9,7 +9,7 @@ export white="\033[37m"
 export background="\033[0m"
 cd $HOME
 if [ "$(uname -o)" = "Android" ];then
-echo -e ${red}不能在Android启动，请运行在Ubuntu${background}
+echo -e ${red}不能在Android启动，请运行在Ubuntu。例如：tmoe proot ubuntu jammy arm64${background}
 exit
 fi
 if [ ! "$(uname)" = "Linux" ]; then
