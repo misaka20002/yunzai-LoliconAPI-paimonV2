@@ -475,6 +475,7 @@ echo -e ${green}您的签名服务器状态: ${condition}${background}
 echo -e ${green}当前签名服务器版本: ${Version}${background}
 echo -e ${green}共享库最高支持版本: ${Txlib_Version}${background}
 echo -e ${green}QQ群:${cyan}工业群:883776847${background}
+echo -e ${green}一句话启动云崽教程:${cyan}修改签名服务器key和端口，将签名服务器链接填入miao-yunzai/config/config/bot.yaml的api地址（记得冒号后面要有空格）；启动签名服务器成功后，ctrl+c返回控制台输入cd Miao-Yunzai回车，输入node app启动云崽。（如果需要重新登陆/重新设置主人请输入node app login）${background}
 echo "========================="
 echo
 echo -en ${green}请输入您的选项: ${background};read number
