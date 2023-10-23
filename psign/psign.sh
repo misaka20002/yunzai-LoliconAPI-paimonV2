@@ -11,7 +11,7 @@ cd $HOME
 if [ "$(uname -o)" = "Android" ];then
 echo -e ${red}不能在Android启动，请运行在Ubuntu。例如：tmoe proot ubuntu jammy arm64${background}
 echo -e  ${green}从零开始安装云崽：${background}
-echo -e  ${green}安装TMOE和Ubuntu容器：${cyan}bash -c "$(curl -L gitee.com/mo2/linux/raw/2/2)"${background}
+echo -e  ${green}安装TMOE和Ubuntu容器（跟着流程安装ubuntu jammy arm64）：${cyan}bash -c "$(curl -L gitee.com/mo2/linux/raw/2/2)"${background}
 echo -e  ${green}安装喵崽：${cyan}git clone --depth=1 https://github.com/yoimiya-kokomi/Miao-Yunzai.git${background}
 echo -e  ${cyan}cd Miao-Yunzai${background}
 echo -e  ${cyan}git clone --depth=1 https://github.com/yoimiya-kokomi/miao-plugin.git ./plugins/miao-plugin/${background}
@@ -23,7 +23,7 @@ fi
 if [ ! "$(uname)" = "Linux" ]; then
 echo -e ${red}不能在Linux启动，请运行在Ubuntu${background}
 echo -e  ${green}从零开始安装云崽：${background}
-echo -e  ${green}安装TMOE和Ubuntu容器：${cyan}bash -c "$(curl -L gitee.com/mo2/linux/raw/2/2)"${background}
+echo -e  ${green}安装TMOE和Ubuntu容器（跟着流程安装ubuntu jammy arm64）：${cyan}bash -c "$(curl -L gitee.com/mo2/linux/raw/2/2)"${background}
 echo -e  ${green}安装喵崽：${cyan}git clone --depth=1 https://github.com/yoimiya-kokomi/Miao-Yunzai.git${background}
 echo -e  ${cyan}cd Miao-Yunzai${background}
 echo -e  ${cyan}git clone --depth=1 https://github.com/yoimiya-kokomi/miao-plugin.git ./plugins/miao-plugin/${background}
