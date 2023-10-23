@@ -423,6 +423,15 @@ done
 echo -en ${yellow}回车返回${background};read
 }
 
+function link_QiDongYunZaiJiaoCheng(){
+echo -e  ${green}一句话启动云崽教程：${cyan}修改签名服务器key和端口，将签名服务器链接填入miao-yunzai/config/config/bot.yaml的api地址（记得冒号后面要有空格），传入的qq版本可填可不填（记得冒号后面要有空格）。启动签名服务器成功后，ctrl+c返回控制台（或者新建一个控制台回话）输入cd Miao-Yunzai回车，输入node app启动云崽。（如果需要重新登陆/重新设置主人请输入node app login）${background}
+echo -e  ${green}如果ICQQ不是最新版：${cyan}更新icqq在喵云崽目录下 pnpm update icqq@0.6.1${background}
+echo -e  ${green}签名服务器启动失败：${cyan}卸载重装/重设端口${background}
+echo -e  ${green}70错误：${cyan}删除data文件夹下的device.json，去登录机器人qq删除登录设备，触发了滑动验证和手机验证码登录就好了；ps.签名api的icqq版本检查api的可用性或更换api，（不要用海外qsign）；或者换另一个小号${background}
+echo -e  ${green}45错误：${cyan}使用最新的签名服务器${background}
+echo -en ${yellow}回车返回${background};read
+}
+
 if [[ -d $HOME/QSignServer ]];then
     for folder in $(ls -d $HOME/QSignServer/txlib/*)
     do
@@ -469,13 +478,13 @@ echo -e  ${green}7.  ${cyan}打开签名服务器窗口${background}
 echo -e  ${green}8.  ${cyan}修改签名服务器key值${background}
 echo -e  ${green}9.  ${cyan}修改签名服务器端口${background}
 echo -e  ${green}10.  ${cyan}查看签名服务器链接${background}
+echo -e  ${green}11.  ${cyan}查看启动云崽教程${background}
 echo -e  ${green}0.  ${cyan}退出${background}
 echo "========================="
 echo -e ${green}您的签名服务器状态: ${condition}${background}
 echo -e ${green}当前签名服务器版本: ${Version}${background}
 echo -e ${green}共享库最高支持版本: ${Txlib_Version}${background}
 echo -e ${green}QQ群:${cyan}工业群:883776847${background}
-echo -e ${green}一句话启动云崽教程:${cyan}修改签名服务器key和端口，将签名服务器链接填入miao-yunzai/config/config/bot.yaml的api地址（记得冒号后面要有空格）；启动签名服务器成功后，ctrl+c返回控制台输入cd Miao-Yunzai回车，输入node app启动云崽。（如果需要重新登陆/重新设置主人请输入node app login）${background}
 echo "========================="
 echo
 echo -en ${green}请输入您的选项: ${background};read number
@@ -518,6 +527,10 @@ port_QSignServer
 echo
 link_QSignServer
 ;;
+11)
+echo
+link_QiDongYunZaiJiaoCheng
+;;
 0)
 exit
 ;;
@@ -542,5 +555,3 @@ else
     }
     mainbak
 fi
-
-
