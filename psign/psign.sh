@@ -260,21 +260,14 @@ tmux_new qsignserver "bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fe
 if tmux_gauge qsignserver
 then
     echo
-    echo -en ${green}${Start_Stop_Restart}成功 请输入您的选项: ${background};read num
-    case ${num} in
-    1|打开签名服务器窗口)
-    bot_tmux_attach_log qsignserver
-    ;;
-    2|启动喵崽)
-    tmux_new miao-yunzai "node $HOME/Miao-Yunzai/app.js"
-    ;;
-    0|返回)
-        echo -en ${cyan}回车返回${background}
-        read
-        echo
+    echo -en ${green}${Start_Stop_Restart}成功 是否打开窗口 [Y/N]:${background}
+    read YN
+    case ${YN} in
+    Y|y)
+        bot_tmux_attach_log qsignserver
     ;;
     *)
-        echo -e ${cyan}输入错误 回车返回${background}
+        echo -en ${cyan}回车返回${background}
         read
         echo
     ;;
