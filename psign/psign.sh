@@ -267,9 +267,11 @@ then
         bot_tmux_attach_log qsignserver
     ;;
     *)
-        echo -en ${cyan}回车返回${background}
+        echo -e  ${cyan}按回车返回Ubuntu${background}
+        echo -e  ${green}启动喵崽请输入：${cyan}cd Miao-Yunzai${background}
+        echo -e  ${cyan}node app${background}
         read
-        echo
+        exit
     ;;
     esac
 else
