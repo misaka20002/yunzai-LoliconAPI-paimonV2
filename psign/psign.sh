@@ -267,7 +267,7 @@ then
         bot_tmux_attach_log qsignserver
     ;;
     *)
-        echo -e  ${green}qsign已后台运行 启动喵崽请输入：${background}
+        echo -e  ${green}【qsign已后台运行】 启动喵崽请输入：${background}
         echo -e  ${cyan}cd Miao-Yunzai${background}
         echo -e  ${cyan}node app${background}
         exit
