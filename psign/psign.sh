@@ -429,7 +429,7 @@ echo -e  ${green}一句话启动云崽教程：${cyan}修改签名服务器key�
 echo -e  ${green}如果ICQQ不是最新版：${cyan}更新icqq在喵云崽目录下 pnpm update icqq@0.6.1${background}
 echo -e  ${green}签名服务器启动失败：${cyan}卸载重装/重设端口${background}
 echo -e  ${green}喵云崽安装教程：${cyan}https://github.com/yoimiya-kokomi/Miao-Yunzai${background}
-echo -e  ${green}HD: 8.9.85使用说明：${cyan}如果要使用8.9.85版本，请将 新device.js替换Miao-Yunzai\node_modules\icqq\lib\core\device.js ；并删除device.json(文件位置：Miao-Yunzai/data/icqq/QQ号，将QQ号命名的这个文件夹删除即可)。替换新device.js命令："    curl -# -L -o "./Miao-Yunzai/node_modules/icqq/lib/core/device.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/device.js"    "${background}
+echo -e  ${green}HD: 8.9.85使用说明：${cyan}如果要使用8.9.85版本，请将 新device.js替换Miao-Yunzai\node_modules\icqq\lib\core\device.js ；并删除device.json(文件位置：Miao-Yunzai/data/icqq/QQ号，将QQ号命名的这个文件夹删除即可)。新device.js下载地址：https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/device.js${background}
 echo -e  ${green}70错误：${cyan}删除device.json(文件位置：Miao-Yunzai/data/icqq/QQ号，将QQ号命名的这个文件夹删除即可)；手机登录机器人的QQ删除登录设备，触发了滑动验证和手机验证码登录就好了；ps.签名api的icqq版本检查api的可用性或更换api，（不要用海外qsign）；或者换另一个小号${background}
 echo -e  ${green}45错误：${cyan}使用最新的签名服务器，如果还有的话。。。${background}
 echo -en ${yellow}回车返回${background};read
