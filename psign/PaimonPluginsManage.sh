@@ -123,7 +123,7 @@ Git=
         --title "呆毛-Bot-Plugin" \
         --yes-button "单选" \
         --no-button "多选" \
-        --yesno "           请选择Git插件安装方式 多选时使用空格键选择" \
+        --yesno "请选择Git插件安装方式 多选时使用空格键选择" \
         10 50)
         then
             Single_Choice="true"
