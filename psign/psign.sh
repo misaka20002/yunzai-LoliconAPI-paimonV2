@@ -208,8 +208,8 @@ echo -e  ${green}4.  ${cyan}HD: 8.9.70${background}
 echo -e  ${green}5.  ${cyan}HD: 8.9.71${background}
 echo -e  ${green}6.  ${cyan}HD: 8.9.73${background}
 echo -e  ${green}7.  ${cyan}HD: 8.9.76${background}
-echo -e  ${green}8.  ${cyan}HD: 8.9.80${background}
-echo -e  ${green}9.  ${cyan}HD: 8.9.83${background}
+echo -e  ${green}8.  ${cyan}HD: 8.9.80（需icqq0.6.1 看帮助教程）${background}
+echo -e  ${green}9.  ${cyan}HD: 8.9.83（需icqq0.6.1 看帮助教程）${background}
 echo "========================="
 echo -en ${green}请输入您的选项: ${background};read num
 case ${num} in
