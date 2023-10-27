@@ -201,7 +201,7 @@ fi
 function start_QSignServer(){
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
 echo -e ${cyan}请选择您想让您签名服务器适配的QQ版本${background}
-echo -e  ${green}1.  ${cyan}HD: 8.9.85（此版本需看11.帮助教程）${background}
+echo -e  ${green}1.  ${cyan}HD: 8.9.85（需要替换文件 看帮助教程）${background}
 echo -e  ${green}2.  ${cyan}HD: 8.9.63${background}
 echo -e  ${green}3.  ${cyan}HD: 8.9.68${background}
 echo -e  ${green}4.  ${cyan}HD: 8.9.70${background}
