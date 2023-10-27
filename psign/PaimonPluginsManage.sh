@@ -979,7 +979,7 @@ function Delete_JS_Plugin(){
 function dialog_whiptail_page(){
 number=$(${dialog_whiptail} \
 --title "呆毛" \
---menu "插件管理" \
+--menu "派蒙插件管理" \
 20 40 10 \
 "1" "安装GIT插件" \
 "2" "安装JS插件" \
