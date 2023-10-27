@@ -123,7 +123,7 @@ Git=
         --title "呆毛-Bot-Plugin" \
         --yes-button "单选" \
         --no-button "多选" \
-        --yesno "           请选择Git插件安装方式" \
+        --yesno "           请选择Git插件安装方式 多选时使用空格键选择" \
         10 50)
         then
             Single_Choice="true"
@@ -138,7 +138,7 @@ Git=
         fi
         number=
         if ! number=$(${dialog_whiptail} \
-        --title "插件选择:多选时使用 空格" \
+        --title "插件选择" \
         --${checklist_menu} "选择您喜欢的插件吧! ${tips}" \
         26 60 20 \
         "1" "miao-plugin                    喵喵插件" ${OFF} \
