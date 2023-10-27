@@ -1167,7 +1167,7 @@ fi
 function choose_path(){
 function dialog_whiptail_page(){
     number=$(${dialog_whiptail} \
-    --title "插件管理" \
+    --title "派蒙插件管理" \
     --menu "请选择您要为哪一个bot管理插件" \
     20 40 10 \
     "1" "Yunzai-Bot" \
