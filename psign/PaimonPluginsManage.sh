@@ -855,7 +855,7 @@ function Delete_GIT_Plugin(){
         options="${options} 0. 返回 OFF"
         Number=$(${dialog_whiptail} \
         --title "呆毛" \
-        --checklist "请选择要删除的GIT插件" \
+        --checklist "请空格键选择要删除的GIT插件" \
         28 45 20 ${options} \
         3>&1 1>&2 2>&3)
     }
