@@ -9,20 +9,20 @@ export white="\033[37m"
 export background="\033[0m"
 cd $HOME
 if [ "$(uname -o)" = "Android" ];then
-echo -e ${red}不能在Android启动，请运行在Ubuntu${background}
+	echo -e ${red}不能在Android启动，请运行在Ubuntu${background}
 exit
 fi
 if [ ! "$(uname)" = "Linux" ]; then
-echo -e ${red}不能在Linux启动，请运行在Ubuntu${background}
-exit
+	echo -e ${red}不能在Linux启动，请运行在Ubuntu${background}
+	exit
 fi
 if [ ! "$(id -u)" = "0" ]; then
     echo -e ${red}请使用root用户${background}
     exit 0
 fi
 if [ -d $HOME/QSignServer/jdk ];then
-export PATH=$PATH:$HOME/QSignServer/jdk/bin
-export JAVA_HOME=$HOME/QSignServer/jdk
+    export PATH=$PATH:$HOME/QSignServer/jdk/bin
+    export JAVA_HOME=$HOME/QSignServer/jdk
 fi
 QSIGN_URL="https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/releases/download/psign119/unidbg-fetch-qsign-1.1.9.zip"
 QSIGN_VERSION="119"
@@ -31,10 +31,10 @@ txlib="https://github.com/misaka20002/txlib"
 Txlib_Version_New="8.9.85"
 case $(uname -m) in
 amd64|x86_64)
-JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u382b05.tar.gz"
+JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u392b08.tar.gz"
 ;;
 arm64|aarch64)
-JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u382b05.tar.gz"
+JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u392b08.tar.gz"
 ;;
 esac
 
@@ -62,6 +62,17 @@ elif [ $(command -v dnf) ];then
     dnf install -y tar gzip wget curl unzip git tmux pv
 elif [ $(command -v pacman) ];then
     pacman -Syy --noconfirm --needed tar gzip wget curl unzip git tmux pv
+elif [ $(command -v apk) ];then
+    apk update
+    apk add --no-cache tar gzip wget curl unzip git tmux pv
+    case $(uname -m) in
+    amd64|x86_64)
+    JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/alpine-linux/OpenJDK8U-jdk_x64_alpine-linux_hotspot_8u392b08.tar.gz"
+    ;;
+    arm64|aarch64)
+    JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u392b08.tar.gz"
+    ;;
+    esac
 else
     echo -e ${red}不受支持的Linux发行版${background}
     exit
@@ -180,8 +191,8 @@ until qsign_curl
 do
     i=$((${i}+1))
     a="${a}#"
-    echo -ne "\r${i}% ${a}"
-    if [[ ${i} == 100 ]];then
+    echo -ne "\r${i}% ${a}\r"
+    if [[ ${i} == 40 ]];then
         echo
         return 1
     fi
@@ -274,9 +285,7 @@ then
     ;;
     esac
 else
-    echo -en ${red}启动失败 回车返回${background}
-    read
-    echo
+    bot_tmux_attach_log qsignserver
 fi
 }
 
@@ -424,7 +433,7 @@ done
 echo -en ${yellow}回车返回${background};read
 }
 
-function link_QiDongYunZaiJiaoCheng(){
+function link_PaimonAlsoKnowed(){
 echo -e  ${green}一句话启动云崽教程：${cyan}修改签名服务器key和端口，将签名服务器链接填入miao-yunzai/config/config/bot.yaml的api地址（记得冒号后面要有空格），传入的qq版本可填可不填（记得冒号后面要有空格）。启动签名服务器成功后不需要开启服务器窗口，直接（或者新建一个控制台对话）输入cd Miao-Yunzai回车，输入node app启动云崽。（如果需要重新登陆/重新设置主人请输入node app login）${background}
 echo -e  ${green}如果ICQQ不是最新版：${cyan}更新icqq在喵云崽目录下执行（icqq版本在启动的时候会显示）：pnpm update icqq@0.6.1${background}
 echo -e  ${green}签名服务器启动失败：${cyan}卸载重装/重设端口${background}
@@ -532,7 +541,7 @@ link_QSignServer
 ;;
 11)
 echo
-link_QiDongYunZaiJiaoCheng
+link_PaimonAlsoKnowed
 ;;
 0)
 exit
