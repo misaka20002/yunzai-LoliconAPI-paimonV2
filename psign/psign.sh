@@ -9,12 +9,12 @@ export white="\033[37m"
 export background="\033[0m"
 cd $HOME
 if [ "$(uname -o)" = "Android" ];then
-	echo -e ${red}不能在Android启动，请运行在Ubuntu${background}
+echo -e ${red}不能在Android启动，请运行在Ubuntu${background}
 exit
 fi
 if [ ! "$(uname)" = "Linux" ]; then
-	echo -e ${red}不能在Linux启动，请运行在Ubuntu${background}
-	exit
+echo -e ${red}不能在Linux启动，请运行在Ubuntu${background}
+exit
 fi
 if [ ! "$(id -u)" = "0" ]; then
     echo -e ${red}请使用root用户${background}
