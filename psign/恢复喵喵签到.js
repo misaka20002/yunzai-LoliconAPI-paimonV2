@@ -404,10 +404,10 @@ gsCfg.cpCfg('mys', 'set')
 export class dailyNote extends plugin {
   constructor () {
     super({
-      name: '体力查询',
-      dsc: '原神体力、札记查询，米游社签到',
+      name: '恢复喵喵签到',
+      dsc: '恢复喵喵签到',
       event: 'message',
-      priority: 300,
+      priority: 1300,
       rule: [
         {
           reg: '^(#签到|#*米游社(自动)*签到)(force)*$',
