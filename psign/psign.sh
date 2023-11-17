@@ -14,7 +14,7 @@ exit
 fi
 if [ ! "$(uname)" = "Linux" ]; then
     echo -e ${red}不能在Linux启动，请运行在Ubuntu${background}
-exit
+	exit
 fi
 if [ ! "$(id -u)" = "0" ]; then
     echo -e ${red}请使用root用户${background}
@@ -28,7 +28,7 @@ QSIGN_URL="https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/releases/do
 QSIGN_VERSION="119"
 qsign_version="1.1.9"
 txlib="https://github.com/misaka20002/txlib"
-Txlib_Version_New="8.9.85"
+Txlib_Version_New="8.9.88"
 case $(uname -m) in
 amd64|x86_64)
 JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u392b08.tar.gz"
@@ -37,7 +37,16 @@ arm64|aarch64)
 JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u392b08.tar.gz"
 ;;
 esac
-
+if [ $(command -v apk) ];then
+case $(uname -m) in
+    amd64|x86_64)
+        JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/alpine-linux/OpenJDK8U-jdk_x64_alpine-linux_hotspot_8u392b08.tar.gz"
+    ;;
+    arm64|aarch64)
+        JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u392b08.tar.gz"
+    ;;
+esac
+fi
 function install_QSignServer(){
 if [ -d $HOME/QSignServer/txlib ];then
     echo -e ${yellow}您已安装签名服务器${background}
@@ -53,10 +62,10 @@ if [ -e /etc/resolv.conf ]; then
     fi
 fi
 if [ $(command -v apt) ];then
-    apt update
+    apt update -y
     apt install -y tar gzip wget curl unzip git tmux pv
 elif [ $(command -v yum) ];then
-    yum update
+    yum update -y
     yum install -y tar gzip wget curl unzip git tmux pv
 elif [ $(command -v dnf) ];then
     dnf install -y tar gzip wget curl unzip git tmux pv
@@ -65,14 +74,6 @@ elif [ $(command -v pacman) ];then
 elif [ $(command -v apk) ];then
     apk update
     apk add --no-cache tar gzip wget curl unzip git tmux pv
-    case $(uname -m) in
-    amd64|x86_64)
-    JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/alpine-linux/OpenJDK8U-jdk_x64_alpine-linux_hotspot_8u392b08.tar.gz"
-    ;;
-    arm64|aarch64)
-    JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u392b08.tar.gz"
-    ;;
-    esac
 else
     echo -e ${red}不受支持的Linux发行版${background}
     exit
@@ -119,13 +120,13 @@ key_=20001
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
-    port="$(grep -E port ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/://g" )"
+    port=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
     sed -i "s/${port}/${port_}/g" ${file}
 done
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
-    key="$(grep -E key ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/,//g" )"
+    key=$(grep -E key ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/,//g" )
     sed -i "s/${key}/${key_}/g" ${file}
 done
 if [ ! "${install_QSignServer}" == "true" ]
@@ -174,7 +175,7 @@ function qsign_curl(){
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
-    port_="$(grep -E port ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/://g" )"
+    port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
 done
 if curl -sL 127.0.0.1:${port_} > /dev/null 2>&1
 then
@@ -201,7 +202,8 @@ echo
 }
 bot_tmux_attach_log(){
 Tmux_Name="$1"
-if ! tmux attach -t ${Tmux_Name} > /dev/null 2>&1;then
+if ! tmux attach -t ${Tmux_Name} > /dev/null 2>&1
+then
     tmux_windows_attach_error=$(tmux attach -t ${Tmux_Name} 2>&1 > /dev/null)
     echo
     echo -e ${yellow}QSignServer打开错误"\n"错误原因:${red}${tmux_windows_attach_error}${background}
@@ -210,10 +212,21 @@ if ! tmux attach -t ${Tmux_Name} > /dev/null 2>&1;then
 fi
 }
 function start_QSignServer(){
+for folder in $(ls -d $HOME/QSignServer/txlib/*)
+do
+    file="${folder}/config.json"
+    port_="$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed s/://g )"
+done
+if curl 127.0.0.1:${port_} > /dev/null 2>&1
+then
+    echo -en ${yellow}签名服务器已启动 ${cyan}回车返回${background};read
+    echo
+    return
+fi
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
 echo -e ${cyan}请选择您想让您签名服务器适配的QQ版本${background}
-echo -e  ${green}1.  ${cyan}HD: 8.9.85（需要替换文件 看帮助教程）${background}
-echo -e  ${green}2.  ${cyan}HD: 8.9.63${background}
+echo -e  ${green}1.  ${cyan}HD: 8.9.85（需icqq0.6.1 看帮助教程）${background}
+echo -e  ${green}2.  ${cyan}HD: 8.9.88（需icqq0.6.1 看帮助教程）${background}
 echo -e  ${green}3.  ${cyan}HD: 8.9.68${background}
 echo -e  ${green}4.  ${cyan}HD: 8.9.70${background}
 echo -e  ${green}5.  ${cyan}HD: 8.9.71${background}
@@ -227,8 +240,8 @@ case ${num} in
 1|8.9.85)
 export version=8.9.85
 ;;
-2|8.9.63)
-export version=8.9.63
+2|8.9.88)
+export version=8.9.88
 ;;
 3|8.9.68)
 export version=8.9.68
@@ -261,11 +274,13 @@ if [ ! -d $HOME/QSignServer/txlib/${version} ];then
     echo -e ${yellow}您没有该版本的libfekit.so文件${background}
     exit
 fi
-if tmux_ls qsignserver
-then
-    echo -e ${yellow}签名服务器已启动${background}
-    exit
-fi
+Foreground_Start(){
+bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
+echo -en ${yellow}签名服务器已启动${background}
+read
+echo
+}
+Tmux_Start(){
 Start_Stop_Restart="启动"
 tmux_new qsignserver "bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}"
 if tmux_gauge qsignserver
@@ -284,47 +299,124 @@ then
         exit
     ;;
     esac
-else
-    bot_tmux_attach_log qsignserver
 fi
+}
+Pm2_Start(){
+if [ -x "$(command -v pm2)" ]
+then
+    if ! pm2 show qsignserver | grep -q online > /dev/null 2>&1
+    then
+        pm2 start --name qsignserver "bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}"
+        echo
+        echo -en ${yellow}签名服务器已经启动,是否打开日志 [Y/n]${background};read num
+        case $num in
+        Y|y)
+            pm2 logs qsignserver
+            echo
+            ;;
+        esac
+    fi
+else
+    echo -e ${red}没有pm2!!!${background}
+    exit
+fi
+}
+echo
+echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
+echo -e ${cyan}请选择启动方式${background}
+echo -e  ${green}1.  ${cyan}前台启动${background}
+echo -e  ${green}2.  ${cyan}TMUX后台启动${background}
+echo -e  ${green}3.  ${cyan}PM2后台启动${background}
+echo "========================="
+echo -en ${green}请输入您的选项: ${background};read num
+case ${num} in 
+1)
+Foreground_Start
+;;
+2)
+Tmux_Start
+;;
+3)
+Pm2_Start
+;;
+*)
+echo
+echo -e ${red}输入错误${background}
+exit
+;;
+esac
 }
 
 function stop_QSignServer(){
-if ! tmux_ls qsignserver
+for folder in $(ls -d $HOME/QSignServer/txlib/*)
+do
+    file="${folder}/config.json"
+    port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
+done
+if curl 127.0.0.1:${port_} > /dev/null 2>&1
 then
+    echo -e ${yellow}正在停止签名服务器${background}
+    tmux_kill_session qsignserver > /dev/null 2>&1
+    pm2 delete qsignserver > /dev/null 2>&1
+    PID=$(ps aux | grep qsign | sed '/grep/d' | awk '{print $2}')
+    if [ ! -z ${PID} ];then
+        kill -9 ${PID}
+    fi
+    echo -en ${red}签名服务器停止成功 ${cyan}回车返回${background}
+    read
+    echo
+    return
+else
     echo -en ${red}签名服务器未启动 ${cyan}回车返回${background}
     read
-    return
     echo
+    return
 fi
-tmux_kill_session qsignserver
-echo -en ${red}签名服务器停止成功 ${cyan}回车返回${background}
-read
-return
-echo
 }
 
 function restart_QSignServer(){
-tmux_kill_session qsignserver
-export Start_Stop_Restart="重启"
-start_QSignServer
+if tmux_ls qsignserver > /dev/null 2>&1 
+then
+    tmux_kill_session qsignserver
+    export Start_Stop_Restart="重启"
+    start_QSignServer
+elif pm2 show qsignserver | grep -q online > /dev/null 2>&1
+then
+    pm2 delete qsignserver
+    start_QSignServer
+else
+    echo -e ${red}签名服务器未启动或为后台运行${background}
+    echo
+    return
+fi
 }
 
 function update_QSignServer(){
-if tmux_ls qsignserver
+for folder in $(ls -d $HOME/QSignServer/txlib/*)
+do
+    file="${folder}/config.json"
+    port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
+done
+if curl 127.0.0.1:${port_} > /dev/null 2>&1
 then
     echo -e ${yellow}正在停止签名服务器${background}
-    tmux_kill_session qsignserver
+    tmux_kill_session qsignserver > /dev/null 2>&1
+    pm2 delete qsignserver > /dev/null 2>&1
+    PID=$(ps aux | grep qsign | sed '/grep/d' | awk '{print $2}')
+    if [ ! -z ${PID} ];then
+        kill -9 ${PID}
+    fi
+    echo
 fi
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
-    port_="$(grep -E port ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/://g" )"
+    port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
 done
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
-    key_="$(grep -E key ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/,//g" )"
+    key_=$(grep -E key ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/,//g" )
 done
 rm -rf txlib/.git txlib/README.md > /dev/null 2>&1
 rm -rf txlib/.git txlib/README.md > /dev/null 2>&1
@@ -352,13 +444,13 @@ API_LINK=["${cyan} ${qsign_version}"]
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
-    port="$(grep -E port ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/://g" )"
+    port=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
     sed -i "s/${port}/${port_}/g" ${file}
 done
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
-    key="$(grep -E key ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/,//g" )"
+    key=$(grep -E key ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/,//g" )
     sed -i "s/${key}/${key_}/g" ${file}
 done
 }
@@ -371,9 +463,31 @@ fi
 cd $HOME
 echo -e ${yellow}正在停止服务器运行${background}
 tmux_kill_session qsignserver > /dev/null 2>&1
+pm2 delete qsignserver > /dev/null 2>&1
 rm -rf $HOME/QSignServer > /dev/null 2>&1
 rm -rf $HOME/QSignServer > /dev/null 2>&1
 Version="${red}[未部署]"
+}
+
+function log_QSignServer(){
+for folder in $(ls -d $HOME/QSignServer/txlib/*)
+do
+    file="${folder}/config.json"
+    port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
+done
+if ! curl 127.0.0.1:${port_} > /dev/null 2>&1
+then
+    echo -en ${red}签名服务器 未启动 ${cyan}回车返回${background};read
+    echo
+    return
+fi
+if tmux_ls qsignserver > /dev/null 2>&1 
+then
+    bot_tmux_attach_log qsignserver
+elif pm2 show qsignserver | grep -q online > /dev/null 2>&1
+then
+    pm2 logs qsignserver
+fi
 }
 
 function key_QSignServer(){
@@ -389,7 +503,7 @@ fi
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
-    key="$(grep -E key ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/,//g" )"
+    key=$(grep -E key ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/,//g" )
     sed -i "s/${key}/${key_}/g" ${file}
 done
 echo -en ${yellow}更改完成 回车返回${background};read
@@ -408,7 +522,7 @@ fi
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
     file="${folder}/config.json"
-    port="$(grep -E port ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/://g" )"
+    port=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
     sed -i "s/${port}/${port_}/g" ${file}
 done
 echo -en ${yellow}更改完成 回车返回${background};read
@@ -424,9 +538,9 @@ echo
 for folder in $(ls $HOME/QSignServer/txlib)
 do
     file="$HOME/QSignServer/txlib/${folder}/config.json"
-    port="$(grep -E port ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/://g" )"
-    key="$(grep -E key ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/,//g" )"
-    host="$(grep -E host ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/,//g" )"
+    port=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
+    key=$(grep -E key ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/,//g" )
+    host=$(grep -E host ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/,//g" )
     echo -e ${green}${folder}: ${cyan}"http://""${host}":"${port}"/sign?key="${key}"${background}
     echo
 done
@@ -438,7 +552,6 @@ echo -e  ${green}一句话启动云崽教程：${cyan}修改签名服务器key�
 echo -e  ${green}如果ICQQ不是最新版：${cyan}更新icqq在喵云崽目录下执行（icqq版本在启动的时候会显示）：pnpm update icqq@0.6.1${background}
 echo -e  ${green}签名服务器启动失败：${cyan}卸载重装/重设端口${background}
 echo -e  ${green}喵喵云崽的安装教程：${cyan}https://github.com/yoimiya-kokomi/Miao-Yunzai${background}
-echo -e  ${green}HD: 8.9.85使用说明：${cyan}如果要使用8.9.85版本，请将 新device.js替换Miao-Yunzai\node_modules\icqq\lib\core\device.js ；并删除device.json（文件位置：Miao-Yunzai/data/icqq/QQ号，将QQ号命名的这个文件夹删除即可）。新device.js下载地址（注意备份旧版）：raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/device.js${background}
 echo -e  ${green}70错误：${cyan}删除device.json（文件位置：Miao-Yunzai/data/icqq/QQ号，将QQ号命名的这个文件夹删除即可）；手机登录机器人的QQ删除登录设备，触发了滑动验证和手机验证码登录就好了；ps.签名api的icqq版本检查api的可用性或更换api，（不要用海外qsign）；或者换另一个小号${background}
 echo -e  ${green}45错误：${cyan}使用最新的签名服务器，如果还有的话。。。${background}
 echo -en ${yellow}回车返回${background};read
@@ -448,7 +561,7 @@ if [[ -d $HOME/QSignServer ]];then
     for folder in $(ls -d $HOME/QSignServer/txlib/*)
     do
         file="${folder}/config.json"
-        port_="$(grep -E port ${file} | awk '{print $2}' | sed "s/\"//g" | sed "s/://g" )"
+        port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
     done
     if curl -sL 127.0.0.1:${port_} > /dev/null 2>&1
     then
@@ -480,18 +593,18 @@ else
 fi
 
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
-echo -e  ${green}1.  ${cyan}安装签名服务器${background}
-echo -e  ${green}2.  ${cyan}启动签名服务器${background}
-echo -e  ${green}3.  ${cyan}关闭签名服务器${background}
-echo -e  ${green}4.  ${cyan}重启签名服务器${background}
-echo -e  ${green}5.  ${cyan}更新签名服务器${background}
-echo -e  ${green}6.  ${cyan}卸载签名服务器${background}
-echo -e  ${green}7.  ${cyan}打开签名服务器窗口${background}
-echo -e  ${green}8.  ${cyan}修改签名服务器key值${background}
-echo -e  ${green}9.  ${cyan}修改签名服务器端口${background}
+echo -e  ${green} 1.  ${cyan}安装签名服务器${background}
+echo -e  ${green} 2.  ${cyan}启动签名服务器${background}
+echo -e  ${green} 3.  ${cyan}关闭签名服务器${background}
+echo -e  ${green} 4.  ${cyan}重启签名服务器${background}
+echo -e  ${green} 5.  ${cyan}更新签名服务器${background}
+echo -e  ${green} 6.  ${cyan}卸载签名服务器${background}
+echo -e  ${green} 7.  ${cyan}打开签名服务器窗口/日志${background}
+echo -e  ${green} 8.  ${cyan}修改签名服务器key值${background}
+echo -e  ${green} 9.  ${cyan}修改签名服务器端口${background}
 echo -e  ${green}10.  ${cyan}查看签名服务器链接${background}
 echo -e  ${green}11.  ${cyan}帮助教程${background}
-echo -e  ${green}0.  ${cyan}退出${background}
+echo -e  ${green} 0.  ${cyan}退出${background}
 echo "========================="
 echo -e ${green}您的签名服务器状态: ${condition}${background}
 echo -e ${green}当前签名服务器版本: ${Version}${background}
@@ -526,7 +639,7 @@ echo
 uninstall_QSignServer
 ;;
 7)
-bot_tmux_attach_log qsignserver
+log_QSignServer
 ;;
 8)
 echo
@@ -567,3 +680,5 @@ else
     }
     mainbak
 fi
+
+
