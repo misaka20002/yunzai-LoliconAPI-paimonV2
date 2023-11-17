@@ -42,19 +42,79 @@ function randomNum (minNum, maxNum) {
  * @returns {Promise<string>}
  */
 export async function generateVitsAudio (text, speaker = '随机', language = '中日混合（中文用[ZH][ZH]包裹起来，日文用[JA][JA]包裹起来）', noiseScale = parseFloat(Config.noiseScale), noiseScaleW = parseFloat(Config.noiseScaleW), lengthScale = parseFloat(Config.lengthScale)) {
-  if (lengthScale === 1.3)
+  if (lengthScale === 1.31)
   {
 	  let audioLink = `https://genshinvoice.top/api?speaker=派蒙_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
 	  return audioLink
   }
-  else if (lengthScale === 1.4)
+  else if (lengthScale === 1.32)
   {
 	  let audioLink = `https://genshinvoice.top/api?speaker=可莉_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
 	  return audioLink
   }
-  else if (lengthScale === 1.5)
+  else if (lengthScale === 1.33)
   {
 	  let audioLink = `https://genshinvoice.top/api?speaker=早柚_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.34)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=纳西妲_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.35)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=迪奥娜_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.36)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=瑶瑶_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.37)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=七七_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.41)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=神里绫华_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.42)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=胡桃_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.43)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=雷电将军_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.44)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=芙宁娜_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.45)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=绮良良_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.46)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=刻晴_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.47)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=珊瑚宫心海_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  return audioLink
+  }
+  else if (lengthScale === 1.51)
+  {
+	  let audioLink = `https://genshinvoice.top/api?speaker=迪卢克_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
 	  return audioLink
   }
   else
