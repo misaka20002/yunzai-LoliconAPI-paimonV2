@@ -178,12 +178,15 @@ export class voicecreate extends plugin {
 	}
 
 	async voicecrehelp(e) {
-		let msg1 = `小呆毛tts语音替换帮助\n` +
+		let msg1 = `小呆毛tts语音替换帮助：\n` +
 			`下述链接覆盖安装后，使用如下指令，例如：\n` +
-			`#chatgpt设置语音角色派蒙_ZH，\n` +
-			`安装链接：`
+			`#chatgpt设置语音角色派蒙_ZH\n` +
+			`#chatgpt设置语音角色可莉_ZH\n` +
+			`需要在ChatGPT-Plugin的锅巴插件里把lengthScale改为1.99（默认1.2）以启动本替换插件\n` +
+			`注意备份原tts.js，感谢genshinvoice.top提供的api` +
+			`安装链接（在喵崽根目录执行）：`
 		let msg2 = `curl -# -L -o "./plugins/chatgpt-plugin/utils/tts.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/tts.js"\n`
-		let speakertip1 = "发言者列表：\n"
+		let speakertip1 = "可选列表：\n"
 		let speakertip2 = ""
 		let speakertip3 = ""
 		for (let i = 0; i < speakermap.length; i++) {
@@ -216,7 +219,7 @@ export class voicecreate extends plugin {
 			}
 
 		}
-		let msgx = await common.makeForwardMsg(e, [msg1, msg2, speakertip1, speakertip2, speakertip3], `语音生成帮助`);
+		let msgx = await common.makeForwardMsg(e, [msg1, msg2, speakertip1, speakertip2, speakertip3], `tts语音替换帮助`);
 		e.reply(msgx);
 		return true;
 	}
