@@ -578,7 +578,7 @@ if [[ -d $HOME/QSignServer ]];then
     then
         Txlib_Version="${cyan}[HD:${Txlib_Version_New}]"
     else
-        Txlib_Version="${red}[${Txlib_Version_Local}] [请更新]"
+        Txlib_Version="${red}[${Txlib_Version_Local}] [有更新]"
     fi
     Version="[$(ls $HOME/QSignServer | grep qsign | sed "s/qsign//g" | sed "s/.\B/&./g")]"
     QSIGN_VERSION_local=$(ls $HOME/QSignServer | grep qsign | sed 's/qsign//g')
@@ -609,7 +609,7 @@ echo -e  ${green} 0.  ${cyan}退出${background}
 echo "========================="
 echo -e ${green}您的签名服务器状态: ${condition}${background}
 echo -e ${green}当前签名服务器版本: ${Version}${background}
-echo -e ${green}共享库最高支持版本: ${Txlib_Version}${background}
+echo -e ${green}本地Txlib最高支持版本: ${Txlib_Version}${background}
 echo -e ${green}QQ群:${cyan}工业群:883776847${background}
 echo "========================="
 echo
