@@ -44,17 +44,17 @@ function randomNum (minNum, maxNum) {
 export async function generateVitsAudio (text, speaker = '随机', language = '中日混合（中文用[ZH][ZH]包裹起来，日文用[JA][JA]包裹起来）', noiseScale = parseFloat(Config.noiseScale), noiseScaleW = parseFloat(Config.noiseScaleW), lengthScale = parseFloat(Config.lengthScale)) {
   if (lengthScale === 1.3)
   {
-	  audioLink = `https://genshinvoice.top/api?speaker=派蒙_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  let audioLink = `https://genshinvoice.top/api?speaker=派蒙_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
 	  return audioLink
   }
   else if (lengthScale === 1.4)
   {
-	  audioLink = `https://genshinvoice.top/api?speaker=可莉_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  let audioLink = `https://genshinvoice.top/api?speaker=可莉_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
 	  return audioLink
   }
   else if (lengthScale === 1.5)
   {
-	  audioLink = `https://genshinvoice.top/api?speaker=早柚_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  let audioLink = `https://genshinvoice.top/api?speaker=早柚_ZH&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
 	  return audioLink
   }
   else
