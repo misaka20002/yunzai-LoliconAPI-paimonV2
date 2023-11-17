@@ -444,7 +444,7 @@ Git=
            14)
              Name="${Name} L插件"
              Plugin="${Plugin} L-plugin"
-             Git="${Git} https://ghproxy.com/https://github.com/liuly0322/l-plugin.git"
+             Git="${Git} https://mirror.ghproxy.com/https://github.com/liuly0322/l-plugin.git"
              ;;
            15)
              Name="${Name} 千羽插件"
@@ -479,7 +479,7 @@ Git=
            21)
              Name="${Name} 风歌插件"
              Plugin="${Plugin} windoge-plugin"
-             Git="${Git} https://ghproxy.com/https://github.com/gxy12345/windoge-plugin"
+             Git="${Git} https://mirror.ghproxy.com/https://github.com/gxy12345/windoge-plugin"
              ;;
            22)
              Name="${Name} Atlas[图鉴]"
@@ -569,7 +569,7 @@ Git=
            39)
              Name="${Name} phigros辅助插件"
              Plugin="${Plugin} phi-plugin"
-             Git="${Git} https://ghproxy.com/https://github.com/Catrong/phi-plugin.git"
+             Git="${Git} https://mirror.ghproxy.com/https://github.com/Catrong/phi-plugin.git"
              ;;
            40)
              Name="${Name} ap绘图插件"
@@ -584,7 +584,7 @@ Git=
            42)
              Name="${Name} 聊天插件"
              Plugin="${Plugin} chatgpt-plugin"
-             Git="${Git} https://ghproxy.com/https://github.com/ikechan8370/chatgpt-plugin.git"
+             Git="${Git} https://mirror.ghproxy.com/https://github.com/ikechan8370/chatgpt-plugin.git"
              ;;
            43)
              Name="${Name} 阴天插件"
@@ -762,11 +762,11 @@ function Install_JS_Plugin(){
             then
                 if [[ ${js} = *raw* ]]
                     then
-                        curl "https://ghproxy.com/${js}" > ${jsname}
+                        curl "https://mirror.ghproxy.com/${js}" > ${jsname}
                 elif [[ ${js} = *blob* ]]
                     then
                         js=$(echo ${js} | sed "s|blob/||g" | sed "s|github|raw.githubusercontent|g" )
-                        curl "https://ghproxy.com/${js}" > ${jsname}
+                        curl "https://mirror.ghproxy.com/${js}" > ${jsname}
                 fi
         fi
         cd ../../
