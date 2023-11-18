@@ -64,6 +64,7 @@ export class voicecreate extends plugin {
 			priority: 999,
 			rule: [{
 				reg: `^#tts语音替换帮助$`,
+				permission: 'master',
 				fnc: `voicecrehelp`
 			}, 
 			/* {
@@ -179,7 +180,7 @@ export class voicecreate extends plugin {
 
 	async voicecrehelp(e) {
 		let msg1 = `小呆毛tts语音替换帮助：\n` +
-			`下述链接覆盖安装后，使用如下指令，例如：\n` +
+			`下述链接覆盖安装重启后，使用如下指令，例如：\n` +
 			`#chatgpt设置语音角色派蒙_ZH\n` +
 			`#chatgpt设置语音角色可莉_ZH\n` +
 			`需要在ChatGPT-Plugin的锅巴插件里把lengthScale改为1.99（默认1.2）以启动本替换插件\n` +
