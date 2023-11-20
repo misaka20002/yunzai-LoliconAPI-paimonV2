@@ -107,5 +107,6 @@ node app
 cd Miao-Yunzai
 curl -# -L -o "./plugins/example/tts语音替换帮助.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/tts%E8%AF%AD%E9%9F%B3%E6%9B%BF%E6%8D%A2.js"
 ```
+发送#tts语音替换帮助 可获取支持的角色语音命令
 
 -END-
