@@ -334,7 +334,7 @@ echo -e  ${green}2.  ${cyan}TMUX后台启动${background}
 echo -e  ${green}3.  ${cyan}PM2后台启动${background}
 echo "========================="
 #echo -en ${green}请输入您的选项: ${background};read num
-echo -en ${green}请输入您的选项: 已经为您选择2${background}
+echo -en ${green}请输入您的选项: 已经为您选择2.TMUX后台启动${background}
 echo
 num=2
 case ${num} in 
@@ -621,7 +621,7 @@ echo -e ${green}QQ群:${cyan}工业群:883776847${background}
 echo "========================="
 echo
 #echo -en ${green}请输入您的选项: ${background};read number
-echo -en ${green}请输入您的选项: 已经为您选择2${background}
+echo -en ${green}请输入您的选项: 已经为您选择2.启动签名服务器${background}
 number=2
 case ${number} in
 1)
