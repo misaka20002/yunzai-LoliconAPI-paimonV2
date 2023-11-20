@@ -102,11 +102,16 @@ bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-
 cd Miao-Yunzai
 node app
 ```
-## 替换chatgpt-plugi插件的语音合成为berl-vits模型
+## 替换chatgpt-plugin插件的语音合成为berl-vits模型
 ```
 cd Miao-Yunzai
 curl -# -L -o "./plugins/example/tts语音替换帮助.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/tts%E8%AF%AD%E9%9F%B3%E6%9B%BF%E6%8D%A2.js"
 ```
 发送#tts语音替换帮助 可获取支持的角色语音命令
+
+## 米游社手动验证码
+```
+curl -# -L -o "./plugins/example/米游社手动验证码.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js"
+```
 
 -END-
