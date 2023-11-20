@@ -48,8 +48,8 @@ curl -# -L -o "./config/config/LoliconAPI.yaml" "https://raw.githubusercontent.c
 
 同时需要安装依赖，进入云崽/喵崽根目录：
 ```
-pnpm add sharp@0.32.5 -w
-pnpm add https-proxy-agent@5.0.1 -w
+pnpm add sharp -g
+pnpm add https-proxy-agent -g
 ```
 ps所需要的依赖如下（仅供参考）:
 ```
