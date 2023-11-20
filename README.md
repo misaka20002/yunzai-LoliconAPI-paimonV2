@@ -48,8 +48,10 @@ curl -# -L -o "./config/config/LoliconAPI.yaml" "https://raw.githubusercontent.c
 
 同时需要安装依赖，进入云崽/喵崽根目录：
 ```
-pnpm add sharp -g
-pnpm add https-proxy-agent -g
+pnpm add sharp -w
+pnpm add https-proxy-agent -w
+
+# 如果pnpm出现ERR_PNPM_INCLUDED_DEPS_CONFLICT提示，考虑高版本pnpm问题，可尝试1、降级pnpm（pnpm add -g pnpm@7.30.0）后重启tmux，在喵崽根目录运行pnpm install，不要加-P选项，安装devDependencies依赖后再使用上面pnpm add相关指令
 ```
 ps所需要的依赖如下（仅供参考）:
 ```
