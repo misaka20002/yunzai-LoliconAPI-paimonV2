@@ -93,16 +93,19 @@ express-art-template 1.0.1
 同时记得开启你的代理的http端口: 
 代理如Clash Meta里面-设置-覆写-http端口和socks端口改为12811
 
-# 鸽鸽
 
-但是更推荐去用椰奶插件，不过椰奶很多图片被申鹤了（涩涩被风控发不出来），故做此js
-
-# 杂项（请不要跟风输入）
+# 其他杂项
+## 本地q签名部署
 ```
 tmoe proot ubuntu jammy arm64
 bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign.sh)
 cd Miao-Yunzai
 node app
+```
+## 替换chatgpt-plugi插件的语音合成为berl-vits模型
+```
+cd Miao-Yunzai
+curl -# -L -o "./plugins/example/tts语音替换帮助.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/tts%E8%AF%AD%E9%9F%B3%E6%9B%BF%E6%8D%A2.js"
 ```
 
 -END-
