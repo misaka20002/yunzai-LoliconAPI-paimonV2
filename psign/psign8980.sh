@@ -219,8 +219,10 @@ do
 done
 if curl 127.0.0.1:${port_} > /dev/null 2>&1
 then
-    echo -en ${yellow}签名服务器已启动 ${cyan}回车返回${background};read
+    #echo -en ${yellow}签名服务器已启动 ${cyan}回车返回${background};read
+    echo -en ${yellow}签名服务器已启动 ${cyan}回车返回${background}
     echo
+    exit
     return
 fi
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
@@ -333,6 +335,7 @@ echo -e  ${green}3.  ${cyan}PM2后台启动${background}
 echo "========================="
 #echo -en ${green}请输入您的选项: ${background};read num
 echo -en ${green}请输入您的选项: 已经为您选择2${background}
+echo
 num=2
 case ${num} in 
 1)
