@@ -103,7 +103,7 @@ cd Miao-Yunzai
 node app
 ```
 
-同时写了一个每小时自动重启8.9.80 的q签名的shell命令，以后再也不用担心qqsign被杀惹
+同时写了一个每小时自动检测q签名有没有被杀,被杀的话自动重启8.9.80 的q签名的shell命令，以后再也不用担心qqsign被杀惹
 (可以自行修改时间或q签名版本)
 ```
 bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign8980.sh)
