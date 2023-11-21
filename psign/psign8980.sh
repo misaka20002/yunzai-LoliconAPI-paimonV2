@@ -50,7 +50,8 @@ fi
 
 function reload_QSignServer(){
 		echo -en ${yellow}将会在3600s后会自动重启qsign签名${background}
-		sleep 6
+		echo
+		sleep 3600
 		bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign8980.sh)
 	
 }
