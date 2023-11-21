@@ -47,6 +47,14 @@ case $(uname -m) in
     ;;
 esac
 fi
+
+function reload_QSignServer(){
+		echo -en ${yellow}将会在3600s后会自动重启qsign签名${background}
+		sleep 6
+		bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign8980.sh)
+	
+}
+
 function install_QSignServer(){
 if [ -d $HOME/QSignServer/txlib ];then
     echo -e ${yellow}您已安装签名服务器${background}
@@ -222,6 +230,7 @@ then
     #echo -en ${yellow}签名服务器已启动 ${cyan}回车返回${background};read
     echo -en ${yellow}签名服务器已启动 ${cyan}回车返回${background}
     echo
+	reload_QSignServer
     exit
     return
 fi
@@ -301,6 +310,7 @@ then
         echo -e  ${green}【qsign已后台运行】 启动喵崽请输入：${background}
         echo -e  ${cyan}cd Miao-Yunzai${background}
         echo -e  ${cyan}node app${background}
+		reload_QSignServer
         exit
     ;;
     esac
