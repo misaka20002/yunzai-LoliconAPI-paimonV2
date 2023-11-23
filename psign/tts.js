@@ -44,7 +44,8 @@ function randomNum (minNum, maxNum) {
 export async function generateVitsAudio (text, speaker = '随机', language = '中日混合（中文用[ZH][ZH]包裹起来，日文用[JA][JA]包裹起来）', noiseScale = parseFloat(Config.noiseScale), noiseScaleW = parseFloat(Config.noiseScaleW), lengthScale = parseFloat(Config.lengthScale)) {
   if (lengthScale === 1.99)
   {
-	  let audioLink = `https://genshinvoice.top/api?speaker=${speaker}&text=${text}&format=mp3&language=ZH&length=1&sdp=0.4&noise=0.6&noisew=0.8`
+	  let character_voice_language = speaker.substr(-2)
+	  let audioLink = `https://genshinvoice.top/api?speaker=${speaker}&text=${text}&format=wav&language=${character_voice_language}&length=1&sdp=0.4&noise=0.6&noisew=0.8`
 	  return audioLink
   }
   else
