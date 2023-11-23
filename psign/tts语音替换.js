@@ -148,9 +148,9 @@ export class voicecreate extends plugin {
 			`#chatgpt设置语音角色派蒙_ZH\n` +
 			`#chatgpt设置语音角色可莉_ZH\n` +
 			`需要在ChatGPT-Plugin的锅巴插件里把lengthScale改为1.99（默认1.2）以启动本替换插件，此时强制使用默认值length=1、sdp=0.4、noise=0.6、&noisew=0.8。\n` +
-			`注意备份原tts.js，感谢genshinvoice.top提供的api` +
+			`注意备份原tts.js，感谢genshinvoice.top提供的api支持。\n` +
 			`安装链接（在喵崽根目录执行）：`
-		let msg2 = `curl -# -L -o "./plugins/chatgpt-plugin/utils/tts.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/tts.js"\n`
+		let msg2 = `curl -# -L -o "./plugins/chatgpt-plugin/utils/tts.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/tts.js"`
 		let speakertip1 = "可选列表：\n"
 		let speakertip2 = ""
 		let speakertip3 = ""
