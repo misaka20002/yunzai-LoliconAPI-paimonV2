@@ -1,7 +1,7 @@
 /* 
 放置于xiaoyao-cvs-plugin/apps/index.js，
 修复bot对包含 动态、幻影 的所有文本无响应的bug，出现于gpt对话时 。
-curl -# -L -o "./plugins/xiaoyao-cvs-plugin/apps/index.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E5%A4%8D%E5%AF%B9%E5%8C%85%E5%90%AB%20%E5%8A%A8%E6%80%81%E3%80%81%E5%B9%BB%E5%BD%B1%20%E7%9A%84%E6%96%87%E6%9C%AC%E6%97%A0%E5%93%8D%E5%BA%94.js" 
+curl -# -L -o "./plugins/xiaoyao-cvs-plugin/apps/index.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E5%A4%8D%E9%80%8D%E9%81%A5bug.js" 
 */
 
 import lodash from "lodash";
