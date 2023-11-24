@@ -1,3 +1,9 @@
+/* 
+放置于xiaoyao-cvs-plugin/apps/index.js，
+用于修复bot对包含 (动态|幻影) 的所有！文本！无反应的bug 
+curl -# -L -o "./plugins/xiaoyao-cvs-plugin/apps/index.js" "https://raw.githubusercontent.com/yyk725/yunzai_jsrun/main/jsrun.js" 
+*/
+
 import lodash from "lodash";
 import schedule from "node-schedule";
 import {
