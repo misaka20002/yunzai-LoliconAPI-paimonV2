@@ -120,4 +120,8 @@ curl -# -L -o "./plugins/example/tts语音替换帮助.js" "https://raw.githubus
 curl -# -L -o "./plugins/example/米游社手动验证码.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js"
 ```
 
+## 修复逍遥图鉴插件导致bot对包含 动态、幻影 的所有文本无响应的bug：
+```
+curl -# -L -o "./plugins/xiaoyao-cvs-plugin/apps/index.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E5%A4%8D%E9%80%8D%E9%81%A5bug.js"
+```
 -END-
