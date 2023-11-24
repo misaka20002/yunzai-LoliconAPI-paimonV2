@@ -1,6 +1,6 @@
 /* 
 放置于xiaoyao-cvs-plugin/apps/index.js，
-修复bot对包含 动态、幻影 的所有文本无响应的bug，出现于gpt对话时 。
+修复逍遥图鉴插件导致bot对包含 动态、幻影 的所有文本无响应的bug，出现于gpt对话时 。
 curl -# -L -o "./plugins/xiaoyao-cvs-plugin/apps/index.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E5%A4%8D%E9%80%8D%E9%81%A5bug.js" 
 */
 
