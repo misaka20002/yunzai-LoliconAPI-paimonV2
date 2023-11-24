@@ -28,7 +28,7 @@ QSIGN_URL="https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/releases/do
 QSIGN_VERSION="119"
 qsign_version="1.1.9"
 txlib="https://github.com/misaka20002/txlib"
-Txlib_Version_New="8.9.88"
+Txlib_Version_New="8.9.90"
 case $(uname -m) in
 amd64|x86_64)
 JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u392b08.tar.gz"
@@ -224,45 +224,61 @@ then
     return
 fi
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
-echo -e ${cyan}请选择您想让您签名服务器适配的QQ版本${background}
-echo -e  ${green}1.  ${cyan}HD: 8.9.85（需icqq0.6.1 看帮助教程）${background}
-echo -e  ${green}2.  ${cyan}HD: 8.9.88（需icqq0.6.2 看帮助教程）${background}
-echo -e  ${green}3.  ${cyan}HD: 8.9.68${background}
-echo -e  ${green}4.  ${cyan}HD: 8.9.70${background}
-echo -e  ${green}5.  ${cyan}HD: 8.9.71${background}
-echo -e  ${green}6.  ${cyan}HD: 8.9.73${background}
-echo -e  ${green}7.  ${cyan}HD: 8.9.76${background}
-echo -e  ${green}8.  ${cyan}HD: 8.9.80（需icqq0.6.1 看帮助教程）${background}
-echo -e  ${green}9.  ${cyan}HD: 8.9.83（需icqq0.6.1 看帮助教程）${background}
+echo -e ${cyan}请选择签名服务器适配的QQ共享库版本${background}
+echo -e  ${green} 1.  ${cyan}HD: 8.9.33${background}
+echo -e  ${green} 2.  ${cyan}HD: 8.9.58${background}
+echo -e  ${green} 3.  ${cyan}HD: 8.9.63${background}
+echo -e  ${green} 4.  ${cyan}HD: 8.9.68${background}
+echo -e  ${green} 5.  ${cyan}HD: 8.9.70${background}
+echo -e  ${green} 6.  ${cyan}HD: 8.9.71${background}
+echo -e  ${green} 7.  ${cyan}HD: 8.9.73${background}
+echo -e  ${green} 8.  ${cyan}HD: 8.9.76${background}
+echo -e  ${green} 9.  ${cyan}HD: 8.9.80${background}
+echo -e  ${green}10.  ${cyan}HD: 8.9.83${background}
+echo -e  ${green}11.  ${cyan}HD: 8.9.85${background}
+echo -e  ${green}12.  ${cyan}HD: 8.9.88${background}
+echo -e  ${green}13.  ${cyan}HD: 8.9.90${background}
 echo "========================="
 echo -en ${green}请输入您的选项: ${background};read num
 case ${num} in
-1|8.9.85)
-export version=8.9.85
+1|8.9.33)
+export version=8.9.33
 ;;
-2|8.9.88)
-export version=8.9.88
+2|8.9.58)
+export version=8.9.58
 ;;
-3|8.9.68)
+3|8.9.63)
+export version=8.9.63
+;;
+4|8.9.68)
 export version=8.9.68
 ;;
-4|8.9.70)
+5|8.9.70)
 export version=8.9.70
 ;;
-5|8.9.71)
+6|8.9.71)
 export version=8.9.71
 ;;
-6|8.9.73)
+7|8.9.73)
 export version=8.9.73
 ;;
-7|8.9.76)
+8|8.9.76)
 export version=8.9.76
 ;;
-8|8.9.80)
+9|8.9.80)
 export version=8.9.80
 ;;
-9|8.9.83)
+10|8.9.83)
 export version=8.9.83
+;;
+11|8.9.85)
+export version=8.9.85
+;;
+12|8.9.88)
+export version=8.9.88
+;;
+13|8.9.90)
+export version=8.9.90
 ;;
 *)
 echo
@@ -286,7 +302,7 @@ tmux_new qsignserver "bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fe
 if tmux_gauge qsignserver
 then
     echo
-    echo -en ${green}${Start_Stop_Restart}成功 是否打开qsign窗口（回车则返回Ubuntu） [Y/N]:${background}
+    echo -en ${green}${Start_Stop_Restart}成功 是否打开qsign窗口（不能防杀后台）（回车则返回Ubuntu） [Y/N]:${background}
     read YN
     case ${YN} in
     Y|y)
@@ -549,7 +565,7 @@ echo -en ${yellow}回车返回${background};read
 
 function link_PaimonAlsoKnowed(){
 echo -e  ${green}一句话启动云崽教程：${cyan}修改签名服务器key和端口，将签名服务器链接填入miao-yunzai/config/config/bot.yaml的api地址（记得冒号后面要有空格），传入的qq版本可填可不填（记得冒号后面要有空格）。启动签名服务器成功后不需要开启服务器窗口，直接（或者新建一个控制台对话）输入cd Miao-Yunzai回车，输入node app启动云崽。（如果需要重新登陆/重新设置主人请输入node app login）${background}
-echo -e  ${green}更新ICQQ0.6.3：${cyan}更新icqq在喵云崽目录下执行（icqq版本在启动的时候会显示）：pnpm update icqq@0.6.1${background}
+echo -e  ${green}更新ICQQ0.6.3：${cyan}更新icqq在喵云崽目录下执行（icqq版本在启动的时候会显示）：pnpm update icqq@0.6.3${background}
 echo -e  ${green}签名服务器启动失败：${cyan}卸载重装/重设端口${background}
 echo -e  ${green}喵喵云崽的安装教程：${cyan}https://github.com/yoimiya-kokomi/Miao-Yunzai${background}
 echo -e  ${green}70错误：${cyan}删除device.json（文件位置：Miao-Yunzai/data/icqq/QQ号，将QQ号命名的这个文件夹删除即可）；手机登录机器人的QQ删除登录设备，触发了滑动验证和手机验证码登录就好了；ps.签名api的icqq版本检查api的可用性或更换api，（不要用海外qsign）；或者换另一个小号${background}
@@ -680,5 +696,3 @@ else
     }
     mainbak
 fi
-
-
