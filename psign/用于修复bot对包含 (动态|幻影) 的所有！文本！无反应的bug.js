@@ -1,7 +1,7 @@
 /* 
 放置于xiaoyao-cvs-plugin/apps/index.js，
 用于修复bot对包含 (动态|幻影) 的所有！文本！无反应的bug 
-curl -# -L -o "./plugins/xiaoyao-cvs-plugin/apps/index.js" "https://raw.githubusercontent.com/yyk725/yunzai_jsrun/main/jsrun.js" 
+curl -# -L -o "./plugins/xiaoyao-cvs-plugin/apps/index.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%94%A8%E4%BA%8E%E4%BF%AE%E5%A4%8Dbot%E5%AF%B9%E5%8C%85%E5%90%AB%20(%E5%8A%A8%E6%80%81%7C%E5%B9%BB%E5%BD%B1)%20%E7%9A%84%E6%89%80%E6%9C%89%EF%BC%81%E6%96%87%E6%9C%AC%EF%BC%81%E6%97%A0%E5%8F%8D%E5%BA%94%E7%9A%84bug.js" 
 */
 
 import lodash from "lodash";
