@@ -324,7 +324,7 @@ fi
 echo
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
 echo -e ${cyan}请选择启动方式${background}
-echo -e  ${green}1.  ${cyan}前台启动${background}
+echo -e  ${green}1.  ${cyan}前台启动（推荐，防杀后台）${background}
 echo -e  ${green}2.  ${cyan}TMUX后台启动${background}
 echo -e  ${green}3.  ${cyan}PM2后台启动${background}
 echo "========================="
