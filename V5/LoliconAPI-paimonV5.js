@@ -268,11 +268,12 @@ async function processImage(response, url) {
         // 定义一个数组，包含所有可能的修改选项
         const options = ['brightness', 'contrast', 'saturation', 'hue', 'width', 'height']
 
+        var option
         // 随机选择一个选项        
-        if (config.Fixpic === 0) {
-            const option = 'donot'
+        if (config.Fixpic == 0) {
+            option = 'donot'
         } else {
-            const option = options[Math.floor(Math.random() * options.length)]
+            option = options[Math.floor(Math.random() * options.length)]
         }
         e.reply(`这次使用 ${option} 处理图片喵~`)
 
