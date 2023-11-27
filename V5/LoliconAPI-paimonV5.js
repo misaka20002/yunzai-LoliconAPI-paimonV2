@@ -1,5 +1,4 @@
-//version 1605
-
+// version 1615
 import plugin from '../../lib/plugins/plugin.js'
 import HttpsProxyAgent from 'https-proxy-agent'
 import fetch from 'node-fetch'
@@ -45,12 +44,6 @@ export class LoliconAPI extends plugin {
                 {
                     reg: '^#派蒙来份设置(开启|关闭)(r|R)18$',
                     fnc: 'set_r18',
-                    permission: 'master',
-                    log: false
-                },
-                {
-                    reg: '^#派蒙来份设置(不)?要修改图片MD5$',
-                    fnc: 'setChange_MD5',
                     permission: 'master',
                     log: false
                 },
@@ -199,20 +192,9 @@ export class LoliconAPI extends plugin {
         }
     }
 
-    /** 设置是否修改图片MD5 */
-    async setChange_MD5(e) {
-        const type = e.msg.replace(/^#派蒙来份设置(不)?要修改图片MD5$/g, '$1')
-        if (type === '不' || type === '') {
-            await updateConfig('Fixpic', type === '' ? 1 : 0)
-            return e.reply(`[派蒙来份] 已设置成功！`)
-        } else {
-            return false
-        }
-    }
-
     /** 发送帮助 */
     async paimonlaifenhelp (e) {
-        e.reply('派蒙涩图帮助：\n  #派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)\n       例如：#派蒙来15份可莉 白丝涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(不)要修改图片MD5\n  #派蒙来份设置(开启|关闭)(r|R)18 ：设置群友\n  #派蒙来份设置我(不)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)?缓存图片')
+        e.reply('派蒙涩图帮助：\n  #派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)\n       例如：#派蒙来15份可莉 白丝涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭)(r|R)18 ：设置群友\n  #派蒙来份设置我(不)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)?缓存图片')
     }
 
     /** 清理缓存图片 */
@@ -260,7 +242,6 @@ async function updateConfig(key, value) {
 
 /** 图片处理 */
 async function processImage(response, url) {
-    const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
     try {
         let imageData = await response.arrayBuffer()
         // 获取图片元数据
@@ -269,14 +250,8 @@ async function processImage(response, url) {
         // 定义一个数组，包含所有可能的修改选项
         const options = ['brightness', 'contrast', 'saturation', 'hue', 'width', 'height']
 
-        var option
-        // 随机选择一个选项        
-        if (config.Fixpic == 0) {
-            option = 'donot'
-        } else {
-            option = options[Math.floor(Math.random() * options.length)]
-        }
-        e.reply(`这次使用 ${option} 处理图片喵~`)
+        // 随机选择一个选项
+        const option = options[Math.floor(Math.random() * options.length)]
 
         // 根据选择的选项进行修改
         switch (option) {
@@ -295,10 +270,6 @@ async function processImage(response, url) {
             case 'hue':
                 // 修改色调
                 imageData = await sharp(imageData).modulate({ hue: Math.floor(Math.random() * 3.6) }).toBuffer()
-                break
-            case 'donot':
-                // 什么也不修改
-                
                 break
             case 'width':
                 // 修改宽度
