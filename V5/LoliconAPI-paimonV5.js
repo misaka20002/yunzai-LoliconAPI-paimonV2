@@ -1,4 +1,4 @@
-//version 1519
+//version 1605
 
 import plugin from '../../lib/plugins/plugin.js'
 import HttpsProxyAgent from 'https-proxy-agent'
@@ -260,6 +260,7 @@ async function updateConfig(key, value) {
 
 /** 图片处理 */
 async function processImage(response, url) {
+    const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
     try {
         let imageData = await response.arrayBuffer()
         // 获取图片元数据
