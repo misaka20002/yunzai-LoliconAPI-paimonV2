@@ -1,4 +1,4 @@
-// version 1615
+// version 1620
 import plugin from '../../lib/plugins/plugin.js'
 import HttpsProxyAgent from 'https-proxy-agent'
 import fetch from 'node-fetch'
@@ -61,6 +61,12 @@ export class LoliconAPI extends plugin {
                 {
                     reg: '^#派蒙来份(清理|(清|删)除)?缓存图片$',
                     fnc: 'delete_img',
+                    permission: 'master',
+                    log: false
+                },
+                {
+                    reg: '^#派蒙来份设置我可以要涩涩$',
+                    fnc: 'setMaster_r18_2',
                     permission: 'master',
                     log: false
                 }
@@ -190,6 +196,12 @@ export class LoliconAPI extends plugin {
         } else {
             return false
         }
+    }
+
+        /** 开启主人R18=2 */
+    async setMaster_r18_2(e) {
+        await updateConfig('r18_Master', 2)
+        return e.reply(`[派蒙来份] 已设置成功！`)
     }
 
     /** 发送帮助 */
