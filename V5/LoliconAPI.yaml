@@ -6,7 +6,6 @@ config:
   r18_Master: 1
   r18: 0
   num_Max: 10
-  Fixpic: 0
 random_pic:
   - - - 萝莉
     - - 原神
