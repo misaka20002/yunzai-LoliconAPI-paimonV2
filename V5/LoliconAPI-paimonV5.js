@@ -1,4 +1,4 @@
-// version 1621
+// version 1625
 import plugin from '../../lib/plugins/plugin.js'
 import HttpsProxyAgent from 'https-proxy-agent'
 import fetch from 'node-fetch'
@@ -67,6 +67,12 @@ export class LoliconAPI extends plugin {
                 {
                     reg: '^#派蒙来份设置我可以要涩涩$',
                     fnc: 'setMaster_r18_2',
+                    permission: 'master',
+                    log: false
+                },
+                {
+                    reg: '^#派蒙来份设置可以(r|R)18$',
+                    fnc: 'set_r18_2',
                     permission: 'master',
                     log: false
                 }
@@ -187,6 +193,12 @@ export class LoliconAPI extends plugin {
         }
     }
 
+    /** 开启R18=2 */
+    async set_r18_2(e) {
+        await updateConfig('r18', 2)
+        return e.reply(`[派蒙来份] 已设置成功！`)
+    }
+
     /** 开启主人R18 */
     async setMaster_r18(e) {
         const type = e.msg.replace(/^#派蒙来份设置我(不)?要涩涩$/g, '$1')
@@ -198,7 +210,7 @@ export class LoliconAPI extends plugin {
         }
     }
 
-        /** 开启主人R18=2 */
+    /** 开启主人R18=2 */
     async setMaster_r18_2(e) {
         await updateConfig('r18_Master', 2)
         return e.reply(`[派蒙来份] 已设置成功！`)
@@ -206,7 +218,7 @@ export class LoliconAPI extends plugin {
 
     /** 发送帮助 */
     async paimonlaifenhelp (e) {
-        e.reply('派蒙涩图帮助：\n  #派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)\n       例如：#派蒙来15份可莉 白丝涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)?缓存图片')
+        e.reply('派蒙涩图帮助：\n  #派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)\n       例如：#派蒙来15份可莉 白丝涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)?缓存图片')
     }
 
     /** 清理缓存图片 */
