@@ -1,3 +1,5 @@
+//version 1519
+
 import plugin from '../../lib/plugins/plugin.js'
 import HttpsProxyAgent from 'https-proxy-agent'
 import fetch from 'node-fetch'
@@ -272,6 +274,7 @@ async function processImage(response, url) {
         } else {
             const option = options[Math.floor(Math.random() * options.length)]
         }
+        e.reply(`这次使用 ${option} 处理图片喵~`)
 
         // 根据选择的选项进行修改
         switch (option) {
