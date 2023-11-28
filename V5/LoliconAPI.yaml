@@ -1,11 +1,11 @@
 config:
-  CD: 30
+  CD: 300
   proxy: maple.yuechuyc.workers.dev
-  size: original
-  excludeAI: true
-  r18_Master: 1
+  size: regular
+  excludeAI: false
+  r18_Master: 2
   r18: 0
-  num_Max: 10
+  num_Max: 6
 random_pic:
   - - - 萝莉
     - - 原神
