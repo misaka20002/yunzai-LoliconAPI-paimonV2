@@ -1,6 +1,5 @@
-// version 1903
-// 做了https-proxy-agent 7.x 和 5.x 的兼容，现在不用使用降级命令了：pnpm add https-proxy-agent@5.0.1 -w
-// 但需要安装proxy.js:
+// version 1924
+// 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js：
 // curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/proxy.js"
 import plugin from '../../lib/plugins/plugin.js'
 import fetch from 'node-fetch'
