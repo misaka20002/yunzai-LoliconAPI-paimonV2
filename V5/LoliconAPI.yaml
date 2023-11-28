@@ -1,6 +1,6 @@
 config:
   CD: 300
-  proxy: maple.yuechuyc.workers.dev
+  proxy: i.pixiv.re
   size: regular
   excludeAI: false
   r18_Master: 2
