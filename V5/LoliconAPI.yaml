@@ -7,6 +7,8 @@ config:
   r18: 0
   num_Max: 10
   withdrawal_pic_CD: 120
+  Use_Local_Proxy: 1
+  Local_Proxy: http://127.0.0.1:12811
 random_pic:
   - - - 萝莉
     - - 原神
