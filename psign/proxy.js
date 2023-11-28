@@ -1,4 +1,5 @@
 // workaround for ver 7.x and ver 5.x
+// 这个js启动云崽的时候会报错属于正常现象
 import HttpsProxyAgent from 'https-proxy-agent'
 
 let proxy = HttpsProxyAgent
