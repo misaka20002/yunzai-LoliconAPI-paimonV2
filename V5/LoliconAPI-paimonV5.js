@@ -152,7 +152,7 @@ export class LoliconAPI extends plugin {
                 msgs.push(`[派蒙来份] 获取图片成功 ${successCount} 张，失败 ${failureCount} 张~`)
             }
 
-            return e.reply(await makeForwardMsg(e, msgs, '主人，主人，>_<派蒙找到了哦') , { recallMsg: config.withdrawal_pic_CD })
+            return e.reply(await makeForwardMsg(e, msgs, '主人，主人，>_<派蒙找到了哦') ,true, { recallMsg: config.withdrawal_pic_CD })
         } catch (err) {
             logger.warn(err)
             return e.reply('[派蒙来份]请检查网络环境', false, { recallMsg: 60 })
