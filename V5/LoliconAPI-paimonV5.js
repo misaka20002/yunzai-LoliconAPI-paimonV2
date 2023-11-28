@@ -1,4 +1,4 @@
-// version 1930
+// version 1924
 // 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js：
 // curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/proxy.js"
 import plugin from '../../lib/plugins/plugin.js'
@@ -102,7 +102,13 @@ export class LoliconAPI extends plugin {
     }
 
     async key_setu(e) {
-        const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))		
+        const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
+		if (config.Use_proxy_server == 0) {
+			const proxyAgent = 1
+		} else {
+			const proxyAgent = nproxy(config.Proxy_server_address)
+		}
+		
         if (config.num_Max > 20) return e.reply('请，，，请不要超过20张QAQ')
 
         if (!e.isMaster && await checkCooldown(e, 'LoliconAPI', config.CD)) return false
@@ -141,7 +147,7 @@ export class LoliconAPI extends plugin {
             let failureCount = 0
 
             for (const item of result.data) {
-                const response = config.Use_proxy_server ? await fetch(item.urls.original, { agent: nproxy(config.Proxy_server_address) }) : await fetch(item.urls.original)
+                const response = config.Use_proxy_server ? await fetch(item.urls.original, { agent: proxyAgent }) : await fetch(item.urls.original)
                 if (!response.ok) {
                     failureCount++
                     continue
