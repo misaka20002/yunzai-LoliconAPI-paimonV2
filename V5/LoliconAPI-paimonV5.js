@@ -1,6 +1,12 @@
-// version 1924
-// 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js：
-// curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/proxy.js"
+/* version 1924
+做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js：
+curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/proxy.js"
+curl -# -L -o "./config/config/LoliconAPI.yaml" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml"
+pnpm add sharp -w
+pnpm add axios -w
+pnpm add https-proxy-agent -w
+readme: https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/tree/main#readme
+*/
 import plugin from '../../lib/plugins/plugin.js'
 import fetch from 'node-fetch'
 import crypto from 'crypto'
