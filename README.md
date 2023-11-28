@@ -40,6 +40,8 @@ curl -# -L -o "./plugins/example/派蒙来份涩图.js" "https://raw.githubuserc
 LoliconAPI-paimonV5.js放到plugins/example/，或直接在云/喵崽根目录执行：
 ```
 curl -# -L -o "./plugins/example/派蒙来份涩图.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI-paimonV5.js"
+
+curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/proxy.js"
 ```
 LoliconAPI.yaml放到config/config/，或直接在云/喵崽根目录执行：
 ```
