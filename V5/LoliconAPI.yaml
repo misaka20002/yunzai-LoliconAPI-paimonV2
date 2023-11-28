@@ -1,11 +1,11 @@
 config:
   CD: 300
   proxy: i.pixiv.re
-  size: regular
+  size: original
   excludeAI: false
-  r18_Master: 2
+  r18_Master: 1
   r18: 0
-  num_Max: 6
+  num_Max: 10
 random_pic:
   - - - 萝莉
     - - 原神
