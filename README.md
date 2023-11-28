@@ -42,7 +42,7 @@ LoliconAPI.yaml放到config/config/，或直接在云/喵崽根目录执行：
 curl -# -L -o "./config/config/LoliconAPI.yaml" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml"
 ```
 
-同时需要安装依赖，进入云崽/喵崽根目录(已更新兼容https-proxy-agent@7.0.1 -w了)：
+同时需要安装依赖，进入云崽/喵崽根目录(已更新兼容https-proxy-agent@7.0 -w了)：
 ```
 pnpm add sharp -w
 pnpm add https-proxy-agent@5.0.1 -w
