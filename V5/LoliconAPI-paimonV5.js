@@ -1,4 +1,7 @@
-// version 1014
+// version 1730
+// 做了https-proxy-agent 7.x 和 5.x 的兼容，现在不用使用降级命令了：pnpm add https-proxy-agent@5.0.1 -w
+// 但需要安装proxy.js:
+// curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/proxy.js"
 import plugin from '../../lib/plugins/plugin.js'
 import HttpsProxyAgent from 'https-proxy-agent'
 import fetch from 'node-fetch'
@@ -9,10 +12,12 @@ import sharp from 'sharp'
 import path from 'path'
 import yaml from 'yaml'
 import fs from 'fs'
+import { getProxy } from './proxy.js'
 
+let nproxy = getProxy()
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
 const Lolicon_KEY = new RegExp(`^#派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
-const proxyAgent = new HttpsProxyAgent('http://127.0.0.1:12811')
+const proxyAgent = nproxy('http://127.0.0.1:12811')
 const Config_PATH = `${process.cwd()}/config/config/LoliconAPI.yaml`
 const Directory = `${process.cwd()}/LoliconAPI`
 
