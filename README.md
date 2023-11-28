@@ -16,11 +16,13 @@ v3：转发已失效
 v4：目前可用
 
 v5：目前可用
-> v5新增.yaml文件，新增默认修改图片md5（所以很吃cpu）防止涩涩被风控发不出来。
+> v5新增.yaml文件，新增群聊修改图片md5（所以很吃cpu）防止涩涩被风控发不出来。
 
-反代已失效，已经改为本地代理，需要自行改代理为本地http代理：
+需要代理则自行改yaml中的代理为本地http代理：
 (先在你的代理如Clash Meta里面-设置-覆写-http端口和socks端口改为12811)
-这很重要！这很重要！这很重要！
+
+
+（ps. 目前i.pixiv.re反代工作正常，不需要使用代理服务器惹）
 
 # v4安装：
 
@@ -30,7 +32,7 @@ curl -# -L -o "./plugins/example/派蒙来份涩图.js" "https://raw.githubuserc
 同时记得开启你的代理的http端口: 
 代理如Clash Meta里面-设置-覆写-http端口和socks端口改为12811
 
-# v5安装:
+# v5安装（推荐）:
 
 LoliconAPI-paimonV5.js 和 proxy.js放到plugins/example/，或直接在云/喵崽根目录执行：
 ```
