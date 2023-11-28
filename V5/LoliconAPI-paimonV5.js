@@ -61,7 +61,7 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-				{
+		{
                     reg: '^#派蒙来份设置我(不)?要(a|A)(i|I)作品$',
                     fnc: 'set_excludeAI',
                     permission: 'master',
