@@ -1,4 +1,4 @@
-// version 1625
+// version 1014
 import plugin from '../../lib/plugins/plugin.js'
 import HttpsProxyAgent from 'https-proxy-agent'
 import fetch from 'node-fetch'
@@ -218,7 +218,7 @@ export class LoliconAPI extends plugin {
 
     /** 发送帮助 */
     async paimonlaifenhelp (e) {
-        e.reply('派蒙涩图帮助：\n  #派蒙来[n](张|份|点)[tag*3](涩|色|瑟)(图|圖)\n  例如：#派蒙来5份可莉 纳西妲 白丝涩图\n     #派蒙来5份パイモン涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)缓存图片')
+        e.reply('派蒙涩图帮助：\n  #派蒙来[n](张|份|点)[tag*3](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 纳西妲 白丝涩图\n\t#派蒙来5份パイモン涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)缓存图片')
     }
 
     /** 清理缓存图片 */
