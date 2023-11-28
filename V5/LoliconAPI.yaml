@@ -1,14 +1,17 @@
 config:
   CD: 300
   proxy: i.pixiv.re
+  #proxy不填也默认使用i.pixiv.re
   size: original
+  #size的支持取决于i.pixiv.re，参考https://api.lolicon.app/
   excludeAI: false
   r18_Master: 1
   r18: 0
   num_Max: 10
   withdrawal_pic_CD: 120
-  Use_Local_Proxy: 1
-  Local_Proxy: http://127.0.0.1:12811
+  Use_proxy_server: 1
+  # 如果i.pixiv.re可以裸连的话Use_proxy_server=0，否则置1并填入你的代理的http及端口
+  Proxy_server_address: http://127.0.0.1:12811
 random_pic:
   - - - 萝莉
     - - 原神
