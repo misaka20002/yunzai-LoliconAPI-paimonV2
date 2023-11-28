@@ -1,4 +1,4 @@
-// version 1924
+// version 2011
 // 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js：
 // curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/proxy.js"
 import plugin from '../../lib/plugins/plugin.js'
@@ -105,7 +105,10 @@ export class LoliconAPI extends plugin {
         const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
 		if (config.Use_proxy_server == 0) {
 			const proxyAgent = 1
-		} else {
+		} else if !(/^\w+[^\s]+(\.[^\s]+){1,}$/.test(config.Proxy_server_address)) {
+			return e.reply(`代理服务器设置错误，请#派蒙来份帮助`)
+		}
+		else {
 			const proxyAgent = nproxy(config.Proxy_server_address)
 		}
 		
@@ -214,11 +217,17 @@ export class LoliconAPI extends plugin {
         const match = e.msg.match(/^#派蒙来份设置代理地址(.*)$/)
         if (match) {
             const input = match[1].trim()
+            if (/^\w+[^\s]+(\.[^\s]+){1,}$/.test(input)) {
                 await updateConfig('Proxy_server_address', input)
                 return e.reply(`[派蒙来份] 已修改代理服务器地址为${input}`)
+            } else {
+                return e.reply('[派蒙来份] 你的输入为“${input}”，请输入正确的代理服务器地址', true)
+            }
         }
         return false
     }
+
+
 
     /** 设置单次获取图片数量限制 */
     async set_num(e) {
