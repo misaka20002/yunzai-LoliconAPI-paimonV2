@@ -3,7 +3,6 @@
 // 但需要安装proxy.js:
 // curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/proxy.js"
 import plugin from '../../lib/plugins/plugin.js'
-import HttpsProxyAgent from 'https-proxy-agent'
 import fetch from 'node-fetch'
 import crypto from 'crypto'
 import moment from 'moment'
@@ -17,7 +16,6 @@ import { getProxy } from './proxy.js'
 let nproxy = getProxy()
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
 const Lolicon_KEY = new RegExp(`^#派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
-const proxyAgent = nproxy('http://127.0.0.1:12811')
 const Config_PATH = `${process.cwd()}/config/config/LoliconAPI.yaml`
 const Directory = `${process.cwd()}/LoliconAPI`
 
@@ -94,6 +92,8 @@ export class LoliconAPI extends plugin {
 
     async key_setu(e) {
         const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
+		const proxyAgent = nproxy(config.Proxy_server_address)
+		
         if (config.num_Max > 20) return e.reply('请，，，请不要超过20张QAQ')
 
         if (!e.isMaster && await checkCooldown(e, 'LoliconAPI', config.CD)) return false
@@ -132,7 +132,7 @@ export class LoliconAPI extends plugin {
             let failureCount = 0
 
             for (const item of result.data) {
-                const response = await fetch(item.urls.original, { agent: proxyAgent })
+                const response = config.Use_proxy_server ? await fetch(item.urls.original, { agent: proxyAgent }) : await fetch(item.urls.original)
                 if (!response.ok) {
                     failureCount++
                     continue
