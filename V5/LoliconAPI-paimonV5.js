@@ -1,4 +1,4 @@
-// version 1924
+// version 1930
 // 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js：
 // curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/proxy.js"
 import plugin from '../../lib/plugins/plugin.js'
@@ -37,13 +37,13 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-		{
+                {
                     reg: '^#派蒙来份设置撤回时间(.*)$',
                     fnc: 'set_withdrawal_cd',
                     permission: 'master',
                     log: false
                 },
-		{
+                {
                     reg: '^#派蒙来份设置代理地址(.*)$',
                     fnc: 'set_Proxy_server_address',
                     permission: 'master',
@@ -61,7 +61,7 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-		{
+                {
                     reg: '^#派蒙来份设置(开启|关闭)使用代理$',
                     fnc: 'set_Use_proxy_server',
                     permission: 'master',
@@ -102,9 +102,7 @@ export class LoliconAPI extends plugin {
     }
 
     async key_setu(e) {
-        const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
-	const proxyAgent = nproxy(config.Proxy_server_address)
-		
+        const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))		
         if (config.num_Max > 20) return e.reply('请，，，请不要超过20张QAQ')
 
         if (!e.isMaster && await checkCooldown(e, 'LoliconAPI', config.CD)) return false
@@ -143,7 +141,7 @@ export class LoliconAPI extends plugin {
             let failureCount = 0
 
             for (const item of result.data) {
-                const response = config.Use_proxy_server ? await fetch(item.urls.original, { agent: proxyAgent }) : await fetch(item.urls.original)
+                const response = config.Use_proxy_server ? await fetch(item.urls.original, { agent: nproxy(config.Proxy_server_address) }) : await fetch(item.urls.original)
                 if (!response.ok) {
                     failureCount++
                     continue
