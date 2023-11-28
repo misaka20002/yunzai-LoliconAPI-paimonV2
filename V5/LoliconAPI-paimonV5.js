@@ -35,7 +35,7 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-				{
+		{
                     reg: '^#派蒙来份设置撤回时间(.*)$',
                     fnc: 'set_withdrawal_cd',
                     permission: 'master',
@@ -138,7 +138,7 @@ export class LoliconAPI extends plugin {
                     `画师：${item.author}\n`,
                     `Pid：${item.pid}\n`,
                     `R18：${item.r18}\n`,
-					`AI：${item.aiType}\n`,
+		    `AI：${item.aiType}\n`,
                     `Tags：${item.tags.join('，')}\n`,
                     segment.image(imageUrl)
                 ]
