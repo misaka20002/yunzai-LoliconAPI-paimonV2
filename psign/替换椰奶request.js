@@ -1,3 +1,5 @@
+//已失效
+
 import { Config, Plugin_Path } from '../../components/index.js'
 import { HttpsProxyAgent } from './httpsProxyAgentMod.js'
 import fetch from 'node-fetch'
