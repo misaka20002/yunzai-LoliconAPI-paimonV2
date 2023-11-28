@@ -38,13 +38,13 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-				{
+		{
                     reg: '^#派蒙来份设置撤回时间(.*)$',
                     fnc: 'set_withdrawal_cd',
                     permission: 'master',
                     log: false
                 },
-				{
+		{
                     reg: '^#派蒙来份设置代理地址(.*)$',
                     fnc: 'set_Proxy_server_address',
                     permission: 'master',
@@ -62,7 +62,7 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-				{
+		{
                     reg: '^#派蒙来份设置(开启|关闭)使用代理$',
                     fnc: 'set_Use_proxy_server',
                     permission: 'master',
@@ -104,7 +104,7 @@ export class LoliconAPI extends plugin {
 
     async key_setu(e) {
         const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
-		const proxyAgent = nproxy(config.Proxy_server_address)
+	const proxyAgent = nproxy(config.Proxy_server_address)
 		
         if (config.num_Max > 20) return e.reply('请，，，请不要超过20张QAQ')
 
