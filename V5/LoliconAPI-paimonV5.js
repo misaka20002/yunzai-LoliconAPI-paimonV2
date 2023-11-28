@@ -38,13 +38,13 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-				{
+		{
                     reg: '^#派蒙来份设置撤回时间(.*)$',
                     fnc: 'set_withdrawal_cd',
                     permission: 'master',
                     log: false
                 },
-				{
+		{
                     reg: '^#派蒙来份设置代理地址(.*)$',
                     fnc: 'set_Proxy_server_address',
                     permission: 'master',
@@ -62,7 +62,7 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-				{
+		{
                     reg: '^#派蒙来份设置(开启|关闭)使用代理$',
                     fnc: 'set_Use_proxy_server',
                     permission: 'master',
@@ -104,7 +104,7 @@ export class LoliconAPI extends plugin {
 
     async key_setu(e) {
         const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
-		const proxyAgent = nproxy(config.Proxy_server_address)
+	const proxyAgent = nproxy(config.Proxy_server_address)
 		
         if (config.num_Max > 20) return e.reply('请，，，请不要超过20张QAQ')
 
@@ -206,13 +206,13 @@ export class LoliconAPI extends plugin {
         return false
     }
 	
-	/** 设置代理服务器地址 */
+    /** 设置代理服务器地址 */
     async set_Proxy_server_address(e) {
         const match = e.msg.match(/^#派蒙来份设置代理地址(.*)$/)
         if (match) {
             const input = match[1].trim()
-                await updateConfig('Proxy_server_address', parseInt(input))
-                return e.reply(`[派蒙来份] 已修改代理服务器地址为${parseInt(input)}`)
+                await updateConfig('Proxy_server_address', input)
+                return e.reply(`[派蒙来份] 已修改代理服务器地址为${input}`)
         }
         return false
     }
@@ -243,7 +243,7 @@ export class LoliconAPI extends plugin {
         }
     }
 	
-	    /** 开启关闭使用代理服务器 */
+     /** 开启关闭使用代理服务器 */
     async set_Use_proxy_server(e) {
         const type = e.msg.replace(/^#派蒙来份设置(开启|关闭)使用代理$/g, '$1')
         if (type === '开启' || type === '关闭') {
