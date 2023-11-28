@@ -38,9 +38,15 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-		{
+				{
                     reg: '^#派蒙来份设置撤回时间(.*)$',
                     fnc: 'set_withdrawal_cd',
+                    permission: 'master',
+                    log: false
+                },
+				{
+                    reg: '^#派蒙来份设置代理地址(.*)$',
+                    fnc: 'set_Proxy_server_address',
                     permission: 'master',
                     log: false
                 },
@@ -53,6 +59,12 @@ export class LoliconAPI extends plugin {
                 {
                     reg: '^#派蒙来份设置(开启|关闭)(r|R)18$',
                     fnc: 'set_r18',
+                    permission: 'master',
+                    log: false
+                },
+				{
+                    reg: '^#派蒙来份设置(开启|关闭)使用代理$',
+                    fnc: 'set_Use_proxy_server',
                     permission: 'master',
                     log: false
                 },
@@ -193,6 +205,21 @@ export class LoliconAPI extends plugin {
         }
         return false
     }
+	
+	/** 设置代理服务器地址 */
+    async set_Proxy_server_address(e) {
+        const match = e.msg.match(/^#派蒙来份设置代理地址(.*)$/)
+        if (match) {
+            const input = match[1].trim()
+            if (/^\w+[^\s]+(\.[^\s]+){1,}$/.test(input)) {
+                await updateConfig('Proxy_server_address', parseInt(input))
+                return e.reply(`[派蒙来份] 已修改代理服务器地址为${parseInt(input)}`)
+            } else {
+                return e.reply('[派蒙来份] 请输入正确的代理服务器地址', true)
+            }
+        }
+        return false
+    }
 
     /** 设置单次获取图片数量限制 */
     async set_num(e) {
@@ -215,6 +242,17 @@ export class LoliconAPI extends plugin {
         if (type === '开启' || type === '关闭') {
             await updateConfig('r18', type === '开启' ? 1 : 0)
             return e.reply(`[派蒙来份] 已${type}涩涩！`)
+        } else {
+            return false
+        }
+    }
+	
+	    /** 开启关闭使用代理服务器 */
+    async set_Use_proxy_server(e) {
+        const type = e.msg.replace(/^#派蒙来份设置(开启|关闭)使用代理$/g, '$1')
+        if (type === '开启' || type === '关闭') {
+            await updateConfig('Use_proxy_server', type === '开启' ? 1 : 0)
+            return e.reply(`[派蒙来份] 已${type}使用代理服务器！`)
         } else {
             return false
         }
@@ -245,7 +283,7 @@ export class LoliconAPI extends plugin {
 
     /** 发送帮助 */
     async paimonlaifenhelp (e) {
-        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag*3](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)缓存图片'
+        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag*3](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  #派蒙来份(清理|(清|删)除)缓存图片'
 		let paimonlaifenhelpmsg1 = '派蒙涩图帮助：'
 		let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2], '派蒙涩图帮助');
 		return e.reply(paimonlaifenhelpmsgx);
