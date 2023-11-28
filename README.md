@@ -24,7 +24,7 @@ v5：目前可用
 # v4安装：
 
 ```
-curl -# -L -o "./plugins/example/派蒙来份涩图.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/LoliconAPI-paimonV4.js"
+curl -# -L -o "./plugins/example/派蒙来份涩图.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V4/LoliconAPI-paimonV4.js"
 ```
 同时记得开启你的代理的http端口: 
 代理如Clash Meta里面-设置-覆写-http端口和socks端口改为12811
