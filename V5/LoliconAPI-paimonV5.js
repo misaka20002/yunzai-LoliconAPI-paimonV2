@@ -35,6 +35,12 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
+				{
+                    reg: '^#派蒙来份设置撤回时间(.*)$',
+                    fnc: 'set_withdrawal_cd',
+                    permission: 'master',
+                    log: false
+                },
                 {
                     reg: '^#派蒙来份设置(份|张|点)数(.*)$',
                     fnc: 'set_num',
@@ -132,6 +138,7 @@ export class LoliconAPI extends plugin {
                     `画师：${item.author}\n`,
                     `Pid：${item.pid}\n`,
                     `R18：${item.r18}\n`,
+					`AI：${item.aiType}\n`,
                     `Tags：${item.tags.join('，')}\n`,
                     segment.image(imageUrl)
                 ]
@@ -145,7 +152,7 @@ export class LoliconAPI extends plugin {
                 msgs.push(`[派蒙来份] 获取图片成功 ${successCount} 张，失败 ${failureCount} 张~`)
             }
 
-            return e.reply(await makeForwardMsg(e, msgs, '主人，主人，>_<派蒙找到了哦'))
+            return e.reply(await makeForwardMsg(e, msgs, '主人，主人，>_<派蒙找到了哦') , { recallMsg: config.withdrawal_pic_CD })
         } catch (err) {
             logger.warn(err)
             return e.reply('[派蒙来份]请检查网络环境', false, { recallMsg: 60 })
@@ -160,6 +167,21 @@ export class LoliconAPI extends plugin {
             if (/^\d+$/.test(input)) {
                 await updateConfig('CD', parseInt(input))
                 return e.reply(`[派蒙来份] 已修改CD为${parseInt(input)}秒！`)
+            } else {
+                return e.reply('[派蒙来份] 请输入正确的数字（秒）喵！', true)
+            }
+        }
+        return false
+    }
+	
+    /** 设置涩图撤回CD */
+    async set_withdrawal_cd(e) {
+        const match = e.msg.match(/^#派蒙来份设置撤回时间(.*)$/)
+        if (match) {
+            const input = match[1].trim()
+            if (/^\d+$/.test(input)) {
+                await updateConfig('withdrawal_pic_CD', parseInt(input))
+                return e.reply(`[派蒙来份] 已修改撤回时间为${parseInt(input)}秒！`)
             } else {
                 return e.reply('[派蒙来份] 请输入正确的数字（秒）喵！', true)
             }
@@ -218,7 +240,10 @@ export class LoliconAPI extends plugin {
 
     /** 发送帮助 */
     async paimonlaifenhelp (e) {
-        e.reply('派蒙涩图帮助：\n  #派蒙来[n](张|份|点)[tag*3](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉|纳西妲 白丝|黑丝涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)缓存图片')
+        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag*3](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉|纳西妲 白丝|黑丝涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份(清理|(清|删)除)缓存图片'
+		let paimonlaifenhelpmsg1 = '派蒙涩图帮助：'
+		let paimonlaifenhelpmsgx = await common.makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2], `派蒙涩图帮助`);
+		return e.reply(paimonlaifenhelpmsgx);
     }
 
     /** 清理缓存图片 */
