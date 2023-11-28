@@ -6,6 +6,7 @@ config:
   r18_Master: 1
   r18: 0
   num_Max: 10
+  withdrawal_pic_CD: 120
 random_pic:
   - - - 萝莉
     - - 原神
