@@ -1,3 +1,5 @@
+// 修改所有图片的md5值, 修复群聊图片发不出来
+
 import { Config, Plugin_Path } from '../../components/index.js'
 import { HttpsProxyAgent } from './httpsProxyAgentMod.js'
 import fetch from 'node-fetch'
@@ -8,7 +10,7 @@ import path from 'path'
 import _ from 'lodash'
 import fs from 'fs'
 
-const cacheImgUrl = `${process.cwd()}/data/image`
+const cacheImgUrl = `${process.cwd()}/plugins/example`
 const CHROME_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36'
 const POSTMAN_UA = 'PostmanRuntime/7.29.0'
 
