@@ -1,4 +1,4 @@
-/* version 2041
+/* version 2124
 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js,
 本插件需要在喵崽根目录依次执行以下：
 curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/proxy.js"
@@ -119,6 +119,12 @@ export class LoliconAPI extends plugin {
                 {
                     reg: '^#派蒙来份设置可以(r|R)18$',
                     fnc: 'set_r18_2',
+                    permission: 'master',
+                    log: false
+                },
+                {
+                    reg: '^#派蒙来份(当|目)前设置$',
+                    fnc: 'paimonlaifenshowconfig',
                     permission: 'master',
                     log: false
                 },
@@ -381,8 +387,17 @@ export class LoliconAPI extends plugin {
     async paimonlaifenhelp (e) {
         let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag最多3个,|=或](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n\t#派蒙来5份派蒙 可莉 萝莉|女孩子涩图'
         let paimonlaifenhelpmsg1 = '派蒙涩图帮助：'
-        let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置图片大小(original|regular|small|thumb|mini)\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  #派蒙来份设置反向代理地址i.pixiv.re\n  #派蒙来份(清理|(清|删)除)缓存图片'
+        let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置图片大小(original|regular|small|thumb|mini)\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  #派蒙来份设置反向代理地址i.pixiv.re\n  #派蒙来份(当|目)前设置\n  #派蒙来份(清理|(清|删)除)缓存图片'
         let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2, paimonlaifenhelpmsg3], '派蒙涩图帮助');
+        return e.reply(paimonlaifenhelpmsgx);
+    }
+	
+    /** 发送当前设置 */
+    async paimonlaifenshowconfig (e) {
+		const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
+        let paimonlaifenhelpmsg1 = '派蒙涩图当前设置：'
+        let paimonlaifenhelpmsg2 = `群聊CD：${config.CD}秒\n  撤回时间：${config.withdrawal_pic_CD}秒\n  搜图最大张数${config.num_Max}\n  群友R18：${config.r18}\n  主人r18：${config.r18_Master}\n  排除ai作品（api不能全部排除）：${config.excludeAI}\n  图片大小：${config.size}\n  使用代理：${config.Use_proxy_server}\n  代理地址：${config.Proxy_server_address}\n  反向代理地址：${config.Reverse_proxy}`
+        let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2], '派蒙涩图当前设置');
         return e.reply(paimonlaifenhelpmsgx);
     }
 
