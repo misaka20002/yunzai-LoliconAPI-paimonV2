@@ -396,7 +396,7 @@ export class LoliconAPI extends plugin {
     async paimonlaifenshowconfig (e) {
 		const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
         let paimonlaifenhelpmsg1 = '派蒙涩图当前设置：'
-        let paimonlaifenhelpmsg2 = `群聊CD：${config.CD}秒\n  撤回时间：${config.withdrawal_pic_CD}秒\n  搜图最大张数${config.num_Max}\n  群友R18：${config.r18}\n  主人r18：${config.r18_Master}\n  排除ai作品（api不能全部排除）：${config.excludeAI}\n  图片大小：${config.size}\n  使用代理：${config.Use_proxy_server}\n  代理地址：${config.Proxy_server_address}\n  反向代理地址：${config.Reverse_proxy}`
+        let paimonlaifenhelpmsg2 = `  群聊CD：${config.CD}秒\n  撤回时间：${config.withdrawal_pic_CD}秒\n  搜图最大张数：${config.num_Max}张\n  群友R18：${config.r18}\n  主人r18：${config.r18_Master}\n  排除ai作品（api不能全部排除）：${config.excludeAI}\n  图片大小：${config.size}\n  使用代理：${config.Use_proxy_server}\n  代理地址：${config.Proxy_server_address}\n  反向代理地址：${config.Reverse_proxy}`
         let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2], '派蒙涩图当前设置');
         return e.reply(paimonlaifenhelpmsgx);
     }
