@@ -124,4 +124,9 @@ curl -# -L -o "./plugins/example/米游社手动验证码.js" "https://raw.githu
 ```
 curl -# -L -o "./plugins/xiaoyao-cvs-plugin/apps/index.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E5%A4%8D%E9%80%8D%E9%81%A5bug.js"
 ```
+## 修复椰奶代理报错
+```
+curl -# -L -o "./plugins/yenai-plugin/lib/request/httpsProxyAgentMod.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E5%A4%8D%E6%A4%B0%E5%A5%B6%E4%BB%A3%E7%90%86.js"
+```
+
 -END-
