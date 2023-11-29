@@ -130,7 +130,7 @@ export class LoliconAPI extends plugin {
         if (!e.isMaster && await checkCooldown(e, 'LoliconAPI', config.CD)) return false
 
         const tag = e.msg.replace(new RegExp(`^#派蒙来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
-        const tags = tag.split(/[\s|,.\u3002\uff0c、]+/)
+        const tags = tag.split(/[\s,.\u3002\uff0c、]+/)
         if (tags.length > 3) return e.reply('tag标签数量太多啦QAQ', true, { recallMsg: 60 })
         let tagValue = tags.map(t => `&tag=${t}`).join('')
         if (!tagValue || tagValue === '&tag=') tagValue = lodash.sample(random_pic).map(tags => `&tag=${tags.join('|')}`).join('')
@@ -151,7 +151,7 @@ export class LoliconAPI extends plugin {
         }
 
         const r18Value = e.isGroup ? (e.isMaster ? config.r18_Master : config.r18) : (e.isMaster ? config.r18_Master : 2)
-        const url = `https://api.lolicon.app/setu/v2?=${config.proxy}&size=${config.size}&r18=${r18Value}${tagValue}&excludeAI=${config.excludeAI}&num=${num}`
+        const url = `https://api.lolicon.app/setu/v2?proxy=${config.proxy}&size=${config.size}&r18=${r18Value}${tagValue}&excludeAI=${config.excludeAI}&num=${num}`
 
         try {
             const response = await fetch(url)
@@ -318,9 +318,10 @@ export class LoliconAPI extends plugin {
 
     /** 发送帮助 */
     async paimonlaifenhelp (e) {
-        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag*3](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  #派蒙来份(清理|(清|删)除)缓存图片'
+        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag最多3个,用空格分开](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n\t#派蒙来5份派蒙 可莉 萝莉|幼女涩图'
 		let paimonlaifenhelpmsg1 = '派蒙涩图帮助：'
-		let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2], '派蒙涩图帮助');
+		let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  #派蒙来份(清理|(清|删)除)缓存图片'
+		let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2, paimonlaifenhelpmsg3], '派蒙涩图帮助');
 		return e.reply(paimonlaifenhelpmsgx);
     }
 
