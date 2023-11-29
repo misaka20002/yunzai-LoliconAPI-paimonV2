@@ -159,7 +159,7 @@ export class LoliconAPI extends plugin {
         if (num > config.num_Max && !e.isMaster) {
             return e.reply(`最多只能获取 ${config.num_Max} 张图片哦~`)
         } else if (num === 0) {
-            return e.reply('？')
+            return e.reply('喵？')
         } else if (num === '' || num === null) {
             num = 1
         }
@@ -216,6 +216,7 @@ export class LoliconAPI extends plugin {
         } catch (err) {
             logger.warn(err)
             return e.reply('[派蒙来份]请检查网络环境或重新下载yaml', false, { recallMsg: 60 })
+	/* 还要检查api.lolicon.app能否直连 */
         }
     }
 
