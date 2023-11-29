@@ -10,8 +10,9 @@ config:
   num_Max: 10
   withdrawal_pic_CD: 120
   Use_proxy_server: 0
-  # Use_proxy_server：如果i.pixiv.re 和 api.lolicon.app 可以裸连的话Use_proxy_server=0，否则置1并填入你的vpn/代理地址及端口
+  # Use_proxy_server：如果api.lolicon.app 可以裸连的话Use_proxy_server=0，否则置1并填入你的vpn/代理地址及端口
   Proxy_server_address: http://127.0.0.1:12811
+  # Proxy_server_address仅对于api.lolicon.app的连接有效，如果是p站直连的话取决于你的系统代理设置。
 random_pic:
   - - - 萝莉
     - - 原神
