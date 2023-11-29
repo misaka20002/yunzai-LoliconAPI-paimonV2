@@ -1,4 +1,4 @@
-/* version 1510
+/* version 1601
 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js,
 本插件需要在喵崽根目录依次执行以下：
 curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/proxy.js"
@@ -53,6 +53,12 @@ export class LoliconAPI extends plugin {
                 {
                     reg: '^#派蒙来份设置代理地址(.*)$',
                     fnc: 'set_Proxy_server_address',
+                    permission: 'master',
+                    log: false
+                },
+				{
+                    reg: '^#派蒙来份设置图片大小(.*)$',
+                    fnc: 'set_size',
                     permission: 'master',
                     log: false
                 },
@@ -162,15 +168,14 @@ export class LoliconAPI extends plugin {
             let msgs = []
             let successCount = 0
             let failureCount = 0
-			let picSize = 'item.urls.' + config.size
 
             for (const item of result.data) {
-                const response = config.Use_proxy_server ? await fetch(item.urls.original, { agent: proxyAgent }) : await fetch(item.urls.original)
+                const response = config.Use_proxy_server ? await fetch(item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini, { agent: proxyAgent }) : await fetch(item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
                 if (!response.ok) {
                     failureCount++
                     continue
                 }
-                const imageUrl = e.isGroup ? await processImage(response, item.urls.original) : await downloadImage(response, item.urls.original)
+                const imageUrl = e.isGroup ? await processImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini) : await downloadImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
 		let isAiPic = '未知'
 		isAiPic = (item.r18 ? '是' : '否')
                 const msg = [
@@ -245,7 +250,20 @@ export class LoliconAPI extends plugin {
         return false
     }
 
-
+	/** 设置图片大小 */
+    async set_size(e) {
+        const match = e.msg.match(/^#派蒙来份设置图片大小(.*)$/)
+        if (match) {
+            const input = match[1].trim()
+            if (/^(original|regular|small|thumb|mini)$/g.test(input)) {
+                await updateConfig('size', input)
+                return e.reply(`[派蒙来份] 已修改图片的大小为${input}`)
+            } else {
+                return e.reply(`[派蒙来份] 你的输入为"${input}"，请输入正确的值（original|regular|small|thumb|mini）`, true)
+            }
+        }
+        return false
+    }
 
     /** 设置单次获取图片数量限制 */
     async set_num(e) {
@@ -320,9 +338,9 @@ export class LoliconAPI extends plugin {
 
     /** 发送帮助 */
     async paimonlaifenhelp (e) {
-        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag最多3个,用空格分开](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n\t#派蒙来5份派蒙 可莉 萝莉|幼女涩图'
+        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag最多3个,|=或](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n\t#派蒙来5份派蒙 可莉 萝莉|幼女涩图'
 		let paimonlaifenhelpmsg1 = '派蒙涩图帮助：'
-		let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  （默认使用反代，不需要开启使用代理）\n  #派蒙来份(清理|(清|删)除)缓存图片'
+		let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置图片大小(original|regular|small|thumb|mini)\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  （默认使用反代，不需要开启使用代理）\n  #派蒙来份(清理|(清|删)除)缓存图片'
 		let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2, paimonlaifenhelpmsg3], '派蒙涩图帮助');
 		return e.reply(paimonlaifenhelpmsgx);
     }
