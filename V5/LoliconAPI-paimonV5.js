@@ -1,4 +1,4 @@
-/* version 1808
+/* version 1908
 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js,
 本插件需要在喵崽根目录依次执行以下：
 curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/proxy.js"
@@ -57,6 +57,12 @@ export class LoliconAPI extends plugin {
                     log: false
                 },
                 {
+                    reg: '^#派蒙来份设置反向代理地址(.*)$',
+                    fnc: 'set_Reverse_proxy',
+                    permission: 'master',
+                    log: false
+                },
+                {
                     reg: '^#派蒙来份设置图片大小(.*)$',
                     fnc: 'set_size',
                     permission: 'master',
@@ -93,8 +99,9 @@ export class LoliconAPI extends plugin {
                     log: false
                 },
                 {
-                    reg: '^#派蒙来份帮助$',
-                    fnc: 'paimonlaifenhelp',
+                    reg: '^#派蒙来份设置(p|P)站直连$',
+                    fnc: 'set_Reverse_proxy_void',
+                    permission: 'master',
                     log: false
                 },
                 {
@@ -113,6 +120,11 @@ export class LoliconAPI extends plugin {
                     reg: '^#派蒙来份设置可以(r|R)18$',
                     fnc: 'set_r18_2',
                     permission: 'master',
+                    log: false
+                },
+                {
+                    reg: '^#派蒙来份帮助$',
+                    fnc: 'paimonlaifenhelp',
                     log: false
                 }
             ]
@@ -158,7 +170,7 @@ export class LoliconAPI extends plugin {
         }
 
         const r18Value = e.isGroup ? (e.isMaster ? config.r18_Master : config.r18) : (e.isMaster ? config.r18_Master : 2)
-        const url = `https://api.lolicon.app/setu/v2?proxy=${config.proxy}&size=${config.size}&r18=${r18Value}${tagValue}&excludeAI=${config.excludeAI}&num=${num}`
+        const url = `https://api.lolicon.app/setu/v2?proxy=${config.Reverse_proxy}&size=${config.size}&r18=${r18Value}${tagValue}&excludeAI=${config.excludeAI}&num=${num}`
 
         try {
             const response = await fetch(url)
@@ -171,11 +183,13 @@ export class LoliconAPI extends plugin {
 
             for (const item of result.data) {
                 const response = config.Use_proxy_server ? await fetch(item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini, { agent: proxyAgent }) : await fetch(item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
+				/* 是否通过代理下载图片，response为下载的图片 */
                 if (!response.ok) {
                     failureCount++
                     continue
                 }
                 const imageUrl = e.isGroup ? await processImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini) : await downloadImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
+				/* downloadImage()用于下载好的图片存档在 localPath,其传递的url仅用作文件重命名;仅存档私聊未处理过的文件,processImage()不保存处理过的文件 */
                 const msg = [
                     `标题：${item.title}\n`,
                     `画师：${item.author}\n`,
@@ -247,6 +261,21 @@ export class LoliconAPI extends plugin {
         }
         return false
     }
+	
+    /** 设置反代地址 */
+    async set_Reverse_proxy(e) {
+        const match = e.msg.match(/^#派蒙来份设置反向代理地址(.*)$/)
+        if (match) {
+            const input = match[1].trim()
+            if (/(^\w+[^\s]+(\.[^\s]+){1,}$)/.test(input)) {
+                await updateConfig('Reverse_proxy', input)
+                return e.reply(`[派蒙来份] 已修改反向代理地址为${input}`)
+            } else {
+                return e.reply(`[派蒙来份] 你的输入为"${input}"，请输入正确的反向代理地址`, true)
+            }
+        }
+        return false
+    }
 
     /** 设置图片大小 */
     async set_size(e) {
@@ -305,6 +334,12 @@ export class LoliconAPI extends plugin {
         await updateConfig('r18', 2)
         return e.reply(`[派蒙来份] 已设置成功！`)
     }
+	
+    /** 设置反向代理为空用于p站直连 */
+    async set_Reverse_proxy_void(e) {
+        await updateConfig('Reverse_proxy', '')
+        return e.reply(`[派蒙来份] 已设置p站直连（请确保你的网络环境）！`)
+    }
 
     /** 开启主人R18 */
     async setMaster_r18(e) {
@@ -338,7 +373,7 @@ export class LoliconAPI extends plugin {
     async paimonlaifenhelp (e) {
         let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag最多3个,|=或](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n\t#派蒙来5份派蒙 可莉 萝莉|女孩子涩图'
 		let paimonlaifenhelpmsg1 = '派蒙涩图帮助：'
-		let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置图片大小(original|regular|small|thumb|mini)\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  #派蒙来份(清理|(清|删)除)缓存图片'
+		let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置图片大小(original|regular|small|thumb|mini)\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  #派蒙来份设置反向代理地址i.pixiv.re\n  #派蒙来份设置p站直连\n  #派蒙来份(清理|(清|删)除)缓存图片'
 		let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2, paimonlaifenhelpmsg3], '派蒙涩图帮助');
 		return e.reply(paimonlaifenhelpmsgx);
     }
@@ -434,7 +469,7 @@ async function processImage(response, url) {
     }
 }
 
-/** 下载处理 */
+/** 下载好的图片重命名并存档在 localPath */
 async function downloadImage(response, url) {
     try {
         // 计算URL的哈希值并将其作为文件名
