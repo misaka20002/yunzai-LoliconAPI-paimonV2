@@ -129,7 +129,7 @@ curl -# -L -o "./plugins/xiaoyao-cvs-plugin/apps/index.js" "https://raw.githubus
 ```
 curl -# -L -o "./plugins/yenai-plugin/lib/request/httpsProxyAgentMod.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E5%A4%8D%E6%A4%B0%E5%A5%B6%E4%BB%A3%E7%90%86.js"
 ```
-然后按照以下设置就可以仅使用反代，不使用vpn连接了：
+然后按照以下设置p站就可以仅使用反代，不使用vpn连接了：
 ![image](https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/assets/40714502/dad4a041-735f-4d33-b6ae-183fbe82ba45)
   
   ps. 它的使用代理是指使用vpn的意思
