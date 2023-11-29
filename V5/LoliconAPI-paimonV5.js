@@ -1,4 +1,4 @@
-/* version 1908
+/* version 1951
 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js,
 本插件需要在喵崽根目录依次执行以下：
 curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/proxy.js"
@@ -190,13 +190,15 @@ export class LoliconAPI extends plugin {
                 }
                 const imageUrl = e.isGroup ? await processImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini) : await downloadImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
 				/* downloadImage()用于下载好的图片存档在 localPath,其传递的url仅用作文件重命名;仅存档私聊未处理过的文件,processImage()不保存处理过的文件 */
-                const msg = [
+                
+				let isAi = item.aiType ? item.aiType == 1 ? '是' : '未知' : '否'
+				const msg = [
                     `标题：${item.title}\n`,
                     `画师：${item.author}\n`,
                     `Uid：${item.uid}\n`,
                     `Pid：${item.pid}\n`,
                     `R18：${item.r18}\n`,
-                    `AI生成：${aiType ? aiType == 1 ? '是' : '否' : '未知'}\n`,
+                    `AI生成：${isAi}\n`,
                     `Tags：${item.tags.join('，')}\n`,
                     segment.image(imageUrl)
                 ]
