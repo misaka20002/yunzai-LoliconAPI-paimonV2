@@ -8,7 +8,7 @@ const searchReg = new RegExp(`^#?(${_.keys(SEARCH_MAP).join('|')})搜索(.*)`)
 export class NewSearch extends plugin {
   constructor () {
     super({
-      name: '椰奶搜索',
+      name: '派蒙搜索',
       event: 'message',
       priority: 500,
       rule: [
