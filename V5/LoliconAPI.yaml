@@ -2,7 +2,7 @@ config:
   CD: 300
   proxy: i.pixiv.re
   # proxy：反代地址，不填则为直连p站
-  size: original
+  size: regular
   # size：size的支持可选值为 ['mini', 'thumb', 'small', 'regular', 'original'], 默认original
   excludeAI: false
   r18_Master: 2
