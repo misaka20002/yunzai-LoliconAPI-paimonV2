@@ -183,13 +183,13 @@ export class LoliconAPI extends plugin {
 
             for (const item of result.data) {
                 const response = config.Use_proxy_server ? await fetch(item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini, { agent: proxyAgent }) : await fetch(item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
-				/* 是否通过代理下载图片，response为下载的图片 */
+		/* 是否通过代理下载图片，response为下载的图片 */
                 if (!response.ok) {
                     failureCount++
                     continue
                 }
                 const imageUrl = e.isGroup ? await processImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini) : await downloadImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
-				/* downloadImage()用于下载好的图片存档在 localPath,其传递的url仅用作文件重命名;仅存档私聊未处理过的文件,processImage()不保存处理过的文件 */
+		/* downloadImage()用于下载好的图片存档在 localPath,其传递的url仅用作文件重命名;仅存档私聊未处理过的文件,processImage()不保存处理过的文件 */
                 
                 let isAi = item.aiType ? item.aiType == 1 ? '是' : '未知' : '否'
                 const msg = [
