@@ -5,6 +5,7 @@ config:
   size: regular
   # size：size的支持可选值为 ['mini', 'thumb', 'small', 'regular', 'original'], 默认original
   excludeAI: false
+  #  excludeAI：排除ai作品，但发现 api.lolicon.app 并不能排除
   r18_Master: 2
   r18: 0
   num_Max: 10
