@@ -3,7 +3,7 @@ config:
   proxy: i.pixiv.re
   # proxy：反代地址，不填也默认使用i.pixiv.re
   size: original
-  # size：size的支持取决于i.pixiv.re，参考https://api.lolicon.app/
+  # size：size的支持可选值为 ['mini', 'thumb', 'small', 'regular', 'original'](参考https://api.lolicon.app/)，但不知道为什么只有original可以不需要代理vpn直接连接.
   excludeAI: false
   r18_Master: 0
   r18: 0
