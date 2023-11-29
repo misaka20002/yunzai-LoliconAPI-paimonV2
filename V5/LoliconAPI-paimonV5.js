@@ -1,6 +1,6 @@
 /* version 2142
 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js,
-本插件需要在喵崽根目录依次执行以下：
+本插件需要在喵崽根目录依次执行以下后重启生效：
 curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/proxy.js"
 curl -# -L -o "./config/config/LoliconAPI.yaml" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml"
 pnpm add sharp -w
@@ -194,8 +194,8 @@ export class LoliconAPI extends plugin {
                     failureCount++
                     continue
                 }
-                const imageUrl = e.isGroup ? await processImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini) : await downloadImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
-		/* downloadImage()用于下载好的图片存档在 localPath,其传递的url仅用作文件重命名;仅存档私聊未处理过的文件,processImage()不保存处理过的文件 */
+                const imageUrl = e.isGroup ? await processImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini) : await reNameAndSavePic(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
+		/* reNameAndSavePic()用于下载好的图片存档在 localPath,其传递的url仅用作文件重命名;仅存档私聊未处理过的文件,processImage()不保存处理过的文件 */
                 
                 let isAi = item.aiType ? item.aiType == 1 ? '是' : '未知' : '否'
                 const msg = [
@@ -488,12 +488,12 @@ async function processImage(response, url) {
         }
         return imageData
     } catch (err) {
-        return await downloadImage(response, url)
+        return await reNameAndSavePic(response, url)
     }
 }
 
 /** 下载好的图片重命名并存档在 localPath */
-async function downloadImage(response, url) {
+async function reNameAndSavePic(response, url) {
     try {
         // 计算URL的哈希值并将其作为文件名
         const hash = crypto.createHash('sha256').update(url).digest('hex')
