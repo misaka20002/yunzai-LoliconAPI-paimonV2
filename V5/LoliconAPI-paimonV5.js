@@ -1,4 +1,4 @@
-/* version 1601
+/* version 1602
 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js,
 本插件需要在喵崽根目录依次执行以下：
 curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/proxy.js"
@@ -56,7 +56,7 @@ export class LoliconAPI extends plugin {
                     permission: 'master',
                     log: false
                 },
-				{
+                {
                     reg: '^#派蒙来份设置图片大小(.*)$',
                     fnc: 'set_size',
                     permission: 'master',
@@ -250,7 +250,7 @@ export class LoliconAPI extends plugin {
         return false
     }
 
-	/** 设置图片大小 */
+    /** 设置图片大小 */
     async set_size(e) {
         const match = e.msg.match(/^#派蒙来份设置图片大小(.*)$/)
         if (match) {
@@ -338,7 +338,7 @@ export class LoliconAPI extends plugin {
 
     /** 发送帮助 */
     async paimonlaifenhelp (e) {
-        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag最多3个,|=或](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n\t#派蒙来5份派蒙 可莉 萝莉|幼女涩图'
+        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag最多3个,|=或](涩|色|瑟)(图|圖)\n\t#派蒙来5份可莉 白丝涩图\n\t#派蒙来5份派蒙 可莉 萝莉|女孩子涩图'
 		let paimonlaifenhelpmsg1 = '派蒙涩图帮助：'
 		let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)(r|R)18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置图片大小(original|regular|small|thumb|mini)\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  （默认使用反代，不需要开启使用代理）\n  #派蒙来份(清理|(清|删)除)缓存图片'
 		let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2, paimonlaifenhelpmsg3], '派蒙涩图帮助');
