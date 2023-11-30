@@ -7,7 +7,6 @@ curl -# -L -o "./plugins/yenai-plugin/lib/request/httpsProxyAgentMod.js" "https:
 curl -# -L -o "./plugins/yenai-plugin/lib/request/request.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%9B%BF%E6%8D%A2%E6%A4%B0%E5%A5%B6request.js"
 ```
 ## 修复椰奶搜图发不出来:
-作者:大聋瞎
 ```
 curl -# -L -o "./plugins/yenai-plugin/model/PicSearch/saucenao.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%9B%BF%E6%8D%A2%E6%A4%B0%E5%A5%B6/saucenao.js"
 ```
