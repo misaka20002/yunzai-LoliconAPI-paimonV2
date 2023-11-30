@@ -1,6 +1,8 @@
 ## yunzai-LoliconAPI-paimonV2
 基于云崽V3qq机器人的随机返回涩图
 
+## 鸣谢：原作者：https://github.com/SakuraTairitsu
+
 # v5命令：
 ```
 #派蒙来份帮助
@@ -96,7 +98,7 @@ express-art-template 1.0.1
 
 
 # 其他杂项
-## 本地q签名部署
+## 杂项1
 ```
 tmoe proot ubuntu jammy arm64
 bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign.sh)
@@ -116,7 +118,7 @@ curl -# -L -o "./plugins/example/tts语音替换帮助.js" "https://raw.githubus
 ```
 发送#tts语音替换帮助 可获取支持的角色语音命令
 
-## 米游社手动验证码
+## 杂项2
 ```
 curl -# -L -o "./plugins/example/米游社手动验证码.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js"
 ```
