@@ -1,4 +1,4 @@
-/* version 2142
+/* version 2020
 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js,
 本插件需要在喵崽根目录依次执行以下后重启生效：
 curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/proxy.js"
@@ -218,10 +218,10 @@ export class LoliconAPI extends plugin {
                 msgs.push(`[派蒙来份] 获取图片成功 ${successCount} 张，失败 ${failureCount} 张~`)
             }
 
-            return e.reply(await makeForwardMsg(e, msgs, '主人，主人，>_<派蒙找到了哦') ,true, { recallMsg: config.withdrawal_pic_CD })
+            return e.reply(await makeForwardMsg(e, msgs, '主人，主人，>_<派蒙找到了哦') ,false, { recallMsg: config.withdrawal_pic_CD })
         } catch (err) {
             logger.warn(err)
-            return e.reply('[派蒙来份]请检查网络环境或重新下载yaml', false, { recallMsg: 60 })
+            return e.reply('[派蒙来份]loliapi返回错误，请检查网络环境或重新下载yaml', false, { recallMsg: 60 })
 	/* 还要检查api.lolicon.app能否直连 */
         }
     }
