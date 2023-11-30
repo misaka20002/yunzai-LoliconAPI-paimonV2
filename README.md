@@ -137,9 +137,5 @@ curl -# -L -o "./plugins/yenai-plugin/lib/request/httpsProxyAgentMod.js" "https:
   ps. 它的使用代理是指使用vpn的意思
   
   pps. 椰奶的默认bika反代已失效
-## 修复椰奶图片发不出来:
-```
-curl -# -L -o "./plugins/yenai-plugin/lib/request/request.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%9B%BF%E6%8D%A2%E6%A4%B0%E5%A5%B6request.js"
-```
-
+  
 -END-
