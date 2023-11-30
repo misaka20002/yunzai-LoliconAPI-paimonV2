@@ -10,6 +10,9 @@ curl -# -L -o "./plugins/yenai-plugin/lib/request/request.js" "https://raw.githu
 ```
 curl -# -L -o "./plugins/yenai-plugin/model/PicSearch/saucenao.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%9B%BF%E6%8D%A2%E6%A4%B0%E5%A5%B6/saucenao.js"
 ```
+```
+curl -# -L -o "./plugins/yenai-plugin/model/PicSearch/ascii2d.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%9B%BF%E6%8D%A2%E6%A4%B0%E5%A5%B6/ascii2d.js"
+```
 ## 替换回复的文本为派蒙文本:
 ```
 curl -# -L -o "./plugins/yenai-plugin/apps/setu.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%9B%BF%E6%8D%A2%E6%A4%B0%E5%A5%B6/setu.js"
