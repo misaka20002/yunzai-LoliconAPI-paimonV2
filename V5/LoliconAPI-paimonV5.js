@@ -1,4 +1,4 @@
-/* version 2020
+/* version 2023
 做了https-proxy-agent 7.x 和 5.x 的兼容，需要安装以下proxy.js,
 本插件需要在喵崽根目录依次执行以下后重启生效：
 curl -# -L -o "./plugins/example/proxy.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/proxy.js"
@@ -156,7 +156,7 @@ export class LoliconAPI extends plugin {
 
         const tag = e.msg.replace(new RegExp(`^#派蒙来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
         const tags = tag.split(/[\s,.\u3002\uff0c、]+/)
-        if (tags.length > 3) return e.reply('tag标签不能超过3个哦~', true, { recallMsg: 60 })
+        if (tags.length > 3) return e.reply('tag标签不能超过3个哦~', true)
         let tagValue = tags.map(t => `&tag=${t}`).join('')
         if (!tagValue || tagValue === '&tag=') tagValue = lodash.sample(random_pic).map(tags => `&tag=${tags.join('|')}`).join('')
 
@@ -170,9 +170,9 @@ export class LoliconAPI extends plugin {
             num = 1
         }
         if (num > 5) {
-            await e.reply('嘎嘎~机械~嘎嘎', true, { recallMsg: 60 })
+            await e.reply('嘎嘎~机械~嘎嘎', true)
         } else {
-            await e.reply('派蒙这就去帮你找哦~', false, { recallMsg: 60 })
+            await e.reply('派蒙这就去帮你找哦~', false)
         }
 
         const r18Value = e.isGroup ? (e.isMaster ? config.r18_Master : config.r18) : (e.isMaster ? config.r18_Master : 2)
@@ -181,7 +181,7 @@ export class LoliconAPI extends plugin {
         try {
             const response = await fetch(url)
             const result = await response.json()
-            if (Array.isArray(result.data) && result.data.length === 0) return e.reply('[派蒙来份]未获取到相关数据', false, { recallMsg: 60 })
+            if (Array.isArray(result.data) && result.data.length === 0) return e.reply('派蒙...没有找到QAQ', false)
 
             let msgs = []
             let successCount = 0
