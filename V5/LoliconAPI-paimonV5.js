@@ -197,14 +197,13 @@ export class LoliconAPI extends plugin {
                 const imageUrl = e.isGroup ? await processImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini) : await reNameAndSavePic(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
 		/* reNameAndSavePic()用于下载好的图片存档在 localPath,其传递的url仅用作文件重命名;仅存档私聊未处理过的文件,processImage()不保存处理过的文件 */
                 
-                let isAi = item.aiType ? item.aiType == 1 ? '是' : '未知' : '否'
                 const msg = [
                     `标题：${item.title}\n`,
                     `画师：${item.author}\n`,
                     `Uid：${item.uid}\n`,
                     `Pid：${item.pid}\n`,
                     `R18：${item.r18}\n`,
-                    `AI生成：${isAi}\n`,
+                    `AI生成：${item.aiType ? item.aiType == 1 ? '是' : '未知' : '否'}\n`,
                     `Tags：${item.tags.join('，')}\n`,
                     segment.image(imageUrl)
                 ]
