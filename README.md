@@ -137,5 +137,11 @@ curl -# -L -o "./plugins/yenai-plugin/lib/request/httpsProxyAgentMod.js" "https:
   ps. 它的使用代理是指使用vpn的意思
   
   pps. 椰奶的默认bika反代已失效
+
+## 派蒙每日自动发言
+每天9点发言,可自定义群号和发言内容
+```
+curl -# -L -o "./plugins/example/派蒙每日自动发言.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E6%AF%8F%E6%97%A5%E8%87%AA%E5%8A%A8%E5%8F%91%E8%A8%80.js"
+```
   
 -END-
