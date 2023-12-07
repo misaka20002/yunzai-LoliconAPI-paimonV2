@@ -88,7 +88,7 @@ async function PaimonDailyPush(e, isAuto = 0) {
 
   // 回复消息
   if (isAuto) {
-    await e.reply(randomHellowPaimon[text_number - 1])
+    await e.sendMsg(randomHellowPaimon[text_number - 1])
   } else {
     await e.reply(randomHellowPaimon[text_number - 1])
   }
