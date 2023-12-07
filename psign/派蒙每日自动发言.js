@@ -8,7 +8,7 @@ import schedule from 'node-schedule'
 const time = '0 0 9 * * ?'
 
 // 指定定时发送的群号
-const groupList = ['871369230', '7654321', '1234567']
+const groupList = ['131415', '7654321', '1234567']
 
 // 是否开启定时推送，默认为 false
 const isAutoPush = true
