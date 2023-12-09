@@ -17,7 +17,7 @@ import sharp from 'sharp'
 import path from 'path'
 import yaml from 'yaml'
 import fs from 'fs'
-import { getProxy } from '../other/proxy.js'
+import HttpsProxyAgent from 'https-proxy-agent'
 
 let nproxy = getProxy()
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
@@ -623,4 +623,14 @@ function convertChineseNumberToArabic(input) {
 
 function init() {
     if (!fs.existsSync(Directory)) fs.mkdirSync(Directory)
+}
+
+function getProxy () {
+	let proxy = HttpsProxyAgent
+	if (typeof proxy !== 'function') {
+	  proxy = (p) => {
+	    return new HttpsProxyAgent.HttpsProxyAgent(p)
+	  }
+	}
+  return proxy
 }
