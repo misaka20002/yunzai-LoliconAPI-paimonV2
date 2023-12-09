@@ -17,7 +17,7 @@ import sharp from 'sharp'
 import path from 'path'
 import yaml from 'yaml'
 import fs from 'fs'
-import { getProxy } from './proxy.js'
+import { getProxy } from '../other/proxy.js'
 
 let nproxy = getProxy()
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
