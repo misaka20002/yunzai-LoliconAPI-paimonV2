@@ -247,7 +247,7 @@ export class LoliconAPI extends plugin {
             const input = match[1].trim()
             if (/^\d+$/.test(input)) {
 		    if (input>120) {
-			    return e.reply('[派蒙来份] 撤回时间不能超过2分钟哦，是小企鹅规定的哦', true)
+			    await e.reply('[派蒙来份] 只有管理员才可以撤回超过2分钟的信息哦', true)
 		    }
                 await updateConfig('withdrawal_pic_CD', parseInt(input))
                 return e.reply(`[派蒙来份] 已修改撤回时间为${parseInt(input)}秒！`)
