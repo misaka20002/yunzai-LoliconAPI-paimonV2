@@ -28,7 +28,7 @@ QSIGN_URL="https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/releases/do
 QSIGN_VERSION="119"
 qsign_version="1.1.9"
 txlib="https://github.com/misaka20002/txlib"
-Txlib_Version_New="8.9.90"
+Txlib_Version_New="8.9.93"
 case $(uname -m) in
 amd64|x86_64)
 JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u392b08.tar.gz"
