@@ -234,11 +234,11 @@ echo -e  ${green} 6.  ${cyan}HD: 8.9.71${background}
 echo -e  ${green} 7.  ${cyan}HD: 8.9.73${background}
 echo -e  ${green} 8.  ${cyan}HD: 8.9.76${background}
 echo -e  ${green} 9.  ${cyan}HD: 8.9.80${background}
-echo -e  ${green}10.  ${cyan}HD: 8.9.83${background}
-echo -e  ${green}11.  ${cyan}HD: 8.9.85（需要icqq0.6.2）${background}
-echo -e  ${green}12.  ${cyan}HD: 8.9.88（需要icqq0.6.2）${background}
-echo -e  ${green}13.  ${cyan}HD: 8.9.90（需要icqq0.6.3）${background}
-echo -e  ${green}d.  ${cyan}HD: 8.9.93（需要icqq0.6.5）${background}
+echo -e  ${green} a.  ${cyan}HD: 8.9.83${background}
+echo -e  ${green} b.  ${cyan}HD: 8.9.85（需要icqq0.6.2）${background}
+echo -e  ${green} c.  ${cyan}HD: 8.9.88（需要icqq0.6.2）${background}
+echo -e  ${green} d.  ${cyan}HD: 8.9.90（需要icqq0.6.3）${background}
+echo -e  ${green} e.  ${cyan}HD: 8.9.93（需要icqq0.6.5）${background}
 echo "========================="
 echo -en ${green}请输入您的选项: ${background};read num
 case ${num} in
@@ -269,19 +269,19 @@ export version=8.9.76
 9|8.9.80)
 export version=8.9.80
 ;;
-10|8.9.83)
+a|8.9.83)
 export version=8.9.83
 ;;
-11|8.9.85)
+b|8.9.85)
 export version=8.9.85
 ;;
-12|8.9.88)
+c|8.9.88)
 export version=8.9.88
 ;;
-13|8.9.90)
+d|8.9.90)
 export version=8.9.90
 ;;
-d|8.9.93)
+e|8.9.93)
 export version=8.9.93
 ;;
 *)
