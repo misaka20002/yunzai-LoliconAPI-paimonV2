@@ -29,76 +29,6 @@ QSIGN_VERSION="119"
 qsign_version="1.1.9"
 txlib="https://github.com/misaka20002/txlib"
 Txlib_Version_New="8.9.93"
-function tmux_new(){
-Tmux_Name="$1"
-Shell_Command="$2"
-if ! tmux new -s ${Tmux_Name} -d "${Shell_Command}"
-then
-    echo -e ${yellow}QSignServer启动错误"\n"错误原因:${red}${tmux_new_error}${background}
-    echo
-    echo -en ${yellow}回车返回${background};read
-    main
-    exit
-fi
-}
-function tmux_attach(){
-Tmux_Name="$1"
-tmux attach -t ${Tmux_Name} > /dev/null 2>&1
-}
-function tmux_kill_session(){
-Tmux_Name="$1"
-tmux kill-session -t ${Tmux_Name}
-}
-function tmux_ls(){
-Tmux_Name="$1"
-tmux_windows=$(tmux ls 2>&1)
-if echo ${tmux_windows} | grep -q ${Tmux_Name}
-then
-    return 0
-else
-    return 1
-fi
-}
-function qsign_curl(){
-for folder in $(ls -d $HOME/QSignServer/txlib/*)
-do
-    file="${folder}/config.json"
-    port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
-done
-if curl -sL 127.0.0.1:${port_} > /dev/null 2>&1
-then
-    return 0
-else
-    return 1
-fi
-}
-function tmux_gauge(){
-i=0
-Tmux_Name="$1"
-tmux_ls ${Tmux_Name} & > /dev/null 2>&1
-until qsign_curl
-do
-    i=$((${i}+1))
-    a="${a}#"
-    echo -ne "\r${i}% ${a}\r"
-    if [[ ${i} == 40 ]];then
-        echo
-        return 1
-    fi
-done
-echo
-}
-bot_tmux_attach_log(){
-Tmux_Name="$1"
-if ! tmux attach -t ${Tmux_Name} > /dev/null 2>&1
-then
-    tmux_windows_attach_error=$(tmux attach -t ${Tmux_Name} 2>&1 > /dev/null)
-    echo
-    echo -e ${yellow}QSignServer打开错误"\n"错误原因:${red}${tmux_windows_attach_error}${background}
-    echo
-    echo -en ${yellow}回车返回${background};read
-fi
-}
 case $(uname -m) in
 amd64|x86_64)
 JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u392b08.tar.gz"
@@ -210,6 +140,77 @@ then
 fi
 }
 
+function main(){
+function tmux_new(){
+Tmux_Name="$1"
+Shell_Command="$2"
+if ! tmux new -s ${Tmux_Name} -d "${Shell_Command}"
+then
+    echo -e ${yellow}QSignServer启动错误"\n"错误原因:${red}${tmux_new_error}${background}
+    echo
+    echo -en ${yellow}回车返回${background};read
+    main
+    exit
+fi
+}
+function tmux_attach(){
+Tmux_Name="$1"
+tmux attach -t ${Tmux_Name} > /dev/null 2>&1
+}
+function tmux_kill_session(){
+Tmux_Name="$1"
+tmux kill-session -t ${Tmux_Name}
+}
+function tmux_ls(){
+Tmux_Name="$1"
+tmux_windows=$(tmux ls 2>&1)
+if echo ${tmux_windows} | grep -q ${Tmux_Name}
+then
+    return 0
+else
+    return 1
+fi
+}
+function qsign_curl(){
+for folder in $(ls -d $HOME/QSignServer/txlib/*)
+do
+    file="${folder}/config.json"
+    port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
+done
+if curl -sL 127.0.0.1:${port_} > /dev/null 2>&1
+then
+    return 0
+else
+    return 1
+fi
+}
+function tmux_gauge(){
+i=0
+Tmux_Name="$1"
+tmux_ls ${Tmux_Name} & > /dev/null 2>&1
+until qsign_curl
+do
+    i=$((${i}+1))
+    a="${a}#"
+    echo -ne "\r${i}% ${a}\r"
+    if [[ ${i} == 40 ]];then
+        echo
+        return 1
+    fi
+done
+echo
+}
+bot_tmux_attach_log(){
+Tmux_Name="$1"
+if ! tmux attach -t ${Tmux_Name} > /dev/null 2>&1
+then
+    tmux_windows_attach_error=$(tmux attach -t ${Tmux_Name} 2>&1 > /dev/null)
+    echo
+    echo -e ${yellow}QSignServer打开错误"\n"错误原因:${red}${tmux_windows_attach_error}${background}
+    echo
+    echo -en ${yellow}回车返回${background};read
+fi
+}
 function start_QSignServer(){
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
@@ -366,7 +367,6 @@ exit
 esac
 }
 
-function main(){
 function stop_QSignServer(){
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
@@ -689,9 +689,6 @@ esac
 if [ "${install_QSignServer}" == "true" ]
 then
     install_QSignServer
-elif [ "${start_QSignServer}" == "true" ]
-then
-    start_QSignServer
 else
     function mainbak()
     {
