@@ -237,7 +237,7 @@ echo -e  ${green}10.  ${cyan}HD: 8.9.83${background}
 echo -e  ${green}11.  ${cyan}HD: 8.9.85（需要icqq0.6.2）${background}
 echo -e  ${green}12.  ${cyan}HD: 8.9.88（需要icqq0.6.2）${background}
 echo -e  ${green}13.  ${cyan}HD: 8.9.90（需要icqq0.6.3）${background}
-echo -e  ${green}14.  ${cyan}HD: 8.9.93（需要icqq0.6.3）${background}
+echo -e  ${green}14.  ${cyan}HD: 8.9.93（需要icqq0.6.5）${background}
 echo "========================="
 echo -en ${green}请输入您的选项: ${background};read num
 case ${num} in
