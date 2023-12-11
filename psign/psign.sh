@@ -299,14 +299,18 @@ if [ ! -d $HOME/QSignServer/txlib/${version} ];then
     exit
 fi
 Foreground_Start(){
-bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
-echo -en ${yellow}签名服务器已终止${background}
-sleep 2
-echo
-echo -en ${yellow}正在自动重启签名服务器${background}
-echo
-sleep 2
-Foreground_Start
+reloadtimes=1
+while true
+do
+	bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
+	echo -en ${yellow}签名服务器已终止${background}
+	sleep 2
+	echo
+	echo -en ${yellow}正在自动重启签名服务器，现在是第 ${reloadtimes} 次重启${background}
+	echo
+	sleep 2
+	let "reloadtimes++"
+done
 exit
 echo
 }
