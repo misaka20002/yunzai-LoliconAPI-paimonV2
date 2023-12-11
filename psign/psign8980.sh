@@ -236,47 +236,71 @@ then
     return
 fi
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
-echo -e ${cyan}请选择您想让您签名服务器适配的QQ版本${background}
-echo -e  ${green}1.  ${cyan}HD: 8.9.85（需icqq0.6.1 看帮助教程）${background}
-echo -e  ${green}2.  ${cyan}HD: 8.9.88（需icqq0.6.2 看帮助教程）${background}
-echo -e  ${green}3.  ${cyan}HD: 8.9.68${background}
-echo -e  ${green}4.  ${cyan}HD: 8.9.70${background}
-echo -e  ${green}5.  ${cyan}HD: 8.9.71${background}
-echo -e  ${green}6.  ${cyan}HD: 8.9.73${background}
-echo -e  ${green}7.  ${cyan}HD: 8.9.76${background}
-echo -e  ${green}8.  ${cyan}HD: 8.9.80（需icqq0.6.1 看帮助教程）${background}
-echo -e  ${green}9.  ${cyan}HD: 8.9.83（需icqq0.6.1 看帮助教程）${background}
+echo -e ${cyan}请选择签名服务器适配的QQ共享库版本${background}
+echo -e  ${green}33.  ${cyan}HD: 8.9.33${background}
+echo -e  ${green}58.  ${cyan}HD: 8.9.58${background}
+echo -e  ${green}63.  ${cyan}HD: 8.9.63${background}
+echo -e  ${green}68.  ${cyan}HD: 8.9.68${background}
+echo -e  ${green}70.  ${cyan}HD: 8.9.70${background}
+echo -e  ${green}71.  ${cyan}HD: 8.9.71${background}
+echo -e  ${green}73.  ${cyan}HD: 8.9.73${background}
+echo -e  ${green}76.  ${cyan}HD: 8.9.76${background}
+echo -e  ${green} 8.  ${cyan}HD: 8.9.78${background}
+echo -e  ${green}80.  ${cyan}HD: 8.9.80${background}
+echo -e  ${green} a.  ${cyan}HD: 8.9.83${background}
+echo -e  ${green} b.  ${cyan}HD: 8.9.85（需要icqq0.6.2）${background}
+echo -e  ${green} c.  ${cyan}HD: 8.9.88（需要icqq0.6.2）${background}
+echo -e  ${green} d.  ${cyan}HD: 8.9.90（需要icqq0.6.3）${background}
+echo -e  ${green} e.  ${cyan}HD: 8.9.93（需要icqq0.6.5）${background}
 echo "========================="
 #echo -en ${green}请输入您的选项: ${background};read num
 echo -en ${green}请输入您的选项: 已经为您选择8.9.80${background}
-num=8
+num=80
 case ${num} in
-1|8.9.85)
-export version=8.9.85
+33|8.9.33)
+export version=8.9.33
 ;;
-2|8.9.88)
-export version=8.9.88
+58|8.9.58)
+export version=8.9.58
 ;;
-3|8.9.68)
+63|8.9.63)
+export version=8.9.63
+;;
+68|8.9.68)
 export version=8.9.68
 ;;
-4|8.9.70)
+70|8.9.70)
 export version=8.9.70
 ;;
-5|8.9.71)
+71|8.9.71)
 export version=8.9.71
 ;;
-6|8.9.73)
+73|8.9.73)
 export version=8.9.73
 ;;
-7|8.9.76)
+76|8.9.76)
 export version=8.9.76
 ;;
-8|8.9.80)
+8|8.9.78)
+export version=8.9.78
+;;
+80|8.9.80)
 export version=8.9.80
 ;;
-9|8.9.83)
+a|8.9.83)
 export version=8.9.83
+;;
+b|8.9.85)
+export version=8.9.85
+;;
+c|8.9.88)
+export version=8.9.88
+;;
+d|8.9.90)
+export version=8.9.90
+;;
+e|8.9.93)
+export version=8.9.93
 ;;
 *)
 echo
