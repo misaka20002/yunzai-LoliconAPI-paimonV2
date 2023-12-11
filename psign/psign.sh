@@ -31,19 +31,19 @@ txlib="https://github.com/misaka20002/txlib"
 Txlib_Version_New="8.9.93"
 case $(uname -m) in
 amd64|x86_64)
-JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u382b05.tar.gz"
+JDK_URL="https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_x64_linux_hotspot_8u382b05.tar.gz"
 ;;
 arm64|aarch64)
-JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u382b05.tar.gz"
+JDK_URL="https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_aarch64_linux_hotspot_8u382b05.tar.gz"
 ;;
 esac
 if [ $(command -v apk) ];then
 case $(uname -m) in
     amd64|x86_64)
-        JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/alpine-linux/OpenJDK8U-jdk_x64_alpine-linux_hotspot_8u382b05.tar.gz"
+        JDK_URL="https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_x64_alpine-linux_hotspot_8u382b05.tar.gz"
     ;;
     arm64|aarch64)
-        JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u382b05.tar.gz"
+        JDK_URL="https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_aarch64_linux_hotspot_8u382b05.tar.gz"
     ;;
 esac
 fi
@@ -629,7 +629,7 @@ echo "========================="
 echo -e ${green}您的签名服务器状态: ${condition}${background}
 echo -e ${green}当前签名服务器版本: ${Version}${background}
 echo -e ${green}本地Txlib最高支持版本: ${Txlib_Version}${background}
-echo -e ${green}QQ群:${cyan}工业群:883776847${background}
+echo -e ${green}psign版本a12112146;${cyan}工业群:883776847${background}
 echo "========================="
 echo
 echo -en ${green}请输入您的选项: ${background};read number
