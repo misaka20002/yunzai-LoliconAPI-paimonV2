@@ -300,7 +300,7 @@ if [ ! -d $HOME/QSignServer/txlib/${version} ];then
 fi
 Foreground_Start(){
 bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
-echo -en ${yellow}签名服务器已启动${background}
+echo -en ${yellow}签名服务器已终止${background}
 read
 echo
 }
