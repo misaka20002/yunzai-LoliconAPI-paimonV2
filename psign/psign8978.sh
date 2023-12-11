@@ -314,7 +314,9 @@ if [ ! -d $HOME/QSignServer/txlib/${version} ];then
 fi
 Foreground_Start(){
 bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
-echo -en ${yellow}签名服务器已启动${background}
+echo -en ${yellow}签名服务器已终止${background}
+sleep 10
+reload_QSignServer
 read
 echo
 }
@@ -369,9 +371,9 @@ echo -e  ${green}2.  ${cyan}TMUX后台启动${background}
 echo -e  ${green}3.  ${cyan}PM2后台启动${background}
 echo "========================="
 #echo -en ${green}请输入您的选项: ${background};read num
-echo -en ${green}请输入您的选项: 已经为您选择2.TMUX后台启动${background}
+echo -en ${green}请输入您的选项: 已经为您选择1.前台启动${background}
 echo
-num=2
+num=1
 case ${num} in 
 1)
 Foreground_Start
