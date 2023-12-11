@@ -629,7 +629,7 @@ echo "========================="
 echo -e ${green}您的签名服务器状态: ${condition}${background}
 echo -e ${green}当前签名服务器版本: ${Version}${background}
 echo -e ${green}本地Txlib最高支持版本: ${Txlib_Version}${background}
-echo -e ${green}psign版本a12112146;${cyan}工业群:883776847${background}
+echo -e ${green}psign版本a12112146：${cyan}工业群:883776847${background}
 echo "========================="
 echo
 echo -en ${green}请输入您的选项: ${background};read number
