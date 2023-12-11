@@ -233,7 +233,7 @@ echo -e  ${green}70.  ${cyan}HD: 8.9.70${background}
 echo -e  ${green}71.  ${cyan}HD: 8.9.71${background}
 echo -e  ${green}73.  ${cyan}HD: 8.9.73${background}
 echo -e  ${green}76.  ${cyan}HD: 8.9.76${background}
-echo -e  ${green}78.  ${cyan}HD: 8.9.78${background}
+echo -e  ${green} 8.  ${cyan}HD: 8.9.78${background}
 echo -e  ${green}80.  ${cyan}HD: 8.9.80${background}
 echo -e  ${green} a.  ${cyan}HD: 8.9.83${background}
 echo -e  ${green} b.  ${cyan}HD: 8.9.85（需要icqq0.6.2）${background}
@@ -267,7 +267,7 @@ export version=8.9.73
 76|8.9.76)
 export version=8.9.76
 ;;
-78|8.9.78)
+8|8.9.78)
 export version=8.9.78
 ;;
 80|8.9.80)
@@ -578,6 +578,7 @@ echo -e  ${green}签名服务器启动失败：${cyan}卸载重装/重设端口$
 echo -e  ${green}喵喵云崽的安装教程：${cyan}https://github.com/yoimiya-kokomi/Miao-Yunzai${background}
 echo -e  ${green}70错误：${cyan}删除device.json（文件位置：Miao-Yunzai/data/icqq/QQ号，将QQ号命名的这个文件夹删除即可）；手机登录机器人的QQ删除登录设备，触发了滑动验证和手机验证码登录就好了；ps.签名api的icqq版本检查api的可用性或更换api，（不要用海外qsign）；或者换另一个小号${background}
 echo -e  ${green}45错误：${cyan}使用最新的签名服务器，如果还有的话。。。${background}
+echo -e  ${green}签名服务器在termux运行遇到jav致命错误而中断：${cyan}设置 [version]/config.json 中"unicorn": false 并删除 "kvm": false 参数。（本安装包已修改，不需要折腾了）。原版默认为：  "unidbg": {    "dynarmic": true,    "unicorn": true,    "kvm": false,    "debug": false  } ${background}
 echo -en ${yellow}回车返回${background};read
 }
 
