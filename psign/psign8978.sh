@@ -49,7 +49,7 @@ esac
 fi
 
 function reload_QSignServer(){
-		echo -en ${yellow}签名终止后将会自动重启或每20min检测一次qsign签名状态（注意来这一段修改签名版本）${background}
+		echo -en ${yellow}签名终止后将会自动重启或每20min检测一次qsign签名状态（注意来这一段修改签名版本）有两段${background}
 		echo
 		sleep 1200
 		bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign8978.sh)
@@ -315,8 +315,11 @@ fi
 Foreground_Start(){
 bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
 echo -en ${yellow}签名服务器已终止${background}
-sleep 10
-reload_QSignServer
+sleep 5
+echo
+echo -en ${yellow}正在自动重启（注意来这一段修改签名版本）有两段${background}
+echo
+bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign8978.sh)
 exit
 echo
 }
