@@ -572,12 +572,10 @@ echo -en ${yellow}回车返回${background};read
 }
 
 function link_PaimonAlsoKnowed(){
-echo -e  ${green}一句话启动云崽教程：${cyan}修改签名服务器key和端口，将签名服务器链接填入miao-yunzai/config/config/bot.yaml的api地址（记得冒号后面要有空格），传入的qq版本可填可不填（记得冒号后面要有空格）。启动签名服务器成功后不需要开启服务器窗口，直接（或者新建一个控制台对话）输入cd Miao-Yunzai回车，输入node app启动云崽。（如果需要重新登陆/重新设置主人请输入node app login）${background}
-echo -e  ${green}更新ICQQ0.6.3：${cyan}更新icqq在喵云崽目录下执行（icqq版本在启动的时候会显示）：pnpm update icqq@0.6.3${background}
+echo -e  ${green}新手的启动云崽教程：${cyan}修改签名服务器key和端口，将签名服务器链接填入miao-yunzai/config/config/bot.yaml的api地址（记得冒号后面要有空格），传入的qq版本可填可不填（记得冒号后面要有空格）。启动签名服务器成功后不需要开启服务器窗口，直接（或者新建一个控制台对话）输入cd Miao-Yunzai回车，输入node app启动云崽。（如果需要重新登陆/重新设置主人请输入node app login）${background}
+echo -e  ${green}更新ICQQ：${cyan}在喵崽目录下执行：pnpm update icqq${background}
 echo -e  ${green}签名服务器启动失败：${cyan}卸载重装/重设端口${background}
-echo -e  ${green}喵喵云崽的安装教程：${cyan}https://github.com/yoimiya-kokomi/Miao-Yunzai${background}
-echo -e  ${green}70错误：${cyan}删除device.json（文件位置：Miao-Yunzai/data/icqq/QQ号，将QQ号命名的这个文件夹删除即可）；手机登录机器人的QQ删除登录设备，触发了滑动验证和手机验证码登录就好了；ps.签名api的icqq版本检查api的可用性或更换api，（不要用海外qsign）；或者换另一个小号${background}
-echo -e  ${green}45错误：${cyan}使用最新的签名服务器，如果还有的话。。。${background}
+echo -e  ${green}70错误/45错误：${cyan}删除Miao-Yunzai/data/icqq/QQ号/device.json文件，并在手机登录机器人的QQ账号在账户安全中删除icqq登录设备。；或者换另一个小号；最后再使用新的psign版本。${background}
 echo -e  ${green}签名服务器在termux运行遇到jav致命错误而中断：${cyan}设置 [version]/config.json 中"unicorn": false 并删除 "kvm": false 参数。（本安装包已修改，不需要折腾了）。原版默认为：  "unidbg": {    "dynarmic": true,    "unicorn": true,    "kvm": false,    "debug": false  } ${background}
 echo -en ${yellow}回车返回${background};read
 }
@@ -634,7 +632,7 @@ echo "========================="
 echo -e ${green}您的签名服务器状态: ${condition}${background}
 echo -e ${green}当前签名服务器版本: ${Version}${background}
 echo -e ${green}本地Txlib最高支持版本: ${Txlib_Version}${background}
-echo -e ${green}psign版本a12112146：${cyan}工业群:883776847${background}
+echo -e ${green}psign版本a12112308：${cyan}工业群:883776847${background}
 echo "========================="
 echo
 echo -en ${green}请输入您的选项: ${background};read number
