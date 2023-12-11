@@ -301,7 +301,13 @@ fi
 Foreground_Start(){
 bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
 echo -en ${yellow}签名服务器已终止${background}
-read
+sleep 2
+echo
+echo -en ${yellow}正在自动重启签名服务器${background}
+echo
+sleep 2
+Foreground_Start
+exit
 echo
 }
 Tmux_Start(){
