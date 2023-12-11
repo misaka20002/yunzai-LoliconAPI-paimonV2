@@ -317,7 +317,7 @@ bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$
 echo -en ${yellow}签名服务器已终止${background}
 sleep 10
 reload_QSignServer
-read
+exit
 echo
 }
 Tmux_Start(){
