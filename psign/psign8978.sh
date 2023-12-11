@@ -49,10 +49,10 @@ esac
 fi
 
 function reload_QSignServer(){
-		echo -en ${yellow}将会在3600s后会自动重启qsign签名${background}
+		echo -en ${yellow}将会在20min后会自动重启qsign签名（注意来这一段修改签名版本）${background}
 		echo
-		sleep 3600
-		bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign8980.sh)
+		sleep 1200
+		bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign8978.sh)
 	
 }
 
