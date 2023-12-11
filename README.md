@@ -108,7 +108,7 @@ node app
 ```
 bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign8980.sh)
 ```
-## 替换chatgpt-plugin插件的语音合成为berl-vits模型
+## 替换chatgpt-plugin插件的语音合成为berl-vits模型（这api已失效）
 > cd Miao-Yunzai
 ```
 curl -# -L -o "./plugins/example/tts语音替换帮助.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/tts%E8%AF%AD%E9%9F%B3%E6%9B%BF%E6%8D%A2.js"
