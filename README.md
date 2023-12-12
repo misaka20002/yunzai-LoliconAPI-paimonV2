@@ -98,16 +98,15 @@ express-art-template 1.0.1
 ## 杂项1
 ```
 tmoe proot ubuntu jammy arm64
+```
+```
 bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign.sh)
+```
+```
 cd Miao-Yunzai
 node app
 ```
 
-同时写了一个每小时自动检测q签名有没有被杀,被杀的话自动重启8.9.80 的q签名的shell命令，以后再也不用担心qqsign被杀惹
-(可以自行修改时间或q签名版本)
-```
-bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign8980.sh)
-```
 ## 替换chatgpt-plugin插件的语音合成为berl-vits模型（这api已失效）
 > cd Miao-Yunzai
 ```
