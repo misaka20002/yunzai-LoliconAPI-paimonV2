@@ -306,7 +306,7 @@ do
 	echo -en ${yellow}签名服务器已终止${background}
 	sleep 2
 	echo
-	echo -en ${yellow}正在自动重启签名服务器，现在是第 ${reloadtimes} 次重启${background}
+	echo -en ${yellow}正在自动重启签名服务器，现在是第 ${reloadtimes} 次重启。若要退出请ctrl+c${background}
 	echo
 	sleep 2
 	let "reloadtimes++"
