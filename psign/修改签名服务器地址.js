@@ -8,12 +8,12 @@ const Config_PATH = `${process.cwd()}/config/config/bot.yaml`
 export class Paimon_update_bot_sign_api_addr extends plugin {
 	constructor() {
 		super({
-			name: 'ÅÉÃÉÀ´·İ(ĞŞ¸Ä|²é¿´)Ç©Ãû·şÎñÆ÷µØÖ·',
+			name: 'æ´¾è’™æ¥ä»½(ä¿®æ”¹|æŸ¥çœ‹)ç­¾åæœåŠ¡å™¨åœ°å€',
 			event: 'message',
 			priority: 999,
 			rule: [
 				{
-					reg: '^#ÅÉÃÉÀ´·İ(ĞŞ¸Ä|²é¿´)?Ç©Ãû·şÎñÆ÷µØÖ·(°ïÖú)?',
+					reg: '^#æ´¾è’™æ¥ä»½(ä¿®æ”¹|æŸ¥çœ‹)?ç­¾åæœåŠ¡å™¨åœ°å€(å¸®åŠ©)?',
 					fnc: 'update_bot_sign_api_addr',
 					permission: 'master',
 					log: true
@@ -22,40 +22,40 @@ export class Paimon_update_bot_sign_api_addr extends plugin {
 		})
 	}
 
-	/** ^#ÅÉÃÉÀ´·İ(ĞŞ¸Ä|²é¿´)?Ç©Ãû·şÎñÆ÷µØÖ· */
+	/** ^#æ´¾è’™æ¥ä»½(ä¿®æ”¹|æŸ¥çœ‹)?ç­¾åæœåŠ¡å™¨åœ°å€ */
 	async update_bot_sign_api_addr(e) {
 		const Bot_config = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
-		let input_sign_api = e.msg.replace(/^#ÅÉÃÉÀ´·İ(ĞŞ¸Ä|²é¿´)?Ç©Ãû·şÎñÆ÷µØÖ·(°ïÖú)?/, '').trim()
+		let input_sign_api = e.msg.replace(/^#æ´¾è’™æ¥ä»½(ä¿®æ”¹|æŸ¥çœ‹)?ç­¾åæœåŠ¡å™¨åœ°å€(å¸®åŠ©)?/, '').trim()
 		if (!input_sign_api) {
-			let show_msg1 = 'µ±Ç°Ç©Ãû·şÎñÆ÷µØÖ·£º'
+			let show_msg1 = 'å½“å‰ç­¾åæœåŠ¡å™¨åœ°å€ï¼š'
 			let show_msg2 = `${Bot_config.sign_api_addr}`
-			let show_msg3 = 'ÀıÈç£º'
-			let show_msg4_1 = '#ÅÉÃÉÀ´·İĞŞ¸ÄÇ©Ãû·şÎñÆ÷µØÖ·http://0.0.0.0:5200/sign?key=20001'
-			let show_msg4_2 = '#ÅÉÃÉÀ´·İĞŞ¸ÄÇ©Ãû·şÎñÆ÷µØÖ·https://misaka20001-qqsign.hf.space/sign?key=114514'
-			let show_msg5 = 'ĞŞ¸Ä³É¹¦ºó·¢ËÍ#ÖØÆô'
-			let show_msgx = await common.makeForwardMsg(e, [show_msg1, show_msg2, show_msg3, show_msg4_1, show_msg4_2, show_msg5], 'Ç©Ãû·şÎñÆ÷µØÖ·');
+			let show_msg3 = 'ä¾‹å¦‚ï¼š'
+			let show_msg4_1 = '#æ´¾è’™æ¥ä»½ä¿®æ”¹ç­¾åæœåŠ¡å™¨åœ°å€http://0.0.0.0:5200/sign?key=20001'
+			let show_msg4_2 = '#æ´¾è’™æ¥ä»½ä¿®æ”¹ç­¾åæœåŠ¡å™¨åœ°å€https://misaka20001-qqsign.hf.space/sign?key=114514'
+			let show_msg5 = 'ä¿®æ”¹æˆåŠŸåå‘é€#é‡å¯'
+			let show_msgx = await common.makeForwardMsg(e, [show_msg1, show_msg2, show_msg3, show_msg4_1, show_msg4_2, show_msg5], 'ç­¾åæœåŠ¡å™¨åœ°å€');
 			return e.reply(show_msgx, false);
 		} else if (/(^\w+[^\s]+(\.[^\s]+){1,}$)/.test(input_sign_api)) {
 			await updateConfig('sign_api_addr', input_sign_api)
-			return e.reply(`[ÅÉÃÉÀ´·İ] ÒÑĞŞ¸ÄÇ©Ãû·şÎñÆ÷µØÖ·Îª${input_sign_api}`)
+			return e.reply(`[æ´¾è’™æ¥ä»½] å·²ä¿®æ”¹ç­¾åæœåŠ¡å™¨åœ°å€ä¸º${input_sign_api}`)
 		} else {
-			return e.reply(`[ÅÉÃÉÀ´·İ] ÄãµÄÊäÈëÎª"${input_sign_api}"£¬ÇëÊäÈëÕıÈ·µÄÇ©Ãû·şÎñÆ÷µØÖ·¡£\n#ÅÉÃÉÀ´·İÇ©Ãû·şÎñÆ÷µØÖ·°ïÖú`, false)
+			return e.reply(`[æ´¾è’™æ¥ä»½] ä½ çš„è¾“å…¥ä¸º"${input_sign_api}"ï¼Œè¯·è¾“å…¥æ­£ç¡®çš„ç­¾åæœåŠ¡å™¨åœ°å€ã€‚\n#æ´¾è’™æ¥ä»½ç­¾åæœåŠ¡å™¨åœ°å€å¸®åŠ©`, false)
 		}
 	}
 	
 }
 
-/** ¶ÁÈ¡YAMLÎÄ¼ş */
+/** è¯»å–YAMLæ–‡ä»¶ */
 function readYaml(filePath) {
 	return yaml.parse(fs.readFileSync(filePath, 'utf8'))
 }
 
-/** Ğ´ÈëYAMLÎÄ¼ş */
+/** å†™å…¥YAMLæ–‡ä»¶ */
 function writeYaml(filePath, data) {
 	fs.writeFileSync(filePath, yaml.stringify(data), 'utf8')
 }
 
-/** ¸üĞÂYAMLÎÄ¼ş */
+/** æ›´æ–°YAMLæ–‡ä»¶ */
 async function updateConfig(key, value) {
 	const data = readYaml(Config_PATH)
 	data[key] = value
