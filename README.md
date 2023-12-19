@@ -139,5 +139,17 @@ curl -# -L -o "./plugins/yenai-plugin/lib/request/httpsProxyAgentMod.js" "https:
 ```
 curl -# -L -o "./plugins/example/派蒙每日自动发言.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E6%AF%8F%E6%97%A5%E8%87%AA%E5%8A%A8%E5%8F%91%E8%A8%80.js"
 ```
+## 派蒙每日自动发言
+每天9点发言,可自定义群号和发言内容
+```
+curl -# -L -o "./plugins/example/派蒙每日自动发言.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E6%AF%8F%E6%97%A5%E8%87%AA%E5%8A%A8%E5%8F%91%E8%A8%80.js"
+```
+
+## 修改签名服务器地址
+```
+curl -# -L -o "./plugins/example/修改签名服务器地址.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js"
+```
+^#派蒙来份(修改|查看)?签名服务器地址(帮助)?
+
   
 -END-
