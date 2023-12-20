@@ -25,80 +25,10 @@ if [ -d $HOME/QSignServer/jdk ];then
     export JAVA_HOME=$HOME/QSignServer/jdk
 fi
 QSIGN_URL="https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/releases/download/psign119/unidbg-fetch-qsign-1.1.9.zip"
-NewVersion="1.0.0"
 QSIGN_VERSION="119"
 qsign_version="1.1.9"
 txlib="https://github.com/misaka20002/txlib"
-function tmux_new(){
-Tmux_Name="$1"
-Shell_Command="$2"
-if ! tmux new -s ${Tmux_Name} -d "${Shell_Command}"
-then
-    echo -e ${yellow}QSignServer启动错误"\n"错误原因:${red}${tmux_new_error}${background}
-    echo
-    echo -en ${yellow}回车返回${background};read
-    main
-    exit
-fi
-}
-function tmux_attach(){
-Tmux_Name="$1"
-tmux attach -t ${Tmux_Name} > /dev/null 2>&1
-}
-function tmux_kill_session(){
-Tmux_Name="$1"
-tmux kill-session -t ${Tmux_Name}
-}
-function tmux_ls(){
-Tmux_Name="$1"
-tmux_windows=$(tmux ls 2>&1)
-if echo ${tmux_windows} | grep -q ${Tmux_Name}
-then
-    return 0
-else
-    return 1
-fi
-}
-function qsign_curl(){
-for folder in $(ls -d $HOME/QSignServer/txlib/*)
-do
-    file="${folder}/config.json"
-    port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
-done
-if curl -sL 127.0.0.1:${port_} > /dev/null 2>&1
-then
-    return 0
-else
-    return 1
-fi
-}
-function tmux_gauge(){
-i=0
-Tmux_Name="$1"
-tmux_ls ${Tmux_Name} & > /dev/null 2>&1
-until qsign_curl
-do
-    i=$((${i}+1))
-    a="${a}#"
-    echo -ne "\r${i}% ${a}\r"
-    if [[ ${i} == 40 ]];then
-        echo
-        return 1
-    fi
-done
-echo
-}
-bot_tmux_attach_log(){
-Tmux_Name="$1"
-if ! tmux attach -t ${Tmux_Name} > /dev/null 2>&1
-then
-    tmux_windows_attach_error=$(tmux attach -t ${Tmux_Name} 2>&1 > /dev/null)
-    echo
-    echo -e ${yellow}QSignServer打开错误"\n"错误原因:${red}${tmux_windows_attach_error}${background}
-    echo
-    echo -en ${yellow}回车返回${background};read
-fi
-}
+Txlib_Version_New="8.9.96"
 case $(uname -m) in
 amd64|x86_64)
 JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u392b08.tar.gz"
@@ -210,6 +140,77 @@ then
 fi
 }
 
+function main(){
+function tmux_new(){
+Tmux_Name="$1"
+Shell_Command="$2"
+if ! tmux new -s ${Tmux_Name} -d "${Shell_Command}"
+then
+    echo -e ${yellow}QSignServer启动错误"\n"错误原因:${red}${tmux_new_error}${background}
+    echo
+    echo -en ${yellow}回车返回${background};read
+    main
+    exit
+fi
+}
+function tmux_attach(){
+Tmux_Name="$1"
+tmux attach -t ${Tmux_Name} > /dev/null 2>&1
+}
+function tmux_kill_session(){
+Tmux_Name="$1"
+tmux kill-session -t ${Tmux_Name}
+}
+function tmux_ls(){
+Tmux_Name="$1"
+tmux_windows=$(tmux ls 2>&1)
+if echo ${tmux_windows} | grep -q ${Tmux_Name}
+then
+    return 0
+else
+    return 1
+fi
+}
+function qsign_curl(){
+for folder in $(ls -d $HOME/QSignServer/txlib/*)
+do
+    file="${folder}/config.json"
+    port_=$(grep -E port ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/://g" )
+done
+if curl -sL 127.0.0.1:${port_} > /dev/null 2>&1
+then
+    return 0
+else
+    return 1
+fi
+}
+function tmux_gauge(){
+i=0
+Tmux_Name="$1"
+tmux_ls ${Tmux_Name} & > /dev/null 2>&1
+until qsign_curl
+do
+    i=$((${i}+1))
+    a="${a}#"
+    echo -ne "\r${i}% ${a}\r"
+    if [[ ${i} == 40 ]];then
+        echo
+        return 1
+    fi
+done
+echo
+}
+bot_tmux_attach_log(){
+Tmux_Name="$1"
+if ! tmux attach -t ${Tmux_Name} > /dev/null 2>&1
+then
+    tmux_windows_attach_error=$(tmux attach -t ${Tmux_Name} 2>&1 > /dev/null)
+    echo
+    echo -e ${yellow}QSignServer打开错误"\n"错误原因:${red}${tmux_windows_attach_error}${background}
+    echo
+    echo -en ${yellow}回车返回${background};read
+fi
+}
 function start_QSignServer(){
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
@@ -309,7 +310,7 @@ Foreground_Start(){
 reloadtimes=1
 while true
 do
-bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
+	bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
 	echo -en ${yellow}签名服务器已终止${background}
 	sleep 2
 	echo
@@ -388,7 +389,6 @@ exit
 esac
 }
 
-function main(){
 function stop_QSignServer(){
 for folder in $(ls -d $HOME/QSignServer/txlib/*)
 do
@@ -495,8 +495,6 @@ do
     key=$(grep -E key ${file} | awk '{print $2}' | sed 's/"//g' | sed "s/,//g" )
     sed -i "s/${key}/${key_}/g" ${file}
 done
-export Version=${NewVersion}
-echo "${Version}" > $HOME/QSignServer/Version
 }
 
 function uninstall_QSignServer(){
@@ -608,25 +606,33 @@ if [[ -d $HOME/QSignServer ]];then
     done
     if curl -sL 127.0.0.1:${port_} > /dev/null 2>&1
     then
-        QsignVersion=$(curl -sL 127.0.0.1:${port_} | grep version | sed 's|"||g' | sed 's|:||g' | sed 's|,||g')
-        QsignVersion=$(echo ${QsignVersion} | awk '{print $4}')
-        condition="${cyan}[${QsignVersion}]"
+        condition="${cyan}[已启动]"
     else
         condition="${red}[未启动]"
     fi
-    if [ -e $HOME/QSignServer/Version ];then
-        Version=$(cat $HOME/QSignServer/Version)
-    fi
-    if [ "${Version}" == "${NewVersion}" ]
+    for folder in $(ls $HOME/QSignServer/txlib)
+    do
+        Txlib_Version_Local=${folder}
+    done
+    if [ "${Txlib_Version_Local}" == "${Txlib_Version_New}" ]
     then
-        Version="${cyan}[${Version}]"
+        Txlib_Version="${cyan}[HD:${Txlib_Version_New}]"
     else
-        Version="${red}${Version}[请更新]"
+        Txlib_Version="${red}[${Txlib_Version_Local}] [有更新]"
+    fi
+    Version="[$(ls $HOME/QSignServer | grep qsign | sed "s/qsign//g" | sed "s/.\B/&./g")]"
+    QSIGN_VERSION_local=$(ls $HOME/QSignServer | grep qsign | sed 's/qsign//g')
+    if [ "${QSIGN_VERSION}" == "${QSIGN_VERSION_local}" ]
+    then
+        Version="${cyan}${Version}"
+    else
+        Version="${red}${Version} [请更新]"
     fi
 else
     Version="${red}[未部署]"
     condition="${red}[未部署]"
 fi
+
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
 echo -e  ${green} 1.  ${cyan}安装签名服务器${background}
 echo -e  ${green} 2.  ${cyan}启动签名服务器${background}
@@ -641,9 +647,10 @@ echo -e  ${green}10.  ${cyan}查看签名服务器链接${background}
 echo -e  ${green}11.  ${cyan}帮助教程${background}
 echo -e  ${green} 0.  ${cyan}退出${background}
 echo "========================="
-echo -e ${green}签名服务器脚本版本: ${Version}${background}
-echo -e ${green}签名服务器适配版本: ${condition}${background}
-echo -e ${green}psign版本a12202050：${cyan}工业群:883776847${background}
+echo -e ${green}您的签名服务器状态: ${condition}${background}
+echo -e ${green}当前签名服务器版本: ${Version}${background}
+echo -e ${green}本地Txlib最高支持版本: ${Txlib_Version}${background}
+echo -e ${green}psign版本a12202102：${cyan}工业群:883776847${background}
 echo "========================="
 echo
 echo -en ${green}请输入您的选项: ${background};read number
@@ -703,9 +710,6 @@ esac
 if [ "${install_QSignServer}" == "true" ]
 then
     install_QSignServer
-elif [ "${start_QSignServer}" == "true" ]
-then
-    start_QSignServer
 else
     function mainbak()
     {
