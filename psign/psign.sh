@@ -309,7 +309,7 @@ Foreground_Start(){
 reloadtimes=1
 while true
 do
-	bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
+bash $HOME/QSignServer/qsign${QSIGN_VERSION}/bin/unidbg-fetch-qsign --basePath=$HOME/QSignServer/txlib/${version}
 	echo -en ${yellow}签名服务器已终止${background}
 	sleep 2
 	echo
@@ -627,7 +627,6 @@ else
     Version="${red}[未部署]"
     condition="${red}[未部署]"
 fi
-
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
 echo -e  ${green} 1.  ${cyan}安装签名服务器${background}
 echo -e  ${green} 2.  ${cyan}启动签名服务器${background}
@@ -642,10 +641,9 @@ echo -e  ${green}10.  ${cyan}查看签名服务器链接${background}
 echo -e  ${green}11.  ${cyan}帮助教程${background}
 echo -e  ${green} 0.  ${cyan}退出${background}
 echo "========================="
-echo -e ${green}您的签名服务器状态: ${condition}${background}
-echo -e ${green}当前签名服务器版本: ${Version}${background}
-echo -e ${green}本地Txlib最高支持版本: ${Txlib_Version}${background}
-echo -e ${green}psign版本a12112308：${cyan}工业群:883776847${background}
+echo -e ${green}签名服务器脚本版本: ${Version}${background}
+echo -e ${green}签名服务器适配版本: ${condition}${background}
+echo -e ${green}psign版本a12202050：${cyan}工业群:883776847${background}
 echo "========================="
 echo
 echo -en ${green}请输入您的选项: ${background};read number
