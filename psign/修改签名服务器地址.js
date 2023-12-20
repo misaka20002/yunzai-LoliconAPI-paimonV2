@@ -36,6 +36,7 @@ export class Paimon_update_bot_sign_api_addr extends plugin {
 			let show_msgx = await common.makeForwardMsg(e, [show_msg1, show_msg2, show_msg3, show_msg4_1, show_msg4_2, show_msg5], '签名服务器地址');
 			return e.reply(show_msgx, false);
 		} else if (/(^\w+[^\s]+(\.[^\s]+){1,}$)/.test(input_sign_api)) {
+			await updateConfig('online_msg_exp', 300)
 			await updateConfig('sign_api_addr', input_sign_api)
 			return e.reply(`[派蒙来份] 已修改签名服务器地址为${input_sign_api}`)
 		} else {
