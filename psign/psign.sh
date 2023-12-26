@@ -369,6 +369,7 @@ echo -e ${cyan}请选择启动方式${background}
 echo -e  ${green}1.  ${cyan}前台启动（推荐，可自动重启）${background}
 echo -e  ${green}2.  ${cyan}TMUX后台启动${background}
 echo -e  ${green}3.  ${cyan}PM2后台启动${background}
+echo -e  ${cyan}-------------------------${background}
 echo -e  ${cyan}小提示：启动签名服务器后新建控制台启动云崽命令如下${background}
 echo -e  ${cyan}cd Miao-Yunzai${background}
 echo -e  ${cyan}node app${background}
