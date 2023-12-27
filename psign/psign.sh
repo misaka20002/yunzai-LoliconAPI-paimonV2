@@ -225,14 +225,13 @@ then
 fi
 echo -e ${white}"====="${green}呆毛-QSignServer${white}"====="${background}
 echo -e ${cyan}请选择签名服务器适配的QQ共享库版本${background}
-echo -e  ${green}33.  ${cyan}HD: 8.9.33${background}
 echo -e  ${green}58.  ${cyan}HD: 8.9.58${background}
 echo -e  ${green}63.  ${cyan}HD: 8.9.63${background}
 echo -e  ${green}68.  ${cyan}HD: 8.9.68${background}
 echo -e  ${green}70.  ${cyan}HD: 8.9.70${background}
 echo -e  ${green}71.  ${cyan}HD: 8.9.71${background}
 echo -e  ${green}73.  ${cyan}HD: 8.9.73${background}
-echo -e  ${green}75.  ${cyan}HD: 8.9.76${background}
+echo -e  ${green}75.  ${cyan}HD: 8.9.75${background}
 echo -e  ${green}76.  ${cyan}HD: 8.9.76${background}
 echo -e  ${green}78.  ${cyan}HD: 8.9.78${background}
 echo -e  ${green}80.  ${cyan}HD: 8.9.80${background}
@@ -245,9 +244,6 @@ echo -e  ${green} f.  ${cyan}HD: 8.9.96（需要icqq0.6.6）${background}
 echo "========================="
 echo -en ${green}请输入您的选项: ${background};read num
 case ${num} in
-33|8.9.33)
-export version=8.9.33
-;;
 58|8.9.58)
 export version=8.9.58
 ;;
