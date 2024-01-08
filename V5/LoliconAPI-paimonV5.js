@@ -462,27 +462,33 @@ async function processImage(response, url) {
         switch (option) {
             case 'brightness':
                 // 修改亮度
+                logger.mark('派蒙来份使用图片处理：修改亮度')
                 imageData = await sharp(imageData).modulate({ brightness: 1 + Math.random() * 0.02 }).toBuffer()
                 break
             case 'contrast':
                 // 修改对比度
+                logger.mark('派蒙来份使用图片处理：修改对比度')
                 imageData = await sharp(imageData).modulate({ contrast: 1 + Math.random() * 0.02 }).toBuffer()
                 break
             case 'saturation':
                 // 修改饱和度
+                logger.mark('派蒙来份使用图片处理：修改饱和度')
                 imageData = await sharp(imageData).modulate({ saturation: 1 + Math.random() * 0.02 }).toBuffer()
                 break
             case 'hue':
                 // 修改色调
+                logger.mark('派蒙来份使用图片处理：修改色调')
                 imageData = await sharp(imageData).modulate({ hue: Math.floor(Math.random() * 3.6) }).toBuffer()
                 break
             case 'width':
                 // 修改宽度
+                logger.mark('派蒙来份使用图片处理：修改宽度')
                 const newWidth = metadata.width - 1 + Math.floor(Math.random() * 2)
                 imageData = await sharp(imageData).resize(newWidth, null, { withoutEnlargement: true }).toBuffer()
                 break
             case 'height':
                 // 修改高度
+                logger.mark('派蒙来份使用图片处理：修改高度')
                 const newHeight = metadata.height - 1 + Math.floor(Math.random() * 2)
                 imageData = await sharp(imageData).resize(null, newHeight, { withoutEnlargement: true }).toBuffer()
                 break
