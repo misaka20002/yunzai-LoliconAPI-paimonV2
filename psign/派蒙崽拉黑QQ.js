@@ -4,7 +4,7 @@ import yaml from 'yaml'
 import fs from 'fs'
 
 
-const path = '../../config/config/other.yaml'
+const path = `${process.cwd()}/config/config/other.yaml`
 
 export class paimon_blackQQ extends plugin {
     constructor() {
