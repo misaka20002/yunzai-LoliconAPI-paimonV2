@@ -151,5 +151,11 @@ curl -# -L -o "./plugins/example/修改签名服务器地址.js" "https://raw.gi
 ```
 ^#派蒙来份(修改|查看)?签名服务器地址(帮助)?
 
+## 云崽功能拉黑qq
+```
+curl -# -L -o "./plugins/example/派蒙崽拉黑QQ.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js"
+```
+#派蒙崽拉黑qq
+
   
 -END-
