@@ -62,6 +62,7 @@ export class paimon_blackQQ extends plugin {
                 }
                 else {
                     let data = readYaml(path)
+                    if (data.blackQQ.includes(qq_num)) return e.reply('这个QQ早就被拉黑惹>_<', false, { recallMsg: 15 })
                     data.blackQQ.push(qq_num)
                     writeYaml(path, data)
                     e.reply('派蒙崽已成功拉黑' + qq_num)
