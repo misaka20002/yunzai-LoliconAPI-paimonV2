@@ -109,7 +109,7 @@ node app
 
 ## 杂项2 插件管理
 ```
-bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/PaimonPluginsManage.sh
+bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/PaimonPluginsManage.sh)
 ```
 
 ## 替换chatgpt-plugin插件的语音合成为berl-vits模型（这api已失效）
