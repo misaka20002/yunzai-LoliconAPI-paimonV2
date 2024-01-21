@@ -95,7 +95,7 @@ export class paimon_blackQQ extends plugin {
         // 处理@at
         let qq_at = e.message.find(item => item.type == 'at')?.qq
 
-        const match = e.msg.match(/^#派蒙崽解除拉黑(QQ|qq)(.*)$/)
+        const match = e.msg.trim().match(/^#派蒙崽解除拉黑(QQ|qq)(.*)$/)
         if (match) {
             if (!match[2]) {
                 match[2] = qq_at
@@ -113,7 +113,7 @@ export class paimon_blackQQ extends plugin {
                     return
                 }
                 else {
-                    e.reply('该QQ号不在黑名单中哦', false, { recallMsg: 115 })
+                    e.reply(`该QQ${qq_num}不在黑名单中哦`, false, { recallMsg: 115 })
                     return
                 }
             }
