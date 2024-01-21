@@ -70,7 +70,7 @@ export class paimon_blackQQ extends plugin {
                 }
             }
         }
-        return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑[qq/at]\n#派蒙崽查看拉黑qq', false, { recallMsg: 115 })
+        return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq', false, { recallMsg: 115 })
     }
 
     /**^#派蒙崽查看拉黑(QQ|qq)$ */
@@ -118,7 +118,7 @@ export class paimon_blackQQ extends plugin {
                 }
             }
         }
-        return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑[qq/at]\n#派蒙崽查看拉黑qq', false, { recallMsg: 115 })
+        return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq', false, { recallMsg: 115 })
     }
 
 
