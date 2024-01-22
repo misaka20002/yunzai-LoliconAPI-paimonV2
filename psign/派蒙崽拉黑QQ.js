@@ -15,7 +15,7 @@ export class paimon_blackQQ extends plugin {
             priority: 5000,
             rule: [
                 {
-                    reg: '^#派蒙崽拉黑(QQ|qq)(.*)$',
+                    reg: '^#派蒙崽拉黑(QQ|qq)',
                     fnc: 'paimon_black_qq_add',
                     permission: 'master',
                 },
@@ -25,7 +25,7 @@ export class paimon_blackQQ extends plugin {
                     permission: 'master',
                 },
                 {
-                    reg: '^#派蒙崽解除拉黑(QQ|qq)(.*)$',
+                    reg: '^#派蒙崽解除拉黑(QQ|qq)',
                     fnc: 'paimon_black_qq_remove',
                     permission: 'master',
                 },
@@ -33,19 +33,19 @@ export class paimon_blackQQ extends plugin {
         })
     }
 
-    /** ^#派蒙崽拉黑(QQ|qq)(.*)$ */
+    /** ^#派蒙崽拉黑(QQ|qq) */
     async paimon_black_qq_add(e) {
         // 处理@at
         let qq_at = e.message.find(item => item.type == 'at')?.qq
 
-        const match = e.msg.trim().match(/^#派蒙崽拉黑(QQ|qq)(.*)$/)
+        const match = e.msg.trim().match(/^#派蒙崽拉黑(QQ|qq)([\s\S]*)$/)
         if (match) {
             if (!match[2]) {
                 match[2] = qq_at
             } else {
                 if (qq_at) return e.reply(`到底是要拉黑${match[2]}还是${qq_at}？`, false, { recallMsg: 115 })
             }
-            
+
             const qq_num = Number(match[2])
             if (Number.isInteger(qq_num)) {
                 if (e.user_id == qq_num) {
@@ -69,6 +69,10 @@ export class paimon_blackQQ extends plugin {
                     return
                 }
             }
+            else {
+                e.reply(`当前输入match为${match[2]},请输入正确的QQ号哦`, false, { recallMsg: 115 })
+                return
+            }
         }
         return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq', false, { recallMsg: 115 })
     }
@@ -90,19 +94,19 @@ export class paimon_blackQQ extends plugin {
         }
     }
 
-    /**^#派蒙崽解除拉黑(QQ|qq)(.*)$ */
+    /**^#派蒙崽解除拉黑(QQ|qq) */
     async paimon_black_qq_remove(e) {
         // 处理@at
         let qq_at = e.message.find(item => item.type == 'at')?.qq
 
-        const match = e.msg.trim().match(/^#派蒙崽解除拉黑(QQ|qq)(.*)$/)
+        const match = e.msg.trim().match(/^#派蒙崽解除拉黑(QQ|qq)([\s\S]*)$/)
         if (match) {
             if (!match[2]) {
                 match[2] = qq_at
             } else {
                 if (qq_at) return e.reply(`到底是要拉黑${match[2]}还是${qq_at}？`, false, { recallMsg: 115 })
             }
-            
+
             const qq_num = Number(match[2])
             if (Number.isInteger(qq_num)) {
                 let data = readYaml(path)
@@ -116,6 +120,10 @@ export class paimon_blackQQ extends plugin {
                     e.reply(`该QQ${qq_num}不在黑名单中哦`, false, { recallMsg: 115 })
                     return
                 }
+            }
+            else {
+                e.reply(`当前输入match为${match[2]},请输入正确的QQ号哦`, false, { recallMsg: 115 })
+                return
             }
         }
         return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq', false, { recallMsg: 115 })
