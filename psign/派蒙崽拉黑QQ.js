@@ -71,7 +71,7 @@ export class paimon_blackQQ extends plugin {
                 }
             }
             else {
-                e.reply(`当前输入match为${match[2]},请输入正确的QQ号哦`, false, { recallMsg: 115 })
+                e.reply(`当前输入match为${match[2]}，请输入正确的QQ号哦，或输入#派蒙崽拉黑QQ帮助`, false, { recallMsg: 115 })
                 return
             }
         }
@@ -125,7 +125,7 @@ export class paimon_blackQQ extends plugin {
                 }
             }
             else {
-                e.reply(`当前输入match为${match[2]},请输入正确的QQ号哦`, false, { recallMsg: 115 })
+                e.reply(`当前输入match为${match[2]}，请输入正确的QQ号哦，或输入#派蒙崽拉黑QQ帮助`, false, { recallMsg: 115 })
                 return
             }
         }
