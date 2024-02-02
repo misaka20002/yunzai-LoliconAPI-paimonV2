@@ -95,22 +95,6 @@ express-art-template 1.0.1
 
 
 # 其他杂项
-## 杂项1
-```
-tmoe proot ubuntu jammy arm64
-```
-```
-bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign.sh)
-```
-```
-cd Miao-Yunzai
-node app
-```
-
-## 杂项2 插件管理
-```
-bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/PaimonPluginsManage.sh)
-```
 
 ## 替换chatgpt-plugin插件的语音合成为berl-vits模型（这api已失效）
 > cd Miao-Yunzai
@@ -118,11 +102,6 @@ bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-
 curl -# -L -o "./plugins/example/tts语音替换帮助.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/tts%E8%AF%AD%E9%9F%B3%E6%9B%BF%E6%8D%A2.js"
 ```
 发送#tts语音替换帮助 可获取支持的角色语音命令
-
-## 杂项2
-```
-curl -# -L -o "./plugins/example/米游社手动验证码.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js"
-```
 
 ## 修复逍遥图鉴插件导致bot对包含 动态、幻影 的所有文本无响应的bug：
 ```
@@ -154,13 +133,37 @@ curl -# -L -o "./plugins/example/派蒙每日自动发言.js" "https://raw.githu
 ```
 curl -# -L -o "./plugins/example/修改签名服务器地址.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js"
 ```
-^#派蒙来份(修改|查看)?签名服务器地址(帮助)?
+>^#派蒙来份(修改|查看)?签名服务器地址(帮助)?
 
 ## 云崽功能拉黑qq
 ```
 curl -# -L -o "./plugins/example/派蒙崽拉黑QQ.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js"
 ```
-#派蒙崽拉黑qq
+>#派蒙崽拉黑qq
 
-  
+-END-
+
+![动态访问量](https://count.kjchmc.cn/get/@yunzai-LoliconAPI-paimonV2?theme=moebooru)<br>
+## 杂项1
+```
+tmoe proot ubuntu jammy arm64
+```
+```
+bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/psign.sh)
+```
+```
+cd Miao-Yunzai
+node app
+```
+
+## 杂项2
+```
+bash <(curl -sL https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/PaimonPluginsManage.sh)
+```
+
+## 杂项3
+```
+curl -# -L -o "./plugins/example/米游社手动验证码.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js"
+```
+
 -END-
