@@ -1,6 +1,6 @@
 ## yunzai-LoliconAPI-paimonV2
 基于云崽V3qq机器人的随机返回涩图
-鸣谢：原作者：https://github.com/SakuraTairitsu
+鸣谢：原作者：https://github.com/SakuraTairitsu/LoliconAPI
 
 
 # v5命令：
