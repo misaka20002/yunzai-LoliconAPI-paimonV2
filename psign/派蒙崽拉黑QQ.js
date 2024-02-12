@@ -25,7 +25,7 @@ export class paimon_blackQQ extends plugin {
                     permission: 'master',
                 },
                 {
-                    reg: '^#派蒙崽解除拉黑(QQ|qq)',
+                    reg: '^#派蒙崽(解除|删除|取消)拉黑(QQ|qq)',
                     fnc: 'paimon_black_qq_remove',
                     permission: 'master',
                 },
@@ -95,12 +95,12 @@ export class paimon_blackQQ extends plugin {
         }
     }
 
-    /**^#派蒙崽解除拉黑(QQ|qq) */
+    /**^#派蒙崽(解除|删除|取消)拉黑(QQ|qq) */
     async paimon_black_qq_remove(e) {
         // 处理@at
         let qq_at = e.message.find(item => item.type == 'at')?.qq
 
-        const match = e.msg.trim().match(/^#派蒙崽解除拉黑(QQ|qq)([\s\S]*)$/)
+        const match = e.msg.trim().match(/^#派蒙崽(解除|删除|取消)拉黑(QQ|qq)([\s\S]*)$/)
         if (match[2].trim() == '帮助') return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq', false, { recallMsg: 115 })
 
         if (match) {
