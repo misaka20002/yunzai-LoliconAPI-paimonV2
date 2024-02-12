@@ -1,6 +1,6 @@
 ## yunzai-LoliconAPI-paimonV2
 基于云崽V3qq机器人的随机返回涩图
-鸣谢：原作者：https://github.com/SakuraTairitsu
+鸣谢：原作者：https://github.com/SakuraTairitsu/LoliconAPI
 
 
 # v5命令：
@@ -23,8 +23,7 @@ v5：目前可用
 需要代理则自行改yaml中的代理为本地http代理：
 (先在你的代理如Clash Meta里面-设置-覆写-http端口和socks端口改为12811)
 
-
-（ps. 目前i.pixiv.re反代工作正常，不需要使用代理服务器惹）
+（ps. 目前i.pixiv.re反代工作正常，不需要使用代理服务器）
 
 # v4安装：
 
@@ -36,7 +35,7 @@ curl -# -L -o "./plugins/example/派蒙来份涩图.js" "https://raw.githubuserc
 
 # v5安装（推荐）:
 
-LoliconAPI-paimonV5.js 和 proxy.js放到plugins/example/，或直接在云/喵崽根目录执行：
+LoliconAPI-paimonV5.js 放到plugins/example/，或直接在云/喵崽根目录执行：
 ```
 curl -# -L -o "./plugins/example/派蒙来份涩图.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI-paimonV5.js"
 ```
@@ -47,54 +46,30 @@ curl -# -L -o "./config/config/LoliconAPI.yaml" "https://raw.githubusercontent.c
 
 同时需要安装依赖，进入云崽/喵崽根目录(已更新兼容https-proxy-agent 5.0.1和7.0了)：
 ```
-pnpm add sharp -w
-pnpm add axios -w
-pnpm add https-proxy-agent -w
-
-# 如果pnpm出现ERR_PNPM_INCLUDED_DEPS_CONFLICT提示，考虑高版本pnpm问题，可尝试1、降级pnpm（pnpm add -g pnpm@7.30.0）后重启tmux，在喵崽根目录运行pnpm install，不要加-P选项，安装devDependencies依赖后再使用上面pnpm add相关指令
+pnpm add sharp axios https-proxy-agent -w
 ```
-ps所需要的依赖如下（仅供参考）:
-```
-art-template 4.13.2
-axios 1.5.0
-chalk 5.3.0
-cheerio 1.0.0-rc.12
-chokidar 3.5.3
-crypto 1.0.1
-https-proxy-agent 5.0.1
-icqq 0.5.3
-image-size 1.0.2
-inquirer 9.2.11
-jimp 0.22.10
-lodash 4.17.21
-log4js 6.9.1
-md5 2.3.0
-moment 2.29.4
-node-fetch 3.3.2
-node-schedule 2.1.1
-node-xlsx 0.23.0
-oicq 2.3.1
-patch-package 8.0.0
-pm2 5.3.0
-puppeteer 21.2.1
-redis 4.6.8
-sharp 0.32.5
-systeminformation 5.21.4
-ws 8.14.1
-yaml 2.3.2
-eslint 8.49.0
-eslint-config-standard 17.1.0
-eslint-plugin-import 2.28.1
-eslint-plugin-n 16.1.0
-eslint-plugin-promise 6.1.1
-express 4.18.2
-express-art-template 1.0.1
-```
-同时记得开启你的代理的http端口: 
-代理如Clash Meta里面-设置-覆写-http端口和socks端口改为12811
+> 如果pnpm出现ERR_PNPM_INCLUDED_DEPS_CONFLICT提示，考虑高版本pnpm问题，可尝试1、降级pnpm（pnpm add -g pnpm@7.30.0）后重启tmux，在喵崽根目录运行pnpm install，不要加-P选项，安装devDependencies依赖后再使用上面pnpm add相关指令
 
 
 # 其他杂项
+
+## 派蒙每日自动发言
+每天9点发言,可自定义群号和发言内容
+```
+curl -# -L -o "./plugins/example/派蒙每日自动发言.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E6%AF%8F%E6%97%A5%E8%87%AA%E5%8A%A8%E5%8F%91%E8%A8%80.js"
+```
+
+## 修改签名服务器地址
+```
+curl -# -L -o "./plugins/example/修改签名服务器地址.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js"
+```
+>^#派蒙来份(修改|查看)?签名服务器地址(帮助)?
+
+## 云崽功能拉黑qq
+```
+curl -# -L -o "./plugins/example/派蒙崽拉黑QQ.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js"
+```
+>#派蒙崽拉黑qq
 
 ## 替换chatgpt-plugin插件的语音合成为berl-vits模型（这api已失效）
 > cd Miao-Yunzai
@@ -117,29 +92,6 @@ curl -# -L -o "./plugins/yenai-plugin/lib/request/httpsProxyAgentMod.js" "https:
   ps. 它的使用代理是指使用vpn的意思
   
   pps. 椰奶的默认bika反代已失效
-
-## 派蒙每日自动发言
-每天9点发言,可自定义群号和发言内容
-```
-curl -# -L -o "./plugins/example/派蒙每日自动发言.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E6%AF%8F%E6%97%A5%E8%87%AA%E5%8A%A8%E5%8F%91%E8%A8%80.js"
-```
-## 派蒙每日自动发言
-每天9点发言,可自定义群号和发言内容
-```
-curl -# -L -o "./plugins/example/派蒙每日自动发言.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E6%AF%8F%E6%97%A5%E8%87%AA%E5%8A%A8%E5%8F%91%E8%A8%80.js"
-```
-
-## 修改签名服务器地址
-```
-curl -# -L -o "./plugins/example/修改签名服务器地址.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js"
-```
->^#派蒙来份(修改|查看)?签名服务器地址(帮助)?
-
-## 云崽功能拉黑qq
-```
-curl -# -L -o "./plugins/example/派蒙崽拉黑QQ.js" "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js"
-```
->#派蒙崽拉黑qq
 
 -END-
 
