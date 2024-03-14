@@ -10,7 +10,7 @@ import fetch from 'node-fetch'
  */
 let cfg = {
   verify: 1,
-  verifyAddr: 'http://43.143.112.192:3000/GTest/register',
+  verifyAddr: 'http://gt.qsign.icu/GTest/register?key=免费开源项目-您如果是交易获得则是被骗-请及时退款并举报',
   blackList: [10001, 10002]
 }
 
