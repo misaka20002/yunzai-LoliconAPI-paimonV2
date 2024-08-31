@@ -518,7 +518,7 @@ async function reNameAndSavePic(response, url) {
     }
 }
 
-/** 制作json转发消息 */
+/** 制作使用用户头像的json转发消息 */
 async function makeForwardMsg(e, msg = [], dec = '') {
     if (!Array.isArray(msg)) msg = [msg]
 

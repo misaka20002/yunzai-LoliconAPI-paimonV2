@@ -28,22 +28,23 @@ QSIGN_URL="https://github.com/misaka20002/yunzai-LoliconAPI-paimonV2/releases/do
 QSIGN_VERSION="119"
 qsign_version="1.1.9"
 txlib="https://github.com/misaka20002/txlib"
-Txlib_Version_New="8.9.96"
+Txlib_Version_New="9.0.90"
+OpenJDK8U_Version="8u422b05"
 case $(uname -m) in
 amd64|x86_64)
-JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u402b06.tar.gz"
+JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_${OpenJDK8U_Version}.tar.gz"
 ;;
 arm64|aarch64)
-JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u402b06.tar.gz"
+JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_${OpenJDK8U_Version}.tar.gz"
 ;;
 esac
 if [ $(command -v apk) ];then
 case $(uname -m) in
     amd64|x86_64)
-        JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/alpine-linux/OpenJDK8U-jdk_x64_alpine-linux_hotspot_8u402b06.tar.gz"
+        JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/x64/alpine-linux/OpenJDK8U-jdk_x64_alpine-linux_hotspot_${OpenJDK8U_Version}.tar.gz"
     ;;
     arm64|aarch64)
-        JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_8u402b06.tar.gz"
+        JDK_URL="https://mirrors.tuna.tsinghua.edu.cn/Adoptium/8/jdk/aarch64/linux/OpenJDK8U-jdk_aarch64_linux_hotspot_${OpenJDK8U_Version}.tar.gz"
     ;;
 esac
 fi
@@ -241,6 +242,7 @@ echo -e  ${green} c.  ${cyan}HD: 8.9.88（需要icqq0.6.2）${background}
 echo -e  ${green} d.  ${cyan}HD: 8.9.90（需要icqq0.6.3）${background}
 echo -e  ${green} e.  ${cyan}HD: 8.9.93（需要icqq0.6.5）${background}
 echo -e  ${green} f.  ${cyan}HD: 8.9.96（需要icqq0.6.6）${background}
+echo -e  ${green} g.  ${cyan}HD: 9.0.90（需要icqq0.6.6）${background}
 echo "========================="
 echo -en ${green}请输入您的选项: ${background};read num
 case ${num} in
@@ -291,6 +293,9 @@ export version=8.9.93
 ;;
 f|8.9.96)
 export version=8.9.96
+;;
+g|9.0.90)
+export version=9.0.90
 ;;
 *)
 echo
