@@ -38,88 +38,88 @@ EchoPluginPage(){
 echo
 echo
 echo -e ${white}"#######"${green}呆毛版-Plug-In${white}"#######"${background}
-echo -e m1.  ${cyan}auto-plugin"             "呆毛-自动插件${background}
-echo -e m2.  ${cyan}nai-plugin"              "呆毛-nai插件${background}
-echo -e m3.  ${cyan}yenai-plugin"            "呆毛-椰奶插件${background}
-echo -e m4.  ${cyan}chatgpt-plugin"          "呆毛-Chatgpt${background}
-echo -e m5.  ${cyan}ap-plugin"               "呆毛-sd绘图${background}
-echo -e m6.  ${cyan}xiaoyao-cvs-plugin"      "呆毛-原神扫码${background}
-echo -e m7.  ${cyan}xiaofei-plugin"          "呆毛-点歌${background}
-echo -e m8.  ${cyan}reset-qianyu-plugin"     "呆毛-千羽插件${background}
-echo -e m9.  ${cyan}gpti-plugin"             "呆毛-免费gpt${background}
-echo -e 1.  ${cyan}miao-plugin"               "喵喵插件${background}
-echo -e 2.  ${cyan}xiaoyao-cvs-plugin"        "逍遥图鉴${background}
-echo -e 3.  ${cyan}Guoba-Plugin"              "锅巴插件${background}
-echo -e 4.  ${cyan}zhi-plugin"                "白纸插件${background}
-echo -e 5.  ${cyan}xitian-plugin"             "戏天插件${background}
-echo -e 6.  ${cyan}Akasha-Terminal-plugin"    "虚空插件${background}
-echo -e 7.  ${cyan}xiuxian-plugin"            "修仙插件${background}
-echo -e 8.  ${cyan}Yenai-Plugin"              "椰奶插件${background}
-echo -e 9.  ${cyan}xiaofei-plugin"            "小飞插件${background}
-echo -e 10. ${cyan}earth-k-plugin"           "土块插件${background}
-echo -e 11. ${cyan}py-plugin"                "py插件${background}
-echo -e 12. ${cyan}xianxin-plugin"           "闲心插件${background}
-echo -e 13. ${cyan}lin-plugin"               "麟插件${background}
-echo -e 14. ${cyan}L-plugin"                 "L插件${background}
-echo -e 15. ${cyan}qianyu-plugin"            "千羽插件${background}
-echo -e 16. ${cyan}ql-plugin"                "清凉图插件${background}
-echo -e 17. ${cyan}flower-plugin"            "抽卡插件${background}
-echo -e 18. ${cyan}auto-plugin"              "自动化插件${background}
-echo -e 19. ${cyan}recreation-plugin"        "娱乐插件${background}
-echo -e 20. ${cyan}suiyue-plugin"            "碎月插件${background}
-echo -e 21. ${cyan}windoge-plugin"           "风歌插件${background}
-echo -e 22. ${cyan}Atlas"                    "原神图鉴${background}
-echo -e 23. ${cyan}zhishui-plugin"           "止水插件${background}
-echo -e 24. ${cyan}TRSS-Plugin"              "trss插件${background}
-echo -e 25. ${cyan}Jinmaocuicuisha"          "脆脆鲨插件${background}
-echo -e 26. ${cyan}useless-plugin"           "无用插件${background}
-echo -e 27. ${cyan}liulian-plugin"           "榴莲插件${background}
-echo -e 28. ${cyan}xiaoye-plugin"            "小叶插件${background}
-echo -e 29. ${cyan}rconsole-plugin"          "R插件${background}
-echo -e 30. ${cyan}expand-plugin"            "扩展插件${background}
-echo -e 31. ${cyan}XiaoXuePlugin"            "小雪插件${background}
-echo -e 32. ${cyan}Icepray"                  "冰祈插件${background}
-echo -e 33. ${cyan}Tlon-Sky"                 "光遇插件${background}
-echo -e 34. ${cyan}hs-qiqi-plugin"           "枫叶插件${background}
-echo -e 35. ${cyan}call_of_seven_saints"     "七圣召唤插件${background}
-echo -e 36. ${cyan}QQGuild-Plugin"           "QQ频道插件${background}
-echo -e 37. ${cyan}xiaoyue-plugin"           "小月插件${background}
-echo -e 38. ${cyan}FanSky_Qs"                "繁星插件${background}
-echo -e 39. ${cyan}phi-plugin"               "phigros辅助插件${background}
-echo -e 40. ${cyan}ap-plugin"                "AI绘图插件${background}
-echo -e 41. ${cyan}sanyi-plugin"             "三一插件${background}
-echo -e 42. ${cyan}chatgpt-plugin"           "聊天插件${background}
-echo -e 43. ${cyan}y-tian-plugin"            "阴天插件${background}
-echo -e 44. ${cyan}xianyu-plugin"            "咸鱼插件${background}
-echo -e 45. ${cyan}StarRail-plugin"          "星穹铁道插件${background}
-echo -e 46. ${cyan}panel-plugin"             "面板图插件${background}
-echo -e 47. ${cyan}hanhan-plugin"            "憨憨插件${background}
-echo -e 48. ${cyan}avocado-plugin"           "鳄梨插件${background}
-echo -e 49. ${cyan}cunyx-plugin"             "寸幼萱插件${background}
-echo -e 50. ${cyan}TianRu-plugin"            "天如插件${background}
-echo -e 51. ${cyan}ws-plugin"                "ws连接插件${background}
-echo -e 52. ${cyan}WeLM-plugin"              "AI对话插件${background}
-echo -e 53. ${cyan}Yunzai-Kuro-Plugin"       "库洛插件${background}
-echo -e 54. ${cyan}mj-plugin"                "AI绘图插件${background}
-echo -e 55. ${cyan}qinghe-plugin"            "卿何插件${background}
-echo -e 56. ${cyan}BlueArchive-plugin"       "碧蓝档案插件${background}
-echo -e 57. ${cyan}impart-pro-plugin"        "牛牛大作战${background}
-echo -e 58. ${cyan}Gi-plugin"                "群互动插件${background}
-echo -e 59. ${cyan}MC-PLUGIN"                "MC服务器插件${background}
-echo -e 60. ${cyan}mz-plugin"                "名字插件${background}
-echo -e 61. ${cyan}nsfwjs-plugin"            "涩图监听插件${background}
-echo -e 62. ${cyan}biscuit-plugin"           "饼干插件${background}
-echo -e 63. ${cyan}xrk-plugin"               "向日葵插件${background}
-echo -e 64. ${cyan}WeChat-Web-plugin"        "微信插件${background}
-echo -e 65. ${cyan}btc-memz-plugin"          "BTC插件${background}
-echo -e 66. ${cyan}wind-plugin"              "风插件${background}
-echo -e 67. ${cyan}ttsapi-yunzai-Plugin"     "TTS语音合成${background}
-echo -e 68. ${cyan}Xs-plugin"                "XS插件${background}
-echo -e 69. ${cyan}GT-Manual"                "米游社手动验证${background}
-echo -e 70. ${cyan}gpti-plugin"              "简化GPT插件${background}
-echo -e 71. ${cyan}mijia-plugin"             "米家插件${background}
-echo -e 72. ${cyan}1999-plugin"              "1999插件${background}
-echo -e 73. ${cyan}Lain-plugin"              "喵崽适配器插件${background}
+echo -e m1.  ${cyan}auto-plugin"         "呆毛-自动插件${background}
+echo -e m2.  ${cyan}nai-plugin"          "呆毛-nai插件${background}
+echo -e m3.  ${cyan}yenai-plugin"        "呆毛-椰奶插件${background}
+echo -e m4.  ${cyan}chatgpt-plugin"      "呆毛-Chatgpt${background}
+echo -e m5.  ${cyan}ap-plugin"           "呆毛-sd绘图${background}
+echo -e m6.  ${cyan}xiaoyao-cvs-plugin"  "呆毛-原神扫码${background}
+echo -e m7.  ${cyan}xiaofei-plugin"      "呆毛-点歌${background}
+echo -e m8.  ${cyan}reset-qianyu-plugin" "呆毛-千羽插件${background}
+echo -e m9.  ${cyan}gpti-plugin"         "呆毛-免费gpt${background}
+echo -e 1.  ${cyan}miao-plugin"           "喵喵插件${background}
+echo -e 2.  ${cyan}xiaoyao-cvs-plugin"    "逍遥图鉴${background}
+echo -e 3.  ${cyan}Guoba-Plugin"          "锅巴插件${background}
+echo -e 4.  ${cyan}zhi-plugin"            "白纸插件${background}
+echo -e 5.  ${cyan}xitian-plugin"         "戏天插件${background}
+echo -e 6.  ${cyan}Akasha-Terminal-plugin""虚空插件${background}
+echo -e 7.  ${cyan}xiuxian-plugin"        "修仙插件${background}
+echo -e 8.  ${cyan}Yenai-Plugin"          "椰奶插件${background}
+echo -e 9.  ${cyan}xiaofei-plugin"        "小飞插件${background}
+echo -e 10. ${cyan}earth-k-plugin"       "土块插件${background}
+echo -e 11. ${cyan}py-plugin"            "py插件${background}
+echo -e 12. ${cyan}xianxin-plugin"       "闲心插件${background}
+echo -e 13. ${cyan}lin-plugin"           "麟插件${background}
+echo -e 14. ${cyan}L-plugin"             "L插件${background}
+echo -e 15. ${cyan}qianyu-plugin"        "千羽插件${background}
+echo -e 16. ${cyan}ql-plugin"            "清凉图插件${background}
+echo -e 17. ${cyan}flower-plugin"        "抽卡插件${background}
+echo -e 18. ${cyan}auto-plugin"          "自动化插件${background}
+echo -e 19. ${cyan}recreation-plugin"    "娱乐插件${background}
+echo -e 20. ${cyan}suiyue-plugin"        "碎月插件${background}
+echo -e 21. ${cyan}windoge-plugin"       "风歌插件${background}
+echo -e 22. ${cyan}Atlas"                "原神图鉴${background}
+echo -e 23. ${cyan}zhishui-plugin"       "止水插件${background}
+echo -e 24. ${cyan}TRSS-Plugin"          "trss插件${background}
+echo -e 25. ${cyan}Jinmaocuicuisha"      "脆脆鲨插件${background}
+echo -e 26. ${cyan}useless-plugin"       "无用插件${background}
+echo -e 27. ${cyan}liulian-plugin"       "榴莲插件${background}
+echo -e 28. ${cyan}xiaoye-plugin"        "小叶插件${background}
+echo -e 29. ${cyan}rconsole-plugin"      "R插件${background}
+echo -e 30. ${cyan}expand-plugin"        "扩展插件${background}
+echo -e 31. ${cyan}XiaoXuePlugin"        "小雪插件${background}
+echo -e 32. ${cyan}Icepray"              "冰祈插件${background}
+echo -e 33. ${cyan}Tlon-Sky"             "光遇插件${background}
+echo -e 34. ${cyan}hs-qiqi-plugin"       "枫叶插件${background}
+echo -e 35. ${cyan}call_of_seven_saints" "七圣召唤插件${background}
+echo -e 36. ${cyan}QQGuild-Plugin"       "QQ频道插件${background}
+echo -e 37. ${cyan}xiaoyue-plugin"       "小月插件${background}
+echo -e 38. ${cyan}FanSky_Qs"            "繁星插件${background}
+echo -e 39. ${cyan}phi-plugin"           "phigros辅助插件${background}
+echo -e 40. ${cyan}ap-plugin"            "AI绘图插件${background}
+echo -e 41. ${cyan}sanyi-plugin"         "三一插件${background}
+echo -e 42. ${cyan}chatgpt-plugin"       "聊天插件${background}
+echo -e 43. ${cyan}y-tian-plugin"        "阴天插件${background}
+echo -e 44. ${cyan}xianyu-plugin"        "咸鱼插件${background}
+echo -e 45. ${cyan}StarRail-plugin"      "星穹铁道插件${background}
+echo -e 46. ${cyan}panel-plugin"         "面板图插件${background}
+echo -e 47. ${cyan}hanhan-plugin"        "憨憨插件${background}
+echo -e 48. ${cyan}avocado-plugin"       "鳄梨插件${background}
+echo -e 49. ${cyan}cunyx-plugin"         "寸幼萱插件${background}
+echo -e 50. ${cyan}TianRu-plugin"        "天如插件${background}
+echo -e 51. ${cyan}ws-plugin"            "ws连接插件${background}
+echo -e 52. ${cyan}WeLM-plugin"          "AI对话插件${background}
+echo -e 53. ${cyan}Yunzai-Kuro-Plugin"   "库洛插件${background}
+echo -e 54. ${cyan}mj-plugin"            "AI绘图插件${background}
+echo -e 55. ${cyan}qinghe-plugin"        "卿何插件${background}
+echo -e 56. ${cyan}BlueArchive-plugin"   "碧蓝档案插件${background}
+echo -e 57. ${cyan}impart-pro-plugin"    "牛牛大作战${background}
+echo -e 58. ${cyan}Gi-plugin"            "群互动插件${background}
+echo -e 59. ${cyan}MC-PLUGIN"            "MC服务器插件${background}
+echo -e 60. ${cyan}mz-plugin"            "名字插件${background}
+echo -e 61. ${cyan}nsfwjs-plugin"        "涩图监听插件${background}
+echo -e 62. ${cyan}biscuit-plugin"       "饼干插件${background}
+echo -e 63. ${cyan}xrk-plugin"           "向日葵插件${background}
+echo -e 64. ${cyan}WeChat-Web-plugin"    "微信插件${background}
+echo -e 65. ${cyan}btc-memz-plugin"      "BTC插件${background}
+echo -e 66. ${cyan}wind-plugin"          "风插件${background}
+echo -e 67. ${cyan}ttsapi-yunzai-Plugin" "TTS语音合成${background}
+echo -e 68. ${cyan}Xs-plugin"            "XS插件${background}
+echo -e 69. ${cyan}GT-Manual"            "米游社手动验证${background}
+echo -e 70. ${cyan}gpti-plugin"          "简化GPT插件${background}
+echo -e 71. ${cyan}mijia-plugin"         "米家插件${background}
+echo -e 72. ${cyan}1999-plugin"          "1999插件${background}
+echo -e 73. ${cyan}Lain-plugin"          "喵崽适配器插件${background}
 }
 
 DWPluginPage(){
@@ -144,88 +144,88 @@ DWPluginPage(){
         --title "呆毛版-QQ群:285744328" \
         --${checklist_menu} "选择您喜欢的插件吧! ${tips}" \
         26 60 20 \
-        "m1" "auto-plugin                    呆毛-自动插件" ${OFF} \
-        "m2" "nai-plugin                     呆毛-nai插件" ${OFF} \
-        "m3" "yenai-plugin                   呆毛-椰奶插件" ${OFF} \
-        "m4" "chatgpt-plugin                 呆毛-Chatgpt" ${OFF} \
-        "m5" "ap-plugin                      呆毛-sd绘图" ${OFF} \
-        "m6" "xiaoyao-cvs-plugin             呆毛-原神扫码" ${OFF} \
-        "m7" "xiaofei-plugin                 呆毛-点歌" ${OFF} \
-        "m8" "reset-qianyu-plugin            呆毛-千羽插件" ${OFF} \
-        "m9" "gpti-plugin                    呆毛-免费gpt" ${OFF} \
-        "1" "miao-plugin                    喵喵插件" ${OFF} \
-        "2" "xiaoyao-cvs-plugin             逍遥图鉴" ${OFF} \
-        "3" "Guoba-Plugin                   锅巴插件" ${OFF} \
-        "4" "zhi-plugin                     白纸插件" ${OFF} \
-        "5" "xitian-plugin                  戏天插件" ${OFF} \
-        "6" "Akasha-Terminal-plugin         虚空插件" ${OFF} \
-        "7" "xiuxian-plugin                 修仙插件" ${OFF} \
-        "8" "Yenai-Plugin                   椰奶插件" ${OFF} \
-        "9" "xiaofei-plugin                 小飞插件" ${OFF} \
-        "10" "earth-k-plugin                 土块插件" ${OFF} \
-        "11" "py-plugin                      py插件" ${OFF} \
-        "12" "xianxin-plugin                 闲心插件" ${OFF} \
-        "13" "lin-plugin                     麟插件" ${OFF} \
-        "14" "L-plugin                       L插件" ${OFF} \
-        "15" "qianyu-plugin                  千羽插件" ${OFF} \
-        "16" "ql-plugin                      清凉图插件" ${OFF} \
-        "17" "flower-plugin                  抽卡插件" ${OFF} \
-        "18" "auto-plugin                    自动化插件" ${OFF} \
-        "19" "recreation-plugin              娱乐插件" ${OFF} \
-        "20" "suiyue-plugin                  碎月插件" ${OFF} \
-        "21" "windoge-plugin                 风歌插件" ${OFF} \
-        "22" "Atlas                          原神图鉴" ${OFF} \
-        "23" "zhishui-plugin                 止水插件" ${OFF} \
-        "24" "TRSS-Plugin                    trss插件" ${OFF} \
-        "25" "Jinmaocuicuisha                脆脆鲨插件" ${OFF} \
-        "26" "useless-plugin                 无用插件" ${OFF} \
-        "27" "liulian-plugin                 榴莲插件" ${OFF} \
-        "28" "xiaoye-plugin                  小叶插件" ${OFF} \
-        "29" "rconsole-plugin                R插件" ${OFF} \
-        "30" "expand-plugin                  扩展插件" ${OFF} \
-        "31" "XiaoXuePlugin                  小雪插件" ${OFF} \
-        "32" "Icepray                        冰祈插件" ${OFF} \
-        "33" "Tlon-Sky                       光遇插件" ${OFF} \
-        "34" "hs-qiqi-plugin                 枫叶插件" ${OFF} \
-        "35" "call_of_seven_saints           七圣召唤插件" ${OFF} \
-        "36" "QQGuild-Plugin                 QQ频道插件" ${OFF} \
-        "37" "xiaoyue-plugin                 小月插件" ${OFF} \
-        "38" "FanSky_Qs                      繁星插件" ${OFF} \
-        "39" "phi-plugin                     phigros辅助插件" ${OFF} \
-        "40" "ap-plugin                      ap绘图插件" ${OFF} \
-        "41" "sanyi-plugin                   三一插件" ${OFF} \
-        "42" "chatgpt-plugin                 聊天插件" ${OFF} \
-        "43" "y-tian-plugin                  阴天插件" ${OFF} \
-        "44" "xianyu-plugin                  咸鱼插件" ${OFF} \
-        "45" "StarRail-plugin                星穹铁道插件" ${OFF} \
-        "46" "panel-plugin                   面板图插件" ${OFF} \
-        "47" "hanhan-plugin                  憨憨插件" ${OFF} \
-        "48" "avocado-plugin                 鳄梨插件" ${OFF} \
-        "49" "cunyx-plugin                   寸幼萱插件" ${OFF} \
-        "50" "TianRu-plugin                  天如插件" ${OFF} \
-        "51" "ws-plugin                      ws连接插件" ${OFF} \
-        "52" "WeLM-plugin                    AI对话插件" ${OFF} \
-        "53" "Yunzai-Kuro-Plugin             库洛插件" ${OFF} \
-        "54" "mj-plugin                      AI绘图插件" ${OFF} \
-        "55" "qinghe-plugin                  卿何插件" ${OFF} \
-        "56" "BlueArchive-plugin             碧蓝档案插件" ${OFF} \
-        "57" "impart-pro-plugin              牛牛大作战" ${OFF} \
-        "58" "Gi-plugin                      群互动插件" ${OFF} \
-        "59" "MC-PLUGIN                      MC服务器插件" ${OFF} \
-        "60" "mz-plugin                      名字插件" ${OFF} \
-        "61" "nsfwjs-plugin                  涩图监听插件" ${OFF} \
-        "62" "biscuit-plugin                 饼干插件" ${OFF} \
-        "63" "xrk-plugin                     向日葵插件" ${OFF} \
-        "64" "WeChat-Web-plugin              微信插件" ${OFF} \
-        "65" "btc-memz-plugin                BTC插件" ${OFF} \
-        "66" "wind-plugin                    风插件" ${OFF} \
-        "67" "ttsapi-yunzai-Plugin           TTS语音合成" ${OFF} \
-        "68" "Xs-plugin                      XS插件" ${OFF} \
-        "69" "GT-Manual                      米游社手动验证" ${OFF} \
-        "70" "gpti-plugin                    简化GPT插件" ${OFF} \
-        "71" "mijia-plugin                   米家插件" ${OFF} \
-        "72" "1999-plugin                    1999插件" ${OFF} \
-        "73" "Lain-plugin                    喵崽适配器插件" ${OFF} \
+        "m1" "auto-plugin             呆毛-自动插件" ${OFF} \
+        "m2" "nai-plugin              呆毛-nai插件" ${OFF} \
+        "m3" "yenai-plugin            呆毛-椰奶插件" ${OFF} \
+        "m4" "chatgpt-plugin          呆毛-Chatgpt" ${OFF} \
+        "m5" "ap-plugin               呆毛-sd绘图" ${OFF} \
+        "m6" "xiaoyao-cvs-plugin      呆毛-原神扫码" ${OFF} \
+        "m7" "xiaofei-plugin          呆毛-点歌" ${OFF} \
+        "m8" "reset-qianyu-plugin     呆毛-千羽插件" ${OFF} \
+        "m9" "gpti-plugin             呆毛-免费gpt" ${OFF} \
+        "1" "miao-plugin             喵喵插件" ${OFF} \
+        "2" "xiaoyao-cvs-plugin      逍遥图鉴" ${OFF} \
+        "3" "Guoba-Plugin            锅巴插件" ${OFF} \
+        "4" "zhi-plugin              白纸插件" ${OFF} \
+        "5" "xitian-plugin           戏天插件" ${OFF} \
+        "6" "Akasha-Terminal-plugin  虚空插件" ${OFF} \
+        "7" "xiuxian-plugin          修仙插件" ${OFF} \
+        "8" "Yenai-Plugin            椰奶插件" ${OFF} \
+        "9" "xiaofei-plugin          小飞插件" ${OFF} \
+        "10" "earth-k-plugin          土块插件" ${OFF} \
+        "11" "py-plugin               py插件" ${OFF} \
+        "12" "xianxin-plugin          闲心插件" ${OFF} \
+        "13" "lin-plugin              麟插件" ${OFF} \
+        "14" "L-plugin                L插件" ${OFF} \
+        "15" "qianyu-plugin           千羽插件" ${OFF} \
+        "16" "ql-plugin               清凉图插件" ${OFF} \
+        "17" "flower-plugin           抽卡插件" ${OFF} \
+        "18" "auto-plugin             自动化插件" ${OFF} \
+        "19" "recreation-plugin       娱乐插件" ${OFF} \
+        "20" "suiyue-plugin           碎月插件" ${OFF} \
+        "21" "windoge-plugin          风歌插件" ${OFF} \
+        "22" "Atlas                   原神图鉴" ${OFF} \
+        "23" "zhishui-plugin          止水插件" ${OFF} \
+        "24" "TRSS-Plugin             trss插件" ${OFF} \
+        "25" "Jinmaocuicuisha         脆脆鲨插件" ${OFF} \
+        "26" "useless-plugin          无用插件" ${OFF} \
+        "27" "liulian-plugin          榴莲插件" ${OFF} \
+        "28" "xiaoye-plugin           小叶插件" ${OFF} \
+        "29" "rconsole-plugin         R插件" ${OFF} \
+        "30" "expand-plugin           扩展插件" ${OFF} \
+        "31" "XiaoXuePlugin           小雪插件" ${OFF} \
+        "32" "Icepray                 冰祈插件" ${OFF} \
+        "33" "Tlon-Sky                光遇插件" ${OFF} \
+        "34" "hs-qiqi-plugin          枫叶插件" ${OFF} \
+        "35" "call_of_seven_saints    七圣召唤插件" ${OFF} \
+        "36" "QQGuild-Plugin          QQ频道插件" ${OFF} \
+        "37" "xiaoyue-plugin          小月插件" ${OFF} \
+        "38" "FanSky_Qs               繁星插件" ${OFF} \
+        "39" "phi-plugin              phigros辅助插件" ${OFF} \
+        "40" "ap-plugin               ap绘图插件" ${OFF} \
+        "41" "sanyi-plugin            三一插件" ${OFF} \
+        "42" "chatgpt-plugin          聊天插件" ${OFF} \
+        "43" "y-tian-plugin           阴天插件" ${OFF} \
+        "44" "xianyu-plugin           咸鱼插件" ${OFF} \
+        "45" "StarRail-plugin         星穹铁道插件" ${OFF} \
+        "46" "panel-plugin            面板图插件" ${OFF} \
+        "47" "hanhan-plugin           憨憨插件" ${OFF} \
+        "48" "avocado-plugin          鳄梨插件" ${OFF} \
+        "49" "cunyx-plugin            寸幼萱插件" ${OFF} \
+        "50" "TianRu-plugin           天如插件" ${OFF} \
+        "51" "ws-plugin               ws连接插件" ${OFF} \
+        "52" "WeLM-plugin             AI对话插件" ${OFF} \
+        "53" "Yunzai-Kuro-Plugin      库洛插件" ${OFF} \
+        "54" "mj-plugin               AI绘图插件" ${OFF} \
+        "55" "qinghe-plugin           卿何插件" ${OFF} \
+        "56" "BlueArchive-plugin      碧蓝档案插件" ${OFF} \
+        "57" "impart-pro-plugin       牛牛大作战" ${OFF} \
+        "58" "Gi-plugin               群互动插件" ${OFF} \
+        "59" "MC-PLUGIn               MC服务器插件" ${OFF} \
+        "60" "mz-plugin               名字插件" ${OFF} \
+        "61" "nsfwjs-plugin           涩图监听插件" ${OFF} \
+        "62" "biscuit-plugin          饼干插件" ${OFF} \
+        "63" "xrk-plugin              向日葵插件" ${OFF} \
+        "64" "WeChat-Web-plugin       微信插件" ${OFF} \
+        "65" "btc-memz-plugin         BTC插件" ${OFF} \
+        "66" "wind-plugin             风插件" ${OFF} \
+        "67" "ttsapi-yunzai-Plugin    TTS语音合成" ${OFF} \
+        "68" "Xs-plugin               XS插件" ${OFF} \
+        "69" "GT-Manual               米游社手动验证" ${OFF} \
+        "70" "gpti-plugin             简化GPT插件" ${OFF} \
+        "71" "mijia-plugin            米家插件" ${OFF} \
+        "72" "1999-plugin             1999插件" ${OFF} \
+        "73" "Lain-plugin             喵崽适配器插件" ${OFF} \
         3>&1 1>&2 2>&3)
         then
             backmain
