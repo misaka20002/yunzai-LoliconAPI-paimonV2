@@ -18,10 +18,13 @@ import yaml from 'yaml'
 import fs from 'fs'
 import HttpsProxyAgent from 'https-proxy-agent'
 
+const Config_PATH = `${process.cwd()}/config/config/LoliconAPI.yaml`
+const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
+const bot_nickname = config.bot_nickname || "派蒙"
+
 let nproxy = getProxy()
 const NumReg = '[零一壹二两三四五六七八九十百千万亿\\d]+'
-const Lolicon_KEY = new RegExp(`^#派蒙来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
-const Config_PATH = `${process.cwd()}/config/config/LoliconAPI.yaml`
+const Lolicon_KEY = new RegExp(`^#${bot_nickname}来\\s?(${NumReg})?(张|份|点)(.*)(涩|色|瑟)(图|圖)`)
 const Directory = `${process.cwd()}/LoliconAPI`
 
 export class LoliconAPI extends plugin {
@@ -46,6 +49,12 @@ export class LoliconAPI extends plugin {
                 {
                     reg: '^#派蒙来份设置撤回时间(.*)$',
                     fnc: 'set_withdrawal_cd',
+                    permission: 'master',
+                    log: false
+                },
+                {
+                    reg: '^#派蒙来份设置bot第一人称(.*)$',
+                    fnc: 'set_bot_nickname',
                     permission: 'master',
                     log: false
                 },
@@ -122,16 +131,15 @@ export class LoliconAPI extends plugin {
                     log: false
                 },
                 {
-                    reg: '^#派蒙来份(当|目)前设置$',
-                    fnc: 'paimonlaifenshowconfig',
-                    permission: 'master',
-                    log: false
-                },
-                {
                     reg: '^#派蒙来份帮助$',
                     fnc: 'paimonlaifenhelp',
                     log: false
-                }
+                },
+                {
+                    reg: `^#${bot_nickname}来份帮助$`,
+                    fnc: 'paimonlaifenhelp',
+                    log: false
+                },
             ]
         })
         init()
@@ -139,21 +147,21 @@ export class LoliconAPI extends plugin {
 
     async key_setu(e) {
         const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
-                let proxyAgent
-                if (config.Use_proxy_server == 0) {
-                        proxyAgent = 1
-                } else if (!(/^\w+[^\s]+(\.[^\s]+){1,}$/.test(config.Proxy_server_address))) {
-                        return e.reply(`代理服务器设置错误，当前的设置为"${config.Proxy_server_address}"，请#派蒙来份帮助`)
-                }
-                else {
-                        proxyAgent = nproxy(config.Proxy_server_address)
-                }
-		
+        let proxyAgent
+        if (config.Use_proxy_server == 0) {
+            proxyAgent = 1
+        } else if (!(/^\w+[^\s]+(\.[^\s]+){1,}$/.test(config.Proxy_server_address))) {
+            return e.reply(`代理服务器设置错误，当前的设置为"${config.Proxy_server_address}"，请#${bot_nickname}来份帮助`)
+        }
+        else {
+            proxyAgent = nproxy(config.Proxy_server_address)
+        }
+
         if (config.num_Max > 20) return e.reply('请，，，请不要超过20张QAQ')
 
         if (!e.isMaster && await checkCooldown(e, 'LoliconAPI', config.CD)) return false
 
-        const tag = e.msg.replace(new RegExp(`^#派蒙来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
+        const tag = e.msg.replace(new RegExp(`^#${bot_nickname}来\\s?(${NumReg})?(?:张|份|点)\|(?:涩|色|瑟)(?:图|圖)`, 'g'), '')
         const tags = tag.split(/[\s,.\u3002\uff0c、]+/)
         if (tags.length > 3) return e.reply('tag标签不能超过3个哦~', true)
         let tagValue = tags.map(t => `&tag=${t}`).join('')
@@ -171,7 +179,7 @@ export class LoliconAPI extends plugin {
         if (num > 5) {
             await e.reply('嘎嘎~机械~嘎嘎', true)
         } else {
-            await e.reply('派蒙这就去帮你找哦~', false)
+            await e.reply(`${bot_nickname}这就去帮你找哦~`, false)
         }
 
         const r18Value = e.isGroup ? (e.isMaster ? config.r18_Master : config.r18) : (e.isMaster ? config.r18_Master : 2)
@@ -180,7 +188,7 @@ export class LoliconAPI extends plugin {
         try {
             const response = await fetch(url)
             const result = await response.json()
-            if (Array.isArray(result.data) && result.data.length === 0) return e.reply('派蒙...没有找到QAQ', false)
+            if (Array.isArray(result.data) && result.data.length === 0) return e.reply(`${bot_nickname}...没有找到QAQ`, false)
 
             let msgs = []
             let successCount = 0
@@ -188,14 +196,14 @@ export class LoliconAPI extends plugin {
 
             for (const item of result.data) {
                 const response = config.Use_proxy_server ? await fetch(item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini, { agent: proxyAgent }) : await fetch(item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
-		/* 是否通过代理下载图片，response为下载的图片 */
+                /* 是否通过代理下载图片，response为下载的图片 */
                 if (!response.ok) {
                     failureCount++
                     continue
                 }
                 const imageUrl = e.isGroup ? await processImage(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini) : await reNameAndSavePic(response, item.urls?.original || item.urls?.regular || item.urls?.small || item.urls?.thumb || item.urls?.mini)
-		/* reNameAndSavePic()用于下载好的图片存档在 localPath,其传递的url仅用作文件重命名;仅存档私聊未处理过的文件,processImage()不保存处理过的文件 */
-                
+                /* reNameAndSavePic()用于下载好的图片存档在 localPath,其传递的url仅用作文件重命名;仅存档私聊未处理过的文件,processImage()不保存处理过的文件 */
+
                 const msg = [
                     `标题：${item.title}\n`,
                     `画师：${item.author}\n`,
@@ -211,16 +219,16 @@ export class LoliconAPI extends plugin {
             }
 
             if (successCount === 0) {
-                return e.reply('[派蒙来份] 获取图片失败，请确认反代地址能否直连', false, { recallMsg: 60 })
+                return e.reply(`[${bot_nickname}来份] 获取图片失败，请确认反代地址能否直连`, false, { recallMsg: 60 })
             } else if (failureCount > 0) {
-                msgs.push(`[派蒙来份] 获取图片成功 ${successCount} 张，失败 ${failureCount} 张~`)
+                msgs.push(`[${bot_nickname}来份] 获取图片成功 ${successCount} 张，失败 ${failureCount} 张~`)
             }
 
-            return e.reply(await makeForwardMsg(e, msgs, '主人，主人，>_<派蒙找到了哦') ,false, { recallMsg: config.withdrawal_pic_CD })
+            return e.reply(await makeForwardMsg(e, msgs, `主人，主人，>_<${bot_nickname}找到了哦`), false, { recallMsg: config.withdrawal_pic_CD })
         } catch (err) {
             logger.warn(err)
-            return e.reply('[派蒙来份]loliapi返回错误，请检查网络环境或重新下载yaml', false, { recallMsg: 60 })
-	/* 还要检查api.lolicon.app能否直连 */
+            return e.reply(`[${bot_nickname}来份]loliapi返回错误，请检查网络环境或重新下载yaml`, false, { recallMsg: 60 })
+            /* 还要检查api.lolicon.app能否直连 */
         }
     }
 
@@ -238,16 +246,16 @@ export class LoliconAPI extends plugin {
         }
         return false
     }
-	
+
     /** 设置涩图撤回CD */
     async set_withdrawal_cd(e) {
         const match = e.msg.match(/^#派蒙来份设置撤回时间(.*)$/)
         if (match) {
             const input = match[1].trim()
             if (/^\d+$/.test(input)) {
-		    if (input>120) {
-			    await e.reply('[派蒙来份] 只有管理员才可以撤回超过2分钟的信息哦', true)
-		    }
+                if (input > 120) {
+                    await e.reply('[派蒙来份] 只有管理员才可以撤回超过2分钟的信息哦', true)
+                }
                 await updateConfig('withdrawal_pic_CD', parseInt(input))
                 return e.reply(`[派蒙来份] 已修改撤回时间为${parseInt(input)}秒！`)
             } else {
@@ -256,7 +264,20 @@ export class LoliconAPI extends plugin {
         }
         return false
     }
-	
+
+    /** 设置bot第一人称 */
+    async set_bot_nickname(e) {
+        const match = e.msg.match(/^#派蒙来份设置bot第一人称(.*)$/)
+        if (match) {
+            const input = match[1].trim()
+            if (input) {
+                await updateConfig('bot_nickname', input)
+                return e.reply(`[派蒙来份] 已设置bot第一人称为：${input}\n重启生效`)
+            }
+        }
+        return false
+    }
+
     /** 设置代理服务器地址 */
     async set_Proxy_server_address(e) {
         const match = e.msg.match(/^#派蒙来份设置代理地址(.*)$/)
@@ -271,7 +292,7 @@ export class LoliconAPI extends plugin {
         }
         return false
     }
-	
+
     /** 设置反代地址 */
     async set_Reverse_proxy(e) {
         const match = e.msg.match(/^#派蒙来份设置反向代理地址(.*)$/)
@@ -280,12 +301,12 @@ export class LoliconAPI extends plugin {
             if (/(^\w+[^\s]+(\.[^\s]+){1,}$)/.test(input)) {
                 await updateConfig('Reverse_proxy', input)
                 return e.reply(`[派蒙来份] 已修改反向代理地址为${input}`)
-            } 
-	    /* else if (/^0$|^false$|^null$/.test(input)) {
-            	await updateConfig('Reverse_proxy', 0)
-            	return e.reply(`[派蒙来份] 已修改反向代理地址为${input},请确保你的网络环境可p站直连`)
-            } */
-	    else {
+            }
+            /* else if (/^0$|^false$|^null$/.test(input)) {
+                    await updateConfig('Reverse_proxy', 0)
+                    return e.reply(`[派蒙来份] 已修改反向代理地址为${input},请确保你的网络环境可p站直连`)
+                } */
+            else {
                 return e.reply(`[派蒙来份] 你的输入为"${input}"，请输入正确的反向代理地址。\n由于P站资源域名pximg具有防盗链措施，不含pixiv referrer的请求均会 403，所以必须依靠反代服务`, true)
             }
         }
@@ -332,8 +353,8 @@ export class LoliconAPI extends plugin {
             return false
         }
     }
-	
-     /** 开启关闭使用代理服务器 */
+
+    /** 开启关闭使用代理服务器 */
     async set_Use_proxy_server(e) {
         const type = e.msg.replace(/^#派蒙来份设置(开启|关闭)使用代理$/g, '$1')
         if (type === '开启' || type === '关闭') {
@@ -349,7 +370,7 @@ export class LoliconAPI extends plugin {
         await updateConfig('r18', 2)
         return e.reply(`[派蒙来份] 已设置成功！`)
     }
-	
+
     /** 设置反向代理为空用于p站直连（已弃用） */
     async set_Reverse_proxy_void(e) {
         await updateConfig('Reverse_proxy', 0)
@@ -366,7 +387,7 @@ export class LoliconAPI extends plugin {
             return false
         }
     }
-	
+
     /** 开启ai作品 */
     async set_excludeAI(e) {
         const type = e.msg.replace(/^#派蒙来份设置我(不)?要(a|A)(i|I)作品$/g, '$1')
@@ -385,20 +406,13 @@ export class LoliconAPI extends plugin {
     }
 
     /** 发送帮助 */
-    async paimonlaifenhelp (e) {
-        let paimonlaifenhelpmsg2 = '  #派蒙来[n](张|份|点)[tag](涩|色|瑟)(图|圖)\n\t#派蒙来份涩图\n\t#派蒙来5份涩图\n\t#派蒙来5份可莉 白丝涩图\n\t#派蒙来5份派蒙 可莉 萝莉|女孩子涩图'
+    async paimonlaifenhelp(e) {
+        const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
+        let paimonlaifenhelpmsg2 = `  #${bot_nickname}来[n](张|份|点)[tag](涩|色|瑟)(图|圖)\n\t#${bot_nickname}来份涩图\n\t#${bot_nickname}来5份涩图\n\t#${bot_nickname}来5份可莉 白丝涩图\n\t#${bot_nickname}来5份${bot_nickname} 可莉 萝莉|女孩子涩图`
         let paimonlaifenhelpmsg1 = '派蒙涩图帮助：'
-        let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]：0则不撤回\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)r18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置图片大小(original|regular|small|thumb|mini)\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  #派蒙来份设置反向代理地址i.pixiv.re\n  #派蒙来份当前设置\n  #派蒙来份清理缓存图片'
-        let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2, paimonlaifenhelpmsg3], '派蒙涩图帮助');
-        return e.reply(paimonlaifenhelpmsgx);
-    }
-	
-    /** 发送当前设置 */
-    async paimonlaifenshowconfig (e) {
-	const { config, random_pic } = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
-        let paimonlaifenhelpmsg1 = '派蒙涩图当前设置：'
-        let paimonlaifenhelpmsg2 = `  群聊CD：${config.CD}秒\n  撤回时间：${config.withdrawal_pic_CD}秒\n  搜图最大张数：${config.num_Max}张\n  群友r18：${config.r18}\n  主人r18：${config.r18_Master}\n  排除ai作品（api不能全部排除）：${config.excludeAI}\n  图片大小：${config.size}\n  使用代理：${config.Use_proxy_server}\n  代理地址：${config.Proxy_server_address}\n  反向代理地址：${config.Reverse_proxy}`
-        let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2], '派蒙涩图当前设置');
+        let paimonlaifenhelpmsg3 = '派蒙来份管理员设置:\n  #派蒙来份设置cd[num]\n  #派蒙来份设置撤回时间[num]：0则不撤回\n  #派蒙来份设置张数[num]\n  #派蒙来份设置(开启|关闭|可以)r18 ：设置群友\n  #派蒙来份设置我(不|可以)要涩涩 ：设置主人\n  #派蒙来份设置我(不)要ai作品\n  #派蒙来份设置图片大小(original|regular|small|thumb|mini)\n  #派蒙来份设置(开启|关闭)使用代理\n  #派蒙来份设置代理地址http://127.0.0.1:12811\n  #派蒙来份设置反向代理地址i.pixiv.re\n  #派蒙来份当前设置\n  #派蒙来份清理缓存图片\n  #派蒙来份设置bot第一人称'
+        let paimonlaifenhelpmsg4 = `  群聊CD：${config.CD}秒\n  撤回时间：${config.withdrawal_pic_CD}秒\n  搜图最大张数：${config.num_Max}张\n  群友r18：${config.r18}\n  主人r18：${config.r18_Master}\n  排除ai作品（api不能全部排除）：${config.excludeAI}\n  图片大小：${config.size}\n  使用代理：${config.Use_proxy_server}\n  代理地址：${config.Proxy_server_address}\n  反向代理地址：${config.Reverse_proxy}\n  bot第一人称：${bot_nickname}`
+        let paimonlaifenhelpmsgx = await makeForwardMsg(e, [paimonlaifenhelpmsg1, paimonlaifenhelpmsg2, paimonlaifenhelpmsg3, paimonlaifenhelpmsg4], '派蒙涩图帮助');
         return e.reply(paimonlaifenhelpmsgx);
     }
 
@@ -421,7 +435,7 @@ async function checkCooldown(e, command, cooldownTime) {
     const CDTIME = await redis.get(`${command}_${e.group_id}_${e.user_id}_CD`)
     if (CDTIME) {
         const remainingTime = cooldownTime - (moment().unix() - moment(CDTIME, 'YYYY-MM-DD HH:mm:ss').unix())
-        return e.reply(`派蒙累了喵，请等待 ${remainingTime} 秒~`)
+        return e.reply(`${bot_nickname}累了喵，请等待 ${remainingTime} 秒~`)
     }
     const GetTime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
     await redis.set(`${command}_${e.group_id}_${e.user_id}_CD`, GetTime, { EX: cooldownTime })
@@ -551,7 +565,7 @@ async function makeForwardMsg(e, msg = [], dec = '') {
             const detail = forwardMsg.data?.meta?.detail
             if (detail) {
                 detail.news = [{ text: dec }]
-                forwardMsg.data.prompt = '派蒙，最好用的伙伴！'
+                forwardMsg.data.prompt = `${bot_nickname}，最好用的伙伴！`
             }
         } else {
             forwardMsg.data = forwardMsg.data
@@ -630,12 +644,12 @@ function init() {
     if (!fs.existsSync(Directory)) fs.mkdirSync(Directory)
 }
 
-function getProxy () {
-	let proxy = HttpsProxyAgent
-	if (typeof proxy !== 'function') {
-	  proxy = (p) => {
-	    return new HttpsProxyAgent.HttpsProxyAgent(p)
-	  }
-	}
-  return proxy
+function getProxy() {
+    let proxy = HttpsProxyAgent
+    if (typeof proxy !== 'function') {
+        proxy = (p) => {
+            return new HttpsProxyAgent.HttpsProxyAgent(p)
+        }
+    }
+    return proxy
 }
