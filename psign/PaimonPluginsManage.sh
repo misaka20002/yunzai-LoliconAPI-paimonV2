@@ -1223,12 +1223,12 @@ echo -en ${green}请输入选项${background};read number
         echo -en ${yellow}安装完成${background}
         backmain
     elif [ "${number}" == "3" ];then
-        curl -# -L -o "./plugins/example/派蒙来份涩图.js" "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI-paimonV5.js"
-        curl -# -L -o "./config/config/LoliconAPI.yaml" "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml"
-        curl -# -L -o "./plugins/example/修改签名服务器地址.js" "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js"
-        curl -# -L -o "./plugins/example/派蒙崽拉黑QQ.js" "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js"
-        curl -# -L -o "./plugins/example/备份还原config.js" "https://${GitHubMirror}/https://gitee.com/little-flower-flower/yzjs/raw/master/%E5%A4%87%E4%BB%BD&%E8%BF%98%E5%8E%9F.js"
-        curl -# -L -o "./plugins/example/米游社手动验证码.js" "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js"
+        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI-paimonV5.js" > "./plugins/example/派蒙来份涩图.js"
+        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml" > "./config/config/LoliconAPI.yaml"
+        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js" > "./plugins/example/修改签名服务器地址.js"
+        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
+        curl "https://${GitHubMirror}/https://gitee.com/little-flower-flower/yzjs/raw/master/%E5%A4%87%E4%BB%BD&%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
+        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js" > "./plugins/example/米游社手动验证码.js"
         echo -en ${yellow}安装完成${background}
         backmain
     fi
