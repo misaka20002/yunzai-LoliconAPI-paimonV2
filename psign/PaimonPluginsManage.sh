@@ -1138,7 +1138,8 @@ echo
 echo "#######################"
 echo -e ${green}1. ${blue}通过 gitee/github 链接安装${background}
 echo -e ${green}2. ${blue}通过 Download 文件夹安装[仅限termux]${background}
-echo -e ${green}3. ${blue}一键安装呆毛版单独js包${background}
+echo -e ${green}3. ${blue}一键安装呆毛版单独js包（使用代理）${background}
+echo -e ${green}4. ${blue}一键安装呆毛版单独js包（使用直链）${background}
 echo
 echo -e ${green}0. ${blue}返回${background}
 echo "#######################"
@@ -1229,6 +1230,15 @@ echo -en ${green}请输入选项${background};read number
         curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
         curl "https://${GitHubMirror}/https://gitee.com/little-flower-flower/yzjs/raw/master/%E5%A4%87%E4%BB%BD&%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
         curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js" > "./plugins/example/米游社手动验证码.js"
+        echo -en ${yellow}安装完成${background}
+        backmain
+    elif [ "${number}" == "4" ];then
+        curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI-paimonV5.js" > "./plugins/example/派蒙来份涩图.js"
+        curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml" > "./config/config/LoliconAPI.yaml"
+        curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js" > "./plugins/example/修改签名服务器地址.js"
+        curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
+        curl "https://gitee.com/little-flower-flower/yzjs/raw/master/%E5%A4%87%E4%BB%BD&%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
+        curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js" > "./plugins/example/米游社手动验证码.js"
         echo -en ${yellow}安装完成${background}
         backmain
     fi
