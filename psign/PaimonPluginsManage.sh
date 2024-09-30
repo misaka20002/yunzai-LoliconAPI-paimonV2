@@ -40,6 +40,7 @@ echo
 echo -e ${white}"#######"${green}呆毛版-Plug-In${white}"#######"${background}
 echo -e m1.  ${cyan}auto-plugin"         "呆毛-自动插件${background}
 echo -e m2.  ${cyan}nai-plugin"          "呆毛-nai插件${background}
+echo -e m2_2.  ${cyan}nai-plugin"          "呆毛开源-nai插件${background}
 echo -e m3.  ${cyan}yenai-plugin"        "呆毛-椰奶插件${background}
 echo -e m4.  ${cyan}chatgpt-plugin"      "呆毛-Chatgpt${background}
 echo -e m5.  ${cyan}ap-plugin"           "呆毛-sd绘图${background}
@@ -146,6 +147,7 @@ DWPluginPage(){
         26 60 20 \
         "m1" "auto-plugin             呆毛-自动插件" ${OFF} \
         "m2" "nai-plugin              呆毛-nai插件" ${OFF} \
+        "m2_2" "nai-plugin              呆毛开源-nai插件" ${OFF} \
         "m3" "yenai-plugin            呆毛-椰奶插件" ${OFF} \
         "m4" "chatgpt-plugin          呆毛-Chatgpt" ${OFF} \
         "m5" "ap-plugin               呆毛-sd绘图" ${OFF} \
@@ -601,8 +603,14 @@ do
           PluginInstall
           ;;
         m2)
-          Name="nai插件"
+          Name="呆毛版-nai插件"
           Git="https://${GitHubMirror}/https://github.com/misaka20002/nai-plugin.git"
+          PluginFolder="nai-plugin"
+          PluginInstall
+          ;;
+        m2_2)
+          Name="呆毛开源-nai插件"
+          Git="https://${GitHubMirror}/https://github.com/Elrori/nai-plugin.git"
           PluginFolder="nai-plugin"
           PluginInstall
           ;;
