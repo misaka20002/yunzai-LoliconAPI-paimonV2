@@ -16,17 +16,17 @@ export class paimon_blackQQ extends plugin {
             priority: 5000,
             rule: [
                 {
-                    reg: '^#派蒙(崽)?拉黑(QQ|qq)',
+                    reg: '^#派蒙(崽)?拉黑(QQ|qq)?',
                     fnc: 'paimon_black_qq_add',
                     permission: 'master',
                 },
                 {
-                    reg: '^#派蒙(崽)?查看拉黑(QQ|qq)$',
+                    reg: '^#派蒙(崽)?查看拉黑(QQ|qq)?$',
                     fnc: 'paimon_black_qq_list',
                     permission: 'master',
                 },
                 {
-                    reg: '^#派蒙(崽)?(解除|删除|取消)拉黑(QQ|qq)',
+                    reg: '^#派蒙(崽)?(解除|删除|取消)拉黑(QQ|qq)?',
                     fnc: 'paimon_black_qq_remove',
                     permission: 'master',
                 },
@@ -34,12 +34,12 @@ export class paimon_blackQQ extends plugin {
         })
     }
 
-    /** ^#派蒙(崽)?拉黑(QQ|qq) */
+    /** ^#派蒙(崽)?拉黑(QQ|qq)? */
     async paimon_black_qq_add(e) {
         // 处理@at
         let qq_at = e.message.find(item => item.type == 'at')?.qq
 
-        const match = e.msg.trim().match(/^#派蒙(崽)?拉黑(QQ|qq)([\s\S]*)$/)
+        const match = e.msg.trim().match(/^#派蒙(崽)?拉黑(QQ|qq)?([\s\S]*)$/)
         if (match[3].trim() == '帮助') return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false, { recallMsg: 115 })
         if (match) {
             if (!match[3]) {
@@ -82,7 +82,7 @@ export class paimon_blackQQ extends plugin {
         return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false, { recallMsg: 115 })
     }
 
-    /**^#派蒙(崽)?查看拉黑(QQ|qq)$ */
+    /**^#派蒙(崽)?查看拉黑(QQ|qq)?$ */
     async paimon_black_qq_list(e) {
         let data = readYaml(path)
         let blackKey = "blackQQ"
@@ -102,12 +102,12 @@ export class paimon_blackQQ extends plugin {
         }
     }
 
-    /**^#派蒙(崽)?(解除|删除|取消)拉黑(QQ|qq) */
+    /**^#派蒙(崽)?(解除|删除|取消)拉黑(QQ|qq)? */
     async paimon_black_qq_remove(e) {
         // 处理@at
         let qq_at = e.message.find(item => item.type == 'at')?.qq
 
-        const match = e.msg.trim().match(/^#派蒙(崽)?(解除|删除|取消)拉黑(QQ|qq)([\s\S]*)$/)
+        const match = e.msg.trim().match(/^#派蒙(崽)?(解除|删除|取消)拉黑(QQ|qq)?([\s\S]*)$/)
         if (match[4].trim() == '帮助') return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false, { recallMsg: 115 })
 
         if (match) {
