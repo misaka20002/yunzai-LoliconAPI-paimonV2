@@ -26,6 +26,7 @@ export class Paimon_update_bot_sign_api_addr extends plugin {
 	async update_bot_sign_api_addr(e) {
 		const Bot_config = yaml.parse(fs.readFileSync(Config_PATH, 'utf8'))
 		let input_sign_api = e.msg.replace(/^#派蒙来份(修改|查看)?签名服务器地址(和密码)?(帮助)?/, '').trim()
+		let sign_version = ""
 		if (!input_sign_api) {
 			let show_msg1 = '当前签名服务器地址：'
 			let show_msg2 = `${Bot_config.sign_api_addr}`
@@ -36,14 +37,18 @@ export class Paimon_update_bot_sign_api_addr extends plugin {
 			let show_msgx = await common.makeForwardMsg(e, [show_msg1, show_msg2, show_msg3, show_msg4_1, show_msg4_2, show_msg5], '签名服务器地址');
 			return e.reply(show_msgx, false);
 		} else if (/(^\w+[^\s]+(\.[^\s]+){1,}$)/.test(input_sign_api)) {
-			await updateConfig('online_msg_exp', 300)
+			const match = input_sign_api.match(/ver=(\d+(.\d+(.\d+)?)?)/)
+			if (match) {
+				sign_version = match[1]
+				await updateConfig('ver', sign_version)
+			}
 			await updateConfig('sign_api_addr', input_sign_api)
-			return e.reply(`[派蒙来份] 已修改签名服务器地址为${input_sign_api}`)
+			return e.reply(`[派蒙来份] 已修改签名服务器地址：\n${input_sign_api}${sign_version ? `\n签名版本：${sign_version}` : ''}`, true)
 		} else {
-			return e.reply(`[派蒙来份] 你的输入为"${input_sign_api}"，请输入正确的签名服务器地址。\n#派蒙来份签名服务器地址帮助`, false)
+			return e.reply(`[派蒙来份] 你的输入为"${input_sign_api}"，请输入正确的签名服务器地址。\n#派蒙来份签名服务器地址帮助`, true)
 		}
 	}
-	
+
 }
 
 /** 读取YAML文件 */
