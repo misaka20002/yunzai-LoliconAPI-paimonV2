@@ -40,7 +40,6 @@ echo
 echo -e ${white}"#######"${green}呆毛版-Plug-In${white}"#######"${background}
 echo -e m1.  ${cyan}auto-plugin"         "呆毛-自动插件${background}
 echo -e m2.  ${cyan}nai-plugin"          "呆毛-nai插件${background}
-echo -e m2_2.  ${cyan}nai-plugin"          "呆毛开源-nai插件${background}
 echo -e m3.  ${cyan}yenai-plugin"        "呆毛-椰奶插件${background}
 echo -e m4.  ${cyan}chatgpt-plugin"      "呆毛-Chatgpt${background}
 echo -e m5.  ${cyan}ap-plugin"           "呆毛-sd绘图${background}
@@ -48,6 +47,8 @@ echo -e m6.  ${cyan}xiaoyao-cvs-plugin"  "呆毛-原神扫码${background}
 echo -e m7.  ${cyan}xiaofei-plugin"      "呆毛-点歌${background}
 echo -e m8.  ${cyan}reset-qianyu-plugin" "呆毛-千羽插件${background}
 echo -e m9.  ${cyan}gpti-plugin"         "呆毛-免费gpt${background}
+echo -e m10.  ${cyan}siliconflow-plugin""免费FLUX绘图${background}
+echo -e m11.  ${cyan}nai-plugin"        "呆毛开源-nai插件${background}
 echo -e 1.  ${cyan}miao-plugin"           "喵喵插件${background}
 echo -e 2.  ${cyan}xiaoyao-cvs-plugin"    "逍遥图鉴${background}
 echo -e 3.  ${cyan}Guoba-Plugin"          "锅巴插件${background}
@@ -147,7 +148,6 @@ DWPluginPage(){
         26 60 20 \
         "m1" "auto-plugin             呆毛-自动插件" ${OFF} \
         "m2" "nai-plugin              呆毛-nai插件" ${OFF} \
-        "m2_2" "nai-plugin              呆毛开源-nai插件" ${OFF} \
         "m3" "yenai-plugin            呆毛-椰奶插件" ${OFF} \
         "m4" "chatgpt-plugin          呆毛-Chatgpt" ${OFF} \
         "m5" "ap-plugin               呆毛-sd绘图" ${OFF} \
@@ -155,6 +155,8 @@ DWPluginPage(){
         "m7" "xiaofei-plugin          呆毛-点歌" ${OFF} \
         "m8" "reset-qianyu-plugin     呆毛-千羽插件" ${OFF} \
         "m9" "gpti-plugin             呆毛-免费gpt" ${OFF} \
+        "m10" "siliconflow-plugin     免费FLUX绘图" ${OFF} \
+        "m11" "nai-plugin             呆毛开源-nai插件" ${OFF} \
         "1" "miao-plugin             喵喵插件" ${OFF} \
         "2" "xiaoyao-cvs-plugin      逍遥图鉴" ${OFF} \
         "3" "Guoba-Plugin            锅巴插件" ${OFF} \
@@ -608,12 +610,6 @@ do
           PluginFolder="nai-plugin"
           PluginInstall
           ;;
-        m2_2)
-          Name="呆毛开源-nai插件"
-          Git="https://${GitHubMirror}/https://github.com/Elrori/nai-plugin.git"
-          PluginFolder="nai-plugin"
-          PluginInstall
-          ;;
         m3)
           Name="呆毛版-椰奶插件"
           Git="https://${GitHubMirror}/https://github.com/misaka20002/yenai-plugin.git"
@@ -654,6 +650,18 @@ do
           Name="呆毛版-免费gpt4"
           Git="https://${GitHubMirror}/https://github.com/misaka20002/gpti-plugin.git"
           PluginFolder="gpti-plugin"
+          PluginInstall
+          ;;
+        m10)
+          Name="SF插件-免费FLUX绘图"
+          Git="https://${GitHubMirror}/https://github.com/AIGC-Yunzai/siliconflow-plugin.git"
+          PluginFolder="nai-plugin"
+          PluginInstall
+          ;;
+        m11)
+          Name="呆毛开源-nai插件"
+          Git="https://${GitHubMirror}/https://github.com/Elrori/nai-plugin.git"
+          PluginFolder="nai-plugin"
           PluginInstall
           ;;
         1)
