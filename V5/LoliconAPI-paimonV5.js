@@ -210,7 +210,7 @@ export class LoliconAPI extends plugin {
                     `Uid：${item.uid}\n`,
                     `Pid：${item.pid}\n`,
                     `R18：${item.r18}\n`,
-                    `AI生成：${item.aiType ? item.aiType == 1 ? '是' : '未知' : '否'}\n`,
+                    `AI生成：${item.aiType ? (item.aiType == 2 ? "是" : "否") : "未知"}\n`,
                     `Tags：${item.tags.join('，')}\n`,
                     segment.image(imageUrl)
                 ]
