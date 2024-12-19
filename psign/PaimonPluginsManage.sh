@@ -12,8 +12,11 @@ URL="https://ipinfo.io"
 Address=$(curl -sL ${URL} | sed -n 's/.*"country": "\(.*\)",.*/\1/p')
 if [ "${Address}" = "CN" ]
 then
-    GitHubMirror="github.moeyy.xyz"
+    Array=("github.moeyy.xyz" "mirrors.chenby.cn" "cf.ghproxy.cc")
+    GitHubMirror=${Array[$((RANDOM % ${#Array[@]}))]}
+    # GitHubMirror="github.moeyy.xyz"
     # GitHubMirror="mirrors.chenby.cn"
+    # GitHubMirror="cf.ghproxy.cc"
 fi
 
 if [ -d /usr/local/node/bin ];then
@@ -606,8 +609,8 @@ do
           ;;
         m2)
           Name="呆毛版-nai插件"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/nai-plugin.git"
-          PluginFolder="nai-plugin"
+          Git="https://${GitHubMirror}/https://github.com/misaka20002/paimonnai-plugin.git"
+          PluginFolder="paimonnai-plugin"
           PluginInstall
           ;;
         m3)
@@ -655,7 +658,7 @@ do
         m10)
           Name="SF插件-免费FLUX绘图"
           Git="https://${GitHubMirror}/https://github.com/AIGC-Yunzai/siliconflow-plugin.git"
-          PluginFolder="nai-plugin"
+          PluginFolder="siliconflow-plugin"
           PluginInstall
           ;;
         m11)
