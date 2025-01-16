@@ -43,7 +43,7 @@ export class Paimon_update_bot_sign_api_addr extends plugin {
 				await updateConfig('ver', sign_version)
 			}
 			await updateConfig('sign_api_addr', input_sign_api)
-			return e.reply(`[派蒙来份] 已修改签名服务器地址：\n${input_sign_api}${sign_version ? `\n签名版本：${sign_version}` : ''}`, true)
+			return e.reply(`[派蒙来份] 已修改签名服务器地址：\n${input_sign_api}${sign_version ? `\n签名版本：${sign_version}\n发送#重启 后生效` : ''}`, true)
 		} else {
 			return e.reply(`[派蒙来份] 你的输入为"${input_sign_api}"，请输入正确的签名服务器地址。\n#派蒙来份签名服务器地址帮助`, true)
 		}
