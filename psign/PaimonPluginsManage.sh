@@ -12,7 +12,7 @@ URL="https://ipinfo.io"
 Address=$(curl -sL ${URL} | sed -n 's/.*"country": "\(.*\)",.*/\1/p')
 if [ "${Address}" = "CN" ]
 then
-    Array=("www.ghproxy.cn")
+    Array=("ghfast.top")
     GitHubMirror=${Array[$((RANDOM % ${#Array[@]}))]}
     # GitHubMirror="github.moeyy.xyz"
     # GitHubMirror="mirrors.chenby.cn"
