@@ -22,7 +22,7 @@
 #
 
 # 代理地址
-GitHubMirror="github.moeyy.xyz"
+GitHubMirror="ghfast.top"
 
 install_filemanager()
 {
