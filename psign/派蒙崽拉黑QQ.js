@@ -40,26 +40,26 @@ export class paimon_blackQQ extends plugin {
         let qq_at = e.message.find(item => item.type == 'at')?.qq
 
         const match = e.msg.trim().match(/^#派蒙(崽)?拉黑(QQ|qq)?([\s\S]*)$/)
-        if (match[3].trim() == '帮助') return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false, { recallMsg: 115 })
+        if (match[3].trim() == '帮助') return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false)
         if (match) {
             if (!match[3]) {
                 match[3] = qq_at
             } else {
-                if (qq_at) return e.reply(`到底是要拉黑${match[3]}还是${qq_at}？`, false, { recallMsg: 115 })
+                if (qq_at) return e.reply(`到底是要拉黑${match[3]}还是${qq_at}？`, false)
             }
 
             const qq_num = Number(match[3])
             if (Number.isInteger(qq_num)) {
                 if (e.user_id == qq_num) {
-                    e.reply('不可以拉黑你自己哦', false, { recallMsg: 115 })
+                    e.reply('不可以拉黑你自己哦', false)
                     return
                 }
                 else if (cfg.masterQQ.includes(qq_num)) {
-                    e.reply('不可以拉黑主人哦', false, { recallMsg: 115 })
+                    e.reply('不可以拉黑主人哦', false)
                     return
                 }
                 else if (cfg.qq == qq_num) {
-                    e.reply('不可以拉黑人家哦', false, { recallMsg: 115 })
+                    e.reply('不可以拉黑人家哦', false)
                     return
                 }
                 else {
@@ -67,7 +67,7 @@ export class paimon_blackQQ extends plugin {
                     let blackKey = "blackQQ"
                     if (isTrss)
                         blackKey = "blackUser"
-                    if (data[blackKey].includes(qq_num)) return e.reply('这个QQ早就被拉黑惹>_<', false, { recallMsg: 115 })
+                    if (data[blackKey].includes(qq_num)) return e.reply('这个QQ早就被拉黑惹>_<', false)
                     data[blackKey].push(qq_num)
                     writeYaml(path, data)
                     e.reply('派蒙崽已成功拉黑' + qq_num)
@@ -75,11 +75,11 @@ export class paimon_blackQQ extends plugin {
                 }
             }
             else {
-                e.reply(`当前输入match为${match[3]}，请输入正确的QQ号哦，或输入#派蒙崽拉黑QQ帮助`, false, { recallMsg: 115 })
+                e.reply(`当前输入match为${match[3]}，请输入正确的QQ号哦，或输入#派蒙崽拉黑QQ帮助`, false)
                 return
             }
         }
-        return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false, { recallMsg: 115 })
+        return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false)
     }
 
     /**^#派蒙(崽)?查看拉黑(QQ|qq)?$ */
@@ -89,7 +89,7 @@ export class paimon_blackQQ extends plugin {
         if (isTrss)
             blackKey = "blackUser"
         if (data[blackKey].length == 0) {
-            e.reply('派蒙崽目前没有拉黑任何QQ号哦', false, { recallMsg: 115 })
+            e.reply('派蒙崽目前没有拉黑任何QQ号哦', false)
             return
         }
         else {
@@ -108,13 +108,13 @@ export class paimon_blackQQ extends plugin {
         let qq_at = e.message.find(item => item.type == 'at')?.qq
 
         const match = e.msg.trim().match(/^#派蒙(崽)?(解除|删除|取消)拉黑(QQ|qq)?([\s\S]*)$/)
-        if (match[4].trim() == '帮助') return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false, { recallMsg: 115 })
+        if (match[4].trim() == '帮助') return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false)
 
         if (match) {
             if (!match[4]) {
                 match[4] = qq_at
             } else {
-                if (qq_at) return e.reply(`到底是要拉黑${match[4]}还是${qq_at}？`, false, { recallMsg: 115 })
+                if (qq_at) return e.reply(`到底是要拉黑${match[4]}还是${qq_at}？`, false)
             }
 
             const qq_num = Number(match[4])
@@ -130,16 +130,16 @@ export class paimon_blackQQ extends plugin {
                     return
                 }
                 else {
-                    e.reply(`该QQ${qq_num}不在黑名单中哦`, false, { recallMsg: 115 })
+                    e.reply(`该QQ${qq_num}不在黑名单中哦`, false)
                     return
                 }
             }
             else {
-                e.reply(`当前输入match为${match[4]}，请输入正确的QQ号哦，或输入#派蒙崽拉黑QQ帮助`, false, { recallMsg: 115 })
+                e.reply(`当前输入match为${match[4]}，请输入正确的QQ号哦，或输入#派蒙崽拉黑QQ帮助`, false)
                 return
             }
         }
-        return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false, { recallMsg: 115 })
+        return e.reply('喵？请输入正确的QQ号哦；禁止指定qq使用bot的所有功能\n#派蒙崽[解除]拉黑qq[qqnum/@at]\n#派蒙崽查看拉黑qq\n 注意: 解除拉黑只能使用qq号不能使用@at, 因为云崽底层代码...', false)
     }
 
 
