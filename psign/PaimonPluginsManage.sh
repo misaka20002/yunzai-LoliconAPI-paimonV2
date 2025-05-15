@@ -669,7 +669,7 @@ do
           ;;
         1)
           Name="喵喵插件"
-          Git="https://gitee.com/yoimiya-kokomi/miao-plugin.git"
+          Git="https://github.com/yoimiya-kokomi/miao-plugin.git"
           PluginFolder="miao-plugin"
           PluginInstall
           ;;
