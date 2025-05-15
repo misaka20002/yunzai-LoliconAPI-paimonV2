@@ -1,22 +1,21 @@
 # customize 
-DOMAIN-SUFFIX,xiaodaimao.top
-DOMAIN-SUFFIX,misaka20002.top
-DOMAIN-SUFFIX,nai1.pages.dev
+# DOMAIN-SUFFIX,xiaodaimao.top
+# DOMAIN-SUFFIX,misaka20002.top
+# DOMAIN-SUFFIX,nai1.pages.dev
 DOMAIN-SUFFIX,nai2.pages.dev
 DOMAIN-SUFFIX,nai3.pages.dev
 DOMAIN-SUFFIX,nai4.pages.dev
 DOMAIN-SUFFIX,nai5.pages.dev
 DOMAIN-SUFFIX,nai6.pages.dev
-DOMAIN-SUFFIX,nai7.pages.dev
+# DOMAIN-SUFFIX,nai7.pages.dev
 DOMAIN-SUFFIX,nai8.pages.dev
-DOMAIN-SUFFIX,nai9.pages.dev
 DOMAIN-SUFFIX,cpolar.top
 DOMAIN-SUFFIX,hf.space
-DOMAIN-SUFFIX,roki.best
+# DOMAIN-SUFFIX,roki.best
 DOMAIN-SUFFIX,nai4.me
 DOMAIN-SUFFIX,nai5.me
 DOMAIN-SUFFIX,nai6.me
 DOMAIN-SUFFIX,deno.dev
 DOMAIN-SUFFIX,nai4.top
 DOMAIN-SUFFIX,maliya.top
-DOMAIN-SUFFIX,qlogo.cn
+# DOMAIN-SUFFIX,qlogo.cn
