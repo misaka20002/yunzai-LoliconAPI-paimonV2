@@ -12,7 +12,7 @@ URL="https://ipinfo.io"
 Address=$(curl -sL ${URL} | sed -n 's/.*"country": "\(.*\)",.*/\1/p')
 if [ "${Address}" = "CN" ]
 then
-    Array=("ghfast.top")
+    Array=("https://ghfast.top/")
     GitHubMirror=${Array[$((RANDOM % ${#Array[@]}))]}
     # GitHubMirror="github.moeyy.xyz"
     # GitHubMirror="mirrors.chenby.cn"
@@ -42,7 +42,7 @@ echo
 echo
 echo -e ${white}"#######"${green}呆毛版-Plug-In${white}"#######"${background}
 echo -e m1.  ${cyan}auto-plugin"         "呆毛-自动插件${background}
-echo -e m2.  ${cyan}nai-plugin"          "呆毛-nai插件${background}
+echo -e m2.  ${cyan}nai-plugin"          "派蒙nai插件${background}
 echo -e m3.  ${cyan}yenai-plugin"        "呆毛-椰奶插件${background}
 echo -e m4.  ${cyan}chatgpt-plugin"      "呆毛-Chatgpt${background}
 echo -e m5.  ${cyan}ap-plugin"           "呆毛-sd绘图${background}
@@ -151,7 +151,7 @@ DWPluginPage(){
         --${checklist_menu} "选择您喜欢的插件吧! ${tips}" \
         26 60 20 \
         "m1" "auto-plugin             呆毛-自动插件" ${OFF} \
-        "m2" "nai-plugin              呆毛-nai插件" ${OFF} \
+        "m2" "nai-plugin              派蒙nai插件" ${OFF} \
         "m3" "yenai-plugin            呆毛-椰奶插件" ${OFF} \
         "m4" "chatgpt-plugin          呆毛-Chatgpt" ${OFF} \
         "m5" "ap-plugin               呆毛-sd绘图" ${OFF} \
@@ -249,7 +249,7 @@ do
           Name="${Name} 呆毛-自动插件"
           ;;
         m2)
-          Name="${Name} 呆毛-nai插件"
+          Name="${Name} 派蒙nai插件"
           ;;
         m3)
           Name="${Name} 呆毛-椰奶插件"
@@ -602,6 +602,7 @@ else
       echo
     fi
   else
+    echo -e ${yellow}${Name} 使用指令: git clone --depth=1 ${Git} ./plugins/${PluginFolder} ${background}
     echo -e ${yellow}${Name} 安装失败 跳过${background}
     rm -rf plugins/${PluginFolder} > /dev/null 2>&1
     rm -rf plugins/${PluginFolder} > /dev/null 2>&1
@@ -614,67 +615,67 @@ do
     case ${plugin_number} in
         m1)
           Name="呆毛版-自动插件"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/auto-plugin.git"
+          Git="${GitHubMirror}https://github.com/misaka20002/auto-plugin.git"
           PluginFolder="auto-plugin"
           PluginInstall
           ;;
         m2)
-          Name="呆毛版-nai插件"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/paimonnai-plugin.git"
+          Name="派蒙nai插件"
+          Git="git@github.com:misaka20002/paimonnai-plugin.git"
           PluginFolder="paimonnai-plugin"
           PluginInstall
           ;;
         m3)
           Name="呆毛版-椰奶插件"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/yenai-plugin.git"
+          Git="${GitHubMirror}https://github.com/misaka20002/yenai-plugin.git"
           PluginFolder="yenai-plugin"
           PluginInstall
           ;;
         m4)
           Name="呆毛版-Chatgpt"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/chatgpt-plugin.git"
+          Git="${GitHubMirror}https://github.com/misaka20002/chatgpt-plugin.git"
           PluginFolder="chatgpt-plugin"
           PluginInstall
           ;;
         m5)
           Name="呆毛版-sd绘图"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/ap-plugin.git"
+          Git="${GitHubMirror}https://github.com/misaka20002/ap-plugin.git"
           PluginFolder="ap-plugin"  
           PluginInstall
           ;;
         m6)
           Name="呆毛版-原神扫码登录"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/xiaoyao-cvs-plugin.git"
+          Git="${GitHubMirror}https://github.com/misaka20002/xiaoyao-cvs-plugin.git"
           PluginFolder="xiaoyao-cvs-plugin"
           PluginInstall
           ;;
         m7)
           Name="呆毛版-点歌"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/xiaofei-plugin.git"
+          Git="${GitHubMirror}https://github.com/misaka20002/xiaofei-plugin.git"
           PluginFolder="xiaofei-plugin"
           PluginInstall
           ;;
         m8)
           Name="呆毛版-千羽插件"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/-reset-qianyu-plugin.git"
+          Git="${GitHubMirror}https://github.com/misaka20002/-reset-qianyu-plugin.git"
           PluginFolder="reset-qianyu-plugin"
           PluginInstall
           ;;
         m9)
           Name="呆毛版-免费gpt4"
-          Git="https://${GitHubMirror}/https://github.com/misaka20002/gpti-plugin.git"
+          Git="${GitHubMirror}https://github.com/misaka20002/gpti-plugin.git"
           PluginFolder="gpti-plugin"
           PluginInstall
           ;;
         m10)
           Name="SF插件-免费FLUX绘图"
-          Git="https://${GitHubMirror}/https://github.com/AIGC-Yunzai/siliconflow-plugin.git"
+          Git="${GitHubMirror}https://github.com/AIGC-Yunzai/siliconflow-plugin.git"
           PluginFolder="siliconflow-plugin"
           PluginInstall
           ;;
         m11)
           Name="呆毛开源-nai插件"
-          Git="https://${GitHubMirror}/https://github.com/Elrori/nai-plugin.git"
+          Git="${GitHubMirror}https://github.com/Elrori/nai-plugin.git"
           PluginFolder="nai-plugin"
           PluginInstall
           ;;
@@ -764,7 +765,7 @@ do
           ;;
         14)
           Name="L插件"
-          Git="https://${GitHubMirror}/https://github.com/liuly0322/l-plugin.git"
+          Git="${GitHubMirror}https://github.com/liuly0322/l-plugin.git"
           PluginFolder="l-plugin"
           PluginInstall
           ;;
@@ -794,7 +795,7 @@ do
           ;;
         19) #已跑路
           Name="参考插件"
-          Git="https://${GitHubMirror}/https://github.com/Cold-666/refer-plugin.git"
+          Git="${GitHubMirror}https://github.com/Cold-666/refer-plugin.git"
           PluginFolder="refer-plugin"
           PluginInstall
           ;;
@@ -914,7 +915,7 @@ do
           ;;
         39)
           Name="phigros辅助插件"
-          Git="https://${GitHubMirror}/https://github.com/Catrong/phi-plugin.git"
+          Git="${GitHubMirror}https://github.com/Catrong/phi-plugin.git"
           PluginFolder="phi-plugin"
           PluginInstall
           ;;
@@ -1207,11 +1208,11 @@ echo -en ${green}请输入选项${background};read number
             then
                 if [[ ${js} = *raw* ]]
                     then
-                        curl "https://${GitHubMirror}/${js}" > ${jsname}
+                        curl "${GitHubMirror}${js}" > ${jsname}
                 elif [[ ${js} = *blob* ]]
                     then
                         js=$(echo ${js} | sed "s|blob/||g" | sed "s|github|raw.githubusercontent|g" )
-                        curl "https://${GitHubMirror}/${js}" > ${jsname}
+                        curl "${GitHubMirror}${js}" > ${jsname}
                 fi
         fi
         cd ../
@@ -1260,12 +1261,12 @@ echo -en ${green}请输入选项${background};read number
         echo -en ${yellow}安装完成${background}
         backmain
     elif [ "${number}" == "3" ];then
-        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI-paimonV5.js" > "./plugins/example/派蒙来份涩图.js"
-        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml" > "./config/config/LoliconAPI.yaml"
-        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js" > "./plugins/example/修改签名服务器地址.js"
-        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
-        curl "https://gitee.com/little-flower-flower/yzjs/raw/master/%E5%A4%87%E4%BB%BD&%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
-        curl "https://gitee.com/qiannqq/yunzai-plugin-JS/raw/master/JS/stdin.js" > "./plugins/example/标准输入.js"
+        curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI-paimonV5.js" > "./plugins/example/派蒙来份涩图.js"
+        curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml" > "./config/config/LoliconAPI.yaml"
+        curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js" > "./plugins/example/修改签名服务器地址.js"
+        curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
+        curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/refs/heads/main/psign/%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
+        curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/refs/heads/main/psign/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5.js" > "./plugins/example/标准输入.js"
         echo -en ${yellow}安装完成${background}
         backmain
     elif [ "${number}" == "4" ];then
@@ -1273,8 +1274,8 @@ echo -en ${green}请输入选项${background};read number
         curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml" > "./config/config/LoliconAPI.yaml"
         curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js" > "./plugins/example/修改签名服务器地址.js"
         curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
-        curl "https://gitee.com/little-flower-flower/yzjs/raw/master/%E5%A4%87%E4%BB%BD&%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
-        curl "https://gitee.com/qiannqq/yunzai-plugin-JS/raw/master/JS/stdin.js" > "./plugins/example/标准输入.js"
+        curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/refs/heads/main/psign/%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
+        curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/refs/heads/main/psign/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5.js" > "./plugins/example/标准输入.js"
         echo -en ${yellow}安装完成${background}
         backmain
     fi

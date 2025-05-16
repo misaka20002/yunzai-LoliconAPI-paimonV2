@@ -140,7 +140,7 @@ function msg(msg) {
                     image = Buffer.from(item.file.data)
                     image = image.toString('base64')
                     fs.writeFileSync('temp/stdin/stdin.jpg', image, `base64`)
-                    if(os.platform() == "win32") exec(`start .\\temp\\stdin\\0.jpg`)
+                    if(os.platform() == "win32") exec(`start .\\temp\\stdin\\stdin.jpg`)
                     logger.mark(`${chalk.hex("#868ECC")(`[${name}]`)}图片已存储至temp/stdin/stdin.jpg`)
                 } catch(error) { }
             }
