@@ -50,8 +50,9 @@ echo -e m6.  ${cyan}xiaoyao-cvs-plugin"  "呆毛-原神扫码${background}
 echo -e m7.  ${cyan}xiaofei-plugin"      "呆毛-点歌${background}
 echo -e m8.  ${cyan}reset-qianyu-plugin" "呆毛-千羽插件${background}
 echo -e m9.  ${cyan}gpti-plugin"         "呆毛-免费gpt${background}
-echo -e m10.  ${cyan}siliconflow-plugin""免费FLUX绘图${background}
-echo -e m11.  ${cyan}nai-plugin"        "呆毛开源-nai插件${background}
+echo -e m10.  ${cyan}sf-plugin"          "sf插件${background}
+echo -e m11.  ${cyan}nai-plugin"         "呆毛开源-nai插件${background}
+echo -e m12.  ${cyan}lain-plugin"        "napcat版-lain${background}
 echo -e 1.  ${cyan}miao-plugin"           "喵喵插件${background}
 echo -e 2.  ${cyan}xiaoyao-cvs-plugin"    "逍遥图鉴${background}
 echo -e 3.  ${cyan}Guoba-Plugin"          "锅巴插件${background}
@@ -158,8 +159,9 @@ DWPluginPage(){
         "m7" "xiaofei-plugin          呆毛-点歌" ${OFF} \
         "m8" "reset-qianyu-plugin     呆毛-千羽插件" ${OFF} \
         "m9" "gpti-plugin             呆毛-免费gpt" ${OFF} \
-        "m10" "siliconflow-plugin     免费FLUX绘图" ${OFF} \
+        "m10" "siliconflow-plugin     sf插件" ${OFF} \
         "m11" "nai-plugin             呆毛开源-nai插件" ${OFF} \
+        "m12" "lain-plugin            napcat版-lain" ${OFF} \
         "1" "miao-plugin             喵喵插件" ${OFF} \
         "2" "xiaoyao-cvs-plugin      逍遥图鉴" ${OFF} \
         "3" "Guoba-Plugin            锅巴插件" ${OFF} \
@@ -269,6 +271,15 @@ do
           ;;
         m9)
           Name="${Name} 呆毛-免费gpt"
+          ;;
+        m10)
+          Name="${Name} sf插件"
+          ;;
+        m11)
+          Name="${Name} 呆毛开源-nai插件"
+          ;;
+        m12)
+          Name="${Name} napcat版-lain"
           ;;
         1)
           Name="${Name} 喵喵插件"
@@ -549,14 +560,14 @@ then
       echo -en ${cyan}${Name} ${green}已安装 ${cyan}是否删除 ${yellow}[N/y]${background}
       read YN
       case ${YN} in
-      y)
+      Y|y)
         echo -e ${red}正在删除${Name}${background}
         rm -rf plugins/${PluginFolder} > /dev/null 2>&1
         rm -rf plugins/${PluginFolder} > /dev/null 2>&1
         echo -en ${green}删除完成 ${background}
         backmain
         ;;
-      N)
+      n|N)
         echo -en ${green}取消删除${Name} ${background}
         backmain
         ;;
@@ -665,6 +676,12 @@ do
           Name="呆毛开源-nai插件"
           Git="https://${GitHubMirror}/https://github.com/Elrori/nai-plugin.git"
           PluginFolder="nai-plugin"
+          PluginInstall
+          ;;
+        m12)
+          Name="napcat版-lain"
+          Git="https://gitcode.com/liangho-ng/Lain-plugin.git"
+          PluginFolder="Lain-plugin"
           PluginInstall
           ;;
         1)
@@ -1247,8 +1264,8 @@ echo -en ${green}请输入选项${background};read number
         curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/V5/LoliconAPI.yaml" > "./config/config/LoliconAPI.yaml"
         curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js" > "./plugins/example/修改签名服务器地址.js"
         curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
-        curl "https://${GitHubMirror}/https://gitee.com/little-flower-flower/yzjs/raw/master/%E5%A4%87%E4%BB%BD&%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
-        curl "https://${GitHubMirror}/https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js" > "./plugins/example/米游社手动验证码.js"
+        curl "https://gitee.com/little-flower-flower/yzjs/raw/master/%E5%A4%87%E4%BB%BD&%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
+        curl "https://gitee.com/qiannqq/yunzai-plugin-JS/raw/master/JS/stdin.js" > "./plugins/example/标准输入.js"
         echo -en ${yellow}安装完成${background}
         backmain
     elif [ "${number}" == "4" ];then
@@ -1257,7 +1274,7 @@ echo -en ${green}请输入选项${background};read number
         curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js" > "./plugins/example/修改签名服务器地址.js"
         curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
         curl "https://gitee.com/little-flower-flower/yzjs/raw/master/%E5%A4%87%E4%BB%BD&%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
-        curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E7%B1%B3%E6%B8%B8%E7%A4%BE%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81%E7%A0%81.js" > "./plugins/example/米游社手动验证码.js"
+        curl "https://gitee.com/qiannqq/yunzai-plugin-JS/raw/master/JS/stdin.js" > "./plugins/example/标准输入.js"
         echo -en ${yellow}安装完成${background}
         backmain
     fi
@@ -1344,7 +1361,7 @@ Delete_GIT_Plugin(){
     echo -en ${red}是否删除${Git_Plugin} ${cyan}[N/Y]${background}
     read YN
     case ${YN} in
-    Y)
+    Y|y)
         for Num in ${Number}
         do
             file_folder=$(ls -1 -I example -I bin -I other -I system -I genshin plugins | sed -n "${Num}p")
@@ -1413,7 +1430,7 @@ Delete_JS_Plugin(){
     echo -en ${red}是否删除${JS_Plugin} ${cyan}[N/Y]${background}
     read YN
     case ${YN} in
-    Y)
+    Y|y)
         for Num in ${Number}
         do
             file=$(ls -1 -I example -I bin -I other -I system -I genshin plugins/example | sed -n "${Num}p")
