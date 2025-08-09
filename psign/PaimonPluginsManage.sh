@@ -1266,7 +1266,6 @@ echo -en ${green}请输入选项${background};read number
         curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js" > "./plugins/example/修改签名服务器地址.js"
         curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
         curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/refs/heads/main/psign/%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
-        curl "${GitHubMirror}https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/refs/heads/main/psign/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5.js" > "./plugins/example/标准输入.js"
         echo -en ${yellow}安装完成${background}
         backmain
     elif [ "${number}" == "4" ];then
@@ -1275,7 +1274,6 @@ echo -en ${green}请输入选项${background};read number
         curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E4%BF%AE%E6%94%B9%E7%AD%BE%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.js" > "./plugins/example/修改签名服务器地址.js"
         curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/main/psign/%E6%B4%BE%E8%92%99%E5%B4%BD%E6%8B%89%E9%BB%91QQ.js" > "./plugins/example/派蒙崽拉黑QQ.js"
         curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/refs/heads/main/psign/%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F.js" > "./plugins/example/备份还原config.js"
-        curl "https://raw.githubusercontent.com/misaka20002/yunzai-LoliconAPI-paimonV2/refs/heads/main/psign/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5.js" > "./plugins/example/标准输入.js"
         echo -en ${yellow}安装完成${background}
         backmain
     fi
