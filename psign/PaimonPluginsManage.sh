@@ -53,6 +53,7 @@ echo -e m9.  ${cyan}gpti-plugin"         "呆毛-免费gpt${background}
 echo -e m10.  ${cyan}sf-plugin"          "sf插件${background}
 echo -e m11.  ${cyan}nai-plugin"         "呆毛开源-nai插件${background}
 echo -e m12.  ${cyan}lain-plugin"        "napcat版-lain${background}
+echo -e m13.  ${cyan}Hapi-plugin"        "HAPI Connector${background}
 echo -e 1.  ${cyan}miao-plugin"           "喵喵插件${background}
 echo -e 2.  ${cyan}xiaoyao-cvs-plugin"    "逍遥图鉴${background}
 echo -e 3.  ${cyan}Guoba-Plugin"          "锅巴插件${background}
@@ -162,6 +163,7 @@ DWPluginPage(){
         "m10" "siliconflow-plugin     sf插件" ${OFF} \
         "m11" "nai-plugin             呆毛开源-nai插件" ${OFF} \
         "m12" "lain-plugin            napcat版-lain" ${OFF} \
+        "m13" "Hapi-plugin            HAPI Connector" ${OFF} \
         "1" "miao-plugin             喵喵插件" ${OFF} \
         "2" "xiaoyao-cvs-plugin      逍遥图鉴" ${OFF} \
         "3" "Guoba-Plugin            锅巴插件" ${OFF} \
@@ -280,6 +282,9 @@ do
           ;;
         m12)
           Name="${Name} napcat版-lain"
+          ;;
+        m13)
+          Name="${Name} hapi_connector"
           ;;
         1)
           Name="${Name} 喵喵插件"
@@ -683,6 +688,12 @@ do
           Name="napcat版-lain"
           Git="https://gitcode.com/liangho-ng/Lain-plugin.git"
           PluginFolder="Lain-plugin"
+          PluginInstall
+          ;;
+        m13)
+          Name="HAPI Connector"
+          Git="https://github.com/AIGC-Yunzai/hapi_connector-plugin.git"
+          PluginFolder="hapi_connector-plugin"
           PluginInstall
           ;;
         1)
