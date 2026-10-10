@@ -1459,6 +1459,227 @@ Delete_JS_Plugin(){
     esac
 }
 
+# Git 插件加速：只管理所选 Bot 主体及 plugins/* 的 origin 地址。
+git_proxy_menu(){
+    local title="$1" prompt="$2" choice
+    shift 2
+    if [[ "${page}" == "dialog_whiptail_page" ]]; then
+        "${dialog_whiptail}" --title "$title" --menu "$prompt" 22 78 12 "$@" 3>&1 1>&2 2>&3
+    else
+        printf '\n%b%s%b\n%s\n' "$green" "$title" "$background" "$prompt" >&2
+        while (( $# >= 2 )); do
+            printf '%s. %s\n' "$1" "$2" >&2
+            shift 2
+        done
+        printf '请输入您的选项: ' >&2
+        read -r choice || return 1
+        printf '%s\n' "$choice"
+    fi
+}
+
+# 读取原始配置，避免 remote get-url 展开用户已有的 insteadOf 规则。
+git_proxy_origin(){
+    git -C "$1" config --local --get-all remote.origin.url
+}
+
+git_proxy_collect(){
+    # 数组由 change_github_proxy 局部声明，供其子函数共用。
+    git_proxy_names=()
+    git_proxy_paths=()
+    local repo
+    for repo in "$Plugin_Path" "$Plugin_Path"/plugins/*; do
+        [[ -d "$repo" && -e "$repo/.git" ]] || continue
+        [[ "$(git -C "$repo" rev-parse --is-inside-work-tree 2>/dev/null)" == true ]] || continue
+        if [[ "$repo" == "$Plugin_Path" ]]; then
+            git_proxy_names+=("Yunzai 主体")
+        else
+            git_proxy_names+=("${repo##*/}")
+        fi
+        git_proxy_paths+=("$repo")
+    done
+    if (( ${#git_proxy_paths[@]} == 0 )); then
+        echo -e "${yellow}未找到 Git 仓库${background}"
+        return 1
+    fi
+}
+
+git_proxy_show(){
+    git_proxy_collect || return 1
+    local i url
+    for i in "${!git_proxy_paths[@]}"; do
+        url=$(git_proxy_origin "${git_proxy_paths[$i]}" 2>/dev/null) || url=""
+        printf '%s. %s\n   %s\n' "$((i+1))" "${git_proxy_names[$i]}" "${url:-未配置 origin}"
+    done
+}
+
+# 接受 HTTP(S) GitHub 仓库及前缀式代理；一次清除多层旧前缀。
+# 完整匹配域名及 owner/repo，排除 SSH、非 GitHub、凭据和查询参数。
+git_proxy_original_url(){
+    local url="$1"
+    local direct='^https?://github[.]com/[^/?#@[:space:]]+/[^/?#@[:space:]]+/?$'
+    local proxied='^https?://[^?#@[:space:]]+/(https?://github[.]com/[^/?#@[:space:]]+/[^/?#@[:space:]]+/?$)'
+    if [[ "$url" =~ $direct ]]; then
+        printf '%s\n' "$url"
+    elif [[ "$url" =~ $proxied ]]; then
+        printf '%s\n' "${BASH_REMATCH[1]}"
+    else
+        return 1
+    fi
+}
+
+git_proxy_normalize_prefix(){
+    local prefix="$1"
+    [[ -n "$prefix" ]] || return 1
+    [[ "$prefix" == *://* ]] || prefix="https://$prefix"
+    while [[ "$prefix" == */ ]]; do prefix="${prefix%/}"; done
+    # 支持自建代理的端口及路径，不接受凭据、查询参数或嵌套 URL。
+    local pattern='^https?://[a-zA-Z0-9.-]+(:[0-9]+)?(/[a-zA-Z0-9._~%-]+)*$'
+    [[ "$prefix" =~ $pattern ]] || return 1
+    printf '%s/\n' "$prefix"
+}
+
+git_proxy_modify(){
+    local mode="$1" selection action prefix="" custom_url="" i repo current original new confirm
+    local success=0 failed=0 skipped=0
+    local -a options=() indices=() targets=() old_urls=() new_urls=()
+    git_proxy_collect || return 1
+    if [[ "$mode" == single ]]; then
+        for i in "${!git_proxy_names[@]}"; do
+            options+=("$((i+1))" "${git_proxy_names[$i]}")
+        done
+        selection=$(git_proxy_menu "单仓库 Git 加速" "请选择主体或插件仓库" "${options[@]}" 0 返回) || return 0
+        [[ "$selection" == 0 ]] && return 0
+        # 按菜单字符串匹配，避免把用户输入作为算术表达式执行。
+        for i in "${!git_proxy_names[@]}"; do
+            [[ "$selection" == "$((i+1))" ]] && indices+=("$i")
+        done
+        if (( ${#indices[@]} == 0 )); then
+            echo -e "${red}输入错误${background}"
+            return 1
+        fi
+    else
+        indices=("${!git_proxy_names[@]}")
+    fi
+
+    # 2026-09-29 实测支持 Git 的镜像；ghfast.top 按用户后续复测补入。
+    options=(
+        1 "添加/切换 gh-proxy.at9.net（推荐）"
+        2 "添加/切换 gh.xmly.dev"
+        3 "添加/切换 gh-proxy.com"
+        4 "添加/切换 ghproxy.net"
+        5 "添加/切换 ghfast.top"
+        6 "添加/切换自定义加速前缀"
+        7 "移除加速，恢复 GitHub 原地址"
+    )
+    [[ "$mode" == single ]] && options+=(8 "自定义修改仓库地址")
+    action=$(git_proxy_menu "Git 插件加速" "选择操作（批量加速仅处理 HTTP(S) GitHub 仓库）" "${options[@]}" 0 返回) || return 0
+    case "$action" in
+        1) prefix="https://gh-proxy.at9.net/" ;;
+        2) prefix="https://gh.xmly.dev/" ;;
+        3) prefix="https://gh-proxy.com/" ;;
+        4) prefix="https://ghproxy.net/" ;;
+        5) prefix="https://ghfast.top/" ;;
+        6)
+            printf '请输入加速前缀（例如 https://proxy.example.com/）: '
+            read -r prefix || return 0
+            if ! prefix=$(git_proxy_normalize_prefix "$prefix"); then
+                echo -e "${red}加速前缀无效，请输入 HTTP(S) 代理域名或路径${background}"
+                return 1
+            fi
+            ;;
+        7) ;;
+        8)
+            [[ "$mode" == single ]] || return 1
+            printf '请输入新的 Git 仓库地址: '
+            read -r custom_url || return 0
+            if [[ -z "$custom_url" || "$custom_url" == -* || "$custom_url" =~ [[:space:]] ]]; then
+                echo -e "${red}仓库地址不能为空或包含空白字符${background}"
+                return 1
+            fi
+            ;;
+        0) return 0 ;;
+        *) echo -e "${red}输入错误${background}"; return 1 ;;
+    esac
+
+    for i in "${indices[@]}"; do
+        repo="${git_proxy_paths[$i]}"
+        if ! current=$(git_proxy_origin "$repo" 2>/dev/null) || [[ -z "$current" || "$current" == *$'\n'* ]]; then
+            printf '跳过 %s：无法读取唯一的 origin 地址\n' "${git_proxy_names[$i]}"
+            skipped=$((skipped+1))
+            continue
+        fi
+        if [[ "$action" == 8 ]]; then
+            new="$custom_url"
+        elif original=$(git_proxy_original_url "$current"); then
+            new="${prefix}${original}"
+        else
+            printf '跳过 %s：不是可处理的 HTTP(S) GitHub 地址\n' "${git_proxy_names[$i]}"
+            skipped=$((skipped+1))
+            continue
+        fi
+        if [[ "$new" == "$current" ]]; then
+            printf '跳过 %s：地址无需更改\n' "${git_proxy_names[$i]}"
+            skipped=$((skipped+1))
+            continue
+        fi
+        targets+=("$i")
+        old_urls+=("$current")
+        new_urls+=("$new")
+        printf '\n%s\n  原地址: %s\n  新地址: %s\n' "${git_proxy_names[$i]}" "$current" "$new"
+    done
+    if (( ${#targets[@]} == 0 )); then
+        printf '没有需要修改的仓库，跳过 %s 个\n' "$skipped"
+        return 0
+    fi
+    if [[ "$mode" == batch ]]; then
+        printf '\n确认修改以上 %s 个仓库？[y/N]: ' "${#targets[@]}"
+        read -r confirm || return 0
+        if [[ "$confirm" != y && "$confirm" != Y ]]; then
+            echo '操作已取消'
+            return 0
+        fi
+    fi
+    for i in "${!targets[@]}"; do
+        selection="${targets[$i]}"
+        repo="${git_proxy_paths[$selection]}"
+        # 防止预览期间 origin 被其他进程修改后仍覆盖它。
+        if ! current=$(git_proxy_origin "$repo" 2>/dev/null) || [[ "$current" != "${old_urls[$i]}" ]]; then
+            printf '修改失败 %s：origin 已变化或无法读取，请重新操作\n' "${git_proxy_names[$selection]}"
+            failed=$((failed+1))
+        elif git -C "$repo" remote set-url origin "${new_urls[$i]}"; then
+            printf '修改成功: %s\n' "${git_proxy_names[$selection]}"
+            success=$((success+1))
+        else
+            printf '修改失败: %s\n' "${git_proxy_names[$selection]}"
+            failed=$((failed+1))
+        fi
+    done
+    printf '\n操作结果：成功 %s 个，失败 %s 个，跳过 %s 个\n' "$success" "$failed" "$skipped"
+    (( failed == 0 ))
+}
+
+change_github_proxy(){
+    local choice
+    local -a git_proxy_names=() git_proxy_paths=()
+    if [[ -z "$Plugin_Path" || ! -d "$Plugin_Path" ]]; then
+        echo -e "${red}Bot 路径无效，请重新选择 Bot${background}"
+        return 1
+    fi
+    while true; do
+        choice=$(git_proxy_menu "Git 插件加速" "管理所选 Yunzai 主体和插件的 origin 地址" \
+            1 "查看所有 Git 仓库地址" 2 "修改单个仓库加速" 3 "批量添加/切换/移除加速" 0 "返回上级菜单") || return 0
+        case "$choice" in
+            1) git_proxy_show ;;
+            2) git_proxy_modify single ;;
+            3) git_proxy_modify batch ;;
+            0) return 0 ;;
+            *) echo -e "${red}输入错误${background}" ;;
+        esac
+        printf '回车返回'
+        read -r choice || return 0
+    done
+}
+
 function main(){
 function dialog_whiptail_page(){
 number=$(${dialog_whiptail} \
@@ -1470,6 +1691,7 @@ number=$(${dialog_whiptail} \
 "3" "更新GIT插件" \
 "4" "删除GIT插件" \
 "5" "删除JS插件" \
+"6" "Git插件加速" \
 "0" "返回/退出" \
 3>&1 1>&2 2>&3)
 feedback=$?
@@ -1486,6 +1708,7 @@ function echo_page(){
     echo -e ${green}3.  ${cyan}更新GIT插件${background}
     echo -e ${green}4.  ${cyan}删除GIT插件${background}
     echo -e ${green}5.  ${cyan}删除JS插件${background}
+    echo -e ${green}6.  ${cyan}Git插件加速${background}
     echo -e ${green}0.  ${cyan}返回\/退出${background}
     echo "#########################"
     echo -e ${green}QQ群:${cyan}狐狸窝:285744328${background}
@@ -1508,6 +1731,8 @@ elif [ "${number}" == "4" ];then
     Delete_GIT_Plugin
 elif [ "${number}" == "5" ];then
     Delete_JS_Plugin
+elif [ "${number}" == "6" ];then
+    change_github_proxy
 elif [ "${number}" == "0" ];then
     return
 fi
@@ -1576,7 +1801,7 @@ Bot_Name=yxybot
 Linux
 page=echo_page
 pnpm_install
-path
+path || return 1
 main
 ;;
 0)
@@ -1590,22 +1815,22 @@ exit
 esac
 if [ -d "/root/${Bot_Name}/node_modules" ];then
     Plugin_Path="/root/${Bot_Name}"
-    cd ${Plugin_Path}
+    cd "$Plugin_Path" || return 1
 elif [ -d "/root/.fox@bot/${Bot_Name}/node_modules" ];then
     Plugin_Path="/root/.fox@bot/${Bot_Name}"
-    cd ${Plugin_Path}
+    cd "$Plugin_Path" || return 1
 elif [ -d "/home/lighthouse/ubuntu/${Bot_Name}/node_modules" ];then
     Plugin_Path="/home/lighthouse/ubuntu/${Bot_Name}"
-    cd ${Plugin_Path}
+    cd "$Plugin_Path" || return 1
 elif [ -d "/home/lighthouse/centos/${Bot_Name}/node_modules" ];then
     Plugin_Path="/home/lighthouse/centos/${Bot_Name}"
-    cd ${Plugin_Path}
+    cd "$Plugin_Path" || return 1
 elif [ -d "/home/lighthouse/debian/${Bot_Name}/node_modules" ];then
     Plugin_Path="/home/lighthouse/debian/${Bot_Name}"
-    cd ${Plugin_Path}
+    cd "$Plugin_Path" || return 1
 elif [ -d "/root/TRSS_AllBot/${Bot_Name}/node_modules" ];then
     Plugin_Path="/root/TRSS_AllBot/${Bot_Name}"
-    cd ${Plugin_Path}
+    cd "$Plugin_Path" || return 1
 else
     function dialog_whiptail_page(){
         ${dialog_whiptail} --title "呆毛版≧▽≦" \
@@ -1751,13 +1976,15 @@ fi
 function path(){
 if [ -d "./node_modules" ];then
     Plugin_Path="."
-    cd ${Plugin_Path}
+    cd "$Plugin_Path" || return 1
 elif [ -d "../node_modules" ];then
     Plugin_Path=".."
-    cd ${Plugin_Path}
+    cd "$Plugin_Path" || return 1
 else
-    choose_path
+    choose_path || return 1
 fi
+# 后续功能会切换工作目录，保存绝对路径以固定所选 Bot。
+Plugin_Path=$(pwd -P) || return 1
 }
 
 function choose_page(){
@@ -1784,19 +2011,19 @@ if [ -e "/etc/issue" ];then
     Linux
     choose_echo_dialog_whiptail
     pnpm_install
-    path
+    path || exit 1
     main
 elif [ -e "/etc/os-release" ];then
     Linux
     choose_echo_dialog_whiptail
     pnpm_install
-    path
+    path || exit 1
     main
 else
     unLinux
     choose_echo_dialog_whiptail
     pnpm_install
-    path
+    path || exit 1
     main
 fi
 function mainbak()
